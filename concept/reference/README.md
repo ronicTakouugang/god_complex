@@ -26,11 +26,32 @@
 | `lua-power-undoing-peak.jpg` | **The peak of the Undoing: finished key art**, locked from `explorations/archive/undoing-05.jpg` (a clean-up of `undoing-04.jpg`). **The whole world is drained to black and white, Lua alone is in full colour**, rain is falling, and colour is returning at the frame's edges. There's no ring, no haze and no glow. **This is the strongest single image of the power, and the main reference for the website's colour-to-grey transition.** | The clean-up lost the reversal's motion blur on the bicycle wheel. For that cue, see `explorations/archive/undoing-04.jpg`. Colour comes back mostly at the bottom corners and the right edge; canon is all four edges evenly. |
 | `lua-power-tagus.png` | **The Tagus Miracle**, locked from `explorations/archive/tagus-02.png`. River, ferry and quayside in black and white, the city warm, the horizon as the line between forgetting and the world. The ferry is righting itself with water pouring off. Lua is small, kneeling with her hand on the stones, short coils, headphone loop, in full colour. | **Format:** portrait. The wide 21:9 composition is in `explorations/archive/tagus-01.jpg`, but that figure is wrong (seated, hair drift, no headphones). For a wide banner, extend this image sideways rather than reuse tagus-01. **Pose:** she appears to be on both knees; canon is one knee down. The ferry is larger than a real Lisbon commuter ferry. |
 
+## Supporting cast
+
+Their faces may be shown (the face rule is Lua's alone). Each sheet locks that character's face, build and costume.
+
+| File | Character | Notes |
+|---|---|---|
+| `cast-mara.png` | Dr Mara Okafor | Olive wool coat, charcoal knit, reading glasses pushed up, paper file held to her chest, locs tied back. Guarded, sleepless. |
+| `cast-duarte.png` | Duarte Mbala | Brown corduroy jacket (the same brown as Lua's darning), shirt buttoned up, screwdriver in breast pocket, folded white cane, no dark glasses, head tilted to listen. |
+| `cast-solvang.png` | Dr Ingrid Solvang | Charcoal suit, white shirt, silver bob, index cards in her breast pocket. **Correction:** the writing on her cards shows blue ink here. Canon is **pencil**, because blue belongs to Lua alone (DESIGN §2.2). |
+| `cast-ivone.png` | Ivone Semedo | Locked from `cast-ivone-02.png`. Patterned headscarf, ochre and cream shawl, terracotta floral dress, gold earrings, expressive hands, armchair. **No grey-blue on her**, so Lua's colour stays unique in their shared scenes. |
+| `cast-djina.png` | Djina Lopes | Locked from `cast-djina-02.png`. Rounder face, freckles, lighter-brown skin, a single braid, no earrings: deliberately distinct from Mara. Chalk on her fingers, exercise books, sandals. **In scenes,** give her the brief's "something missing behind the eyes"; this sheet only shows her smiling. |
+
+## Prologue
+
+| File | What it locks | Notes |
+|---|---|---|
+| `prologue-capsized.png` | **P-1, the harm**, in full colour: the ferry heeling and sinking, passengers in the water clinging to debris, Lua kneeling small at the water's edge. | **The same pixel size (1027×1531) and composition as `lua-power-tagus.png`**, so the drain cross-fades cleanly from this image into that one. Like the Tagus image, she appears to be on both knees. |
+| `prologue-after.png` | **P-3, the aftermath**, in colour: the ferry upright, passengers dry on deck, lighter rain, Lua standing with her head bowed. | **Not pixel-aligned** with P-1 and P-2 (a slightly different size, and she is standing and larger). Use it as a **cut** after the colour returns, never as a cross-fade. She faces the ferry rather than turning away; that reads as exhaustion, which works. |
+
 ## Emblem
 
 | File | What it locks | Notes |
 |---|---|---|
 | `lua-emblem-stilllife.png` | **The objects**, locked from `explorations/archive/stilllife-01.png`, laid out as evidence on her cardigan: the **empty badge** (clear holder, white card, teal lanyard), the worn black notebook, the blue ballpoint, the 1990s studio headphones with the silver-taped cup and coiled cable, the ochre darn. Photographic, muted, no text. The safest opening image for the site. | **1536×1024 only**, which is too small for a full-screen hero on high-density screens. Regenerate larger or upscale before production. **The headphones dominate the composition, not the badge.** For the site's opening, crop to the badge, or make a variant with the badge centred and larger. |
+| `badge-blank.png` | **E-2, the *herself* ending**, and the base for E-1: the empty badge centred and large on the cardigan, the notebook, pen and headphones cropped at the edges. | For E-1 (*longing*), *CELESTE S.* is set as **live text** on the white card, which is flat and front-on so the text sits naturally. 1536×1024, needs the 2× upscale. |
+| `badge-refuse.png` | **E-3, the *refuse* ending**, locked from `badge-refuse-02.png`. Over her shoulder: her **left** hand holds the name card *CELESTE S.*, with *Eu sou a Lua* on the back of the hand, both legible. Beyond her is Lisbon after the quake, damaged and **in colour**. Headphones and the teal lanyard are at her neck, and her face is out of frame. | A small anachronistic tall ship sits on the river; minor. 1536×1024, needs the 2× upscale. |
 
 **Left hand is canon, and it has a reason:** she is right-handed, so she writes on her left hand. Image tools keep putting the writing on whichever hand is visible from behind. Correct it in all final art, where the lettering is added by hand anyway.
 

@@ -13,7 +13,7 @@
 
 ## 0. Production rules
 
-1. **Masters** are at least 2400px on the long edge, saved as PNG in `assets-src/` (outside the built site). Astro generates AVIF and WebP at responsive widths. Never ship a master.
+1. **Masters** are at least 2400px on the long edge, saved as PNG in `assets-src/` (outside the built site). Astro generates AVIF and WebP at responsive widths. Never ship a master. **The current image tool outputs at most 1536px**, so every locked image needs a **2× upscale** (an AI upscaler) before production. Until then, the 1536px files are fine for building and layout.
 2. **Two crops per panel:** **landscape** (16:9 or 21:9) for desktop and **portrait** (4:5 or 9:16) for phones. Each is art-directed separately, by regenerating or extending, never by squeezing one image.
 3. **State pairs must line up pixel for pixel.** A *world* state and its *drained* state need the same composition, so the cross-fade lines up. Make the drained state as an **edit of the world state** (as `undoing-05` was made from `kneel-02`), never as a fresh generation.
 4. **Every generated image goes through the selection check** in VISUAL_DIRECTION §7.4: silhouette, face rule, a story reason for every element, skin warmth, no superhero clichés.
@@ -29,11 +29,11 @@ The site shows **Mara, Duarte, Solvang, Ivone and Djina**, mostly in documents a
 
 | ID | Character | Key traits (from CHARACTER_BIBLE §6) | Status |
 |---|---|---|---|
-| C1 | Mara Okafor | 44, British-Nigerian neurologist, practical clothing, often holding a tablet or a file | MAKE |
-| C2 | Duarte Mbala | 61, blind, a former radio host who now repairs radios, scanner | MAKE |
-| C3 | Ingrid Solvang | 58, Norwegian bioethicist, an office director, index cards | MAKE |
-| C4 | Ivone Semedo | 91, a former morna singer, care-home resident | MAKE |
-| C5 | Djina Lopes | 36, primary-school teacher in Ribeira da Prata | MAKE |
+| C1 | Mara Okafor | 44, British-Nigerian neurologist, practical clothing, often holding a tablet or a file | HAVE (`concept/reference/cast-*.png`) |
+| C2 | Duarte Mbala | 61, blind, a former radio host who now repairs radios, scanner | HAVE (`concept/reference/cast-*.png`) |
+| C3 | Ingrid Solvang | 58, Norwegian bioethicist, an office director, index cards | HAVE (`concept/reference/cast-*.png`) |
+| C4 | Ivone Semedo | 91, a former morna singer, care-home resident | HAVE (`concept/reference/cast-*.png`) |
+| C5 | Djina Lopes | 36, primary-school teacher in Ribeira da Prata | HAVE (`concept/reference/cast-*.png`) |
 
 **Note:** the face rule applies only to Lua. Other characters' faces can be shown.
 
@@ -44,9 +44,9 @@ The site shows **Mara, Duarte, Solvang, Ivone and Djina**, mostly in documents a
 ### Prologue · The Window
 | ID | Asset | States | Crops | Source | Status |
 |---|---|---|---|---|---|
-| P-1 | Tagus, ferry **capsized**, Lua kneeling small at the water's edge | world (colour) | L + P | Edit of `lua-power-tagus.png`: ferry overturned, river in full colour | MAKE |
+| P-1 | Tagus, ferry **capsized**, Lua kneeling small at the water's edge | world (colour) | L + P | Edit of `lua-power-tagus.png`: ferry overturned, river in full colour | HAVE (P): `prologue-capsized.png` · L: MAKE |
 | P-2 | Tagus, ferry **righting**, river and ferry drained, Lua and the city in colour | drained | L + P | `lua-power-tagus.png` (portrait) | HAVE (P) / DERIVE (L: extend sideways) |
-| P-3 | Tagus, ferry **upright**, passengers dry on deck, colour returned | world | L + P | Edit of P-2 | MAKE |
+| P-3 | Tagus, ferry **upright**, passengers dry on deck, colour returned | world | L + P | Edit of P-2 | HAVE (P): `prologue-after.png` · L: MAKE |
 
 ### I · AMNESTY
 | ID | Asset | States | Crops | Source | Status |
@@ -109,9 +109,9 @@ The site shows **Mara, Duarte, Solvang, Ivone and Djina**, mostly in documents a
 ### Ending · What you forgot
 | ID | Asset | Source | Status |
 |---|---|---|---|
-| E-1 | **The badge with *CELESTE S.* in the holder** (the *longing* ending) | Edit of `lua-emblem-stilllife.png`, badge centred, at a larger size | MAKE |
-| E-2 | **The badge blank** (the *herself* ending) | `lua-emblem-stilllife.png`, recomposed with the badge centred, at a larger size | DERIVE |
-| E-3 | **The badge held in Lua's hand, the grey city behind** (the *refuse* ending) | Generate | MAKE |
+| E-1 | **The badge with *CELESTE S.* in the holder** (the *longing* ending) | E-2 plus the name set as **live text** on the white card (no AI lettering) | CODE |
+| E-2 | **The badge blank** (the *herself* ending) | `lua-emblem-stilllife.png`, recomposed with the badge centred, at a larger size | HAVE: `badge-blank.png` |
+| E-3 | **The name card held in Lua's hand, the damaged city behind in colour** (the *refuse* ending) | Generate | HAVE: `badge-refuse.png` |
 
 ---
 

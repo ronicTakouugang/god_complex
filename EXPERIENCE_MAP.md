@@ -148,7 +148,7 @@ This is everything the site remembers. It lives only in the browser, and the sit
 
 - **What they learn:** what their visit cost.
 - **Feeling:** quiet.
-- **Visual:** FILE, then the final image, **the badge**, in one of three end states (VISUAL_DIRECTION §6): with *CELESTE* in the holder, blank, or held while the city stays grey.
+- **Visual:** FILE, then the final image, **the badge**, in one of three end states (VISUAL_DIRECTION §6): with *CELESTE* in the holder (longing), blank (herself), or the card held in her hand in front of the damaged city, still in colour (refuse).
 - **Interaction:** **"What you forgot"** lists every white-out from the visit. Each one has a **Relearn** action that sets the text again, *as new*. It's the accessible record and the story's only grace (Djina's songs). Then "Start again" and the credits, plus the fiction disclaimer.
 - **Hidden:** nothing more. The ending is the dilemma, not an answer.
 
