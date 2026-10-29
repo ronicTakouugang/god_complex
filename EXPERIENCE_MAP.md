@@ -197,7 +197,7 @@ The leaked records: five documents from Case LETHE that Dr Okafor copied in late
 | Notes of Dr Mara Okafor | LETHE-PER-0019 | The Correlation found: all 31 reported rescues match an onset to the minute ("a boy for a boy"). Her own loss (AEL-0388: Tobi at two, three and four). The decision to publish. "Whatever this is, it starts then" (May 2031). |
 | The *Flor de Maio*, 1970 | LETHE-HIS-1970 | **The contradiction:** the full signature at Mindelo in 1970, before the subject could have existed. A. ███ (Abílio), the survivor, forgot his wedding; his wife sings to him. The Director's response is redacted. |
 
-**New canon introduced by the archive:** the details below are FACT for this archive and need the writers' confirmation before they're copied into CHARACTER_BIBLE.
+**New canon introduced by the archive** (copied into CHARACTER_BIBLE §4.3, §4.5 and §5.5 on 2026-10-29):
 - **I. M.** and her son **Rafael**: AEL-0261, Setúbal, 2 Sep 2031, 08:52, paid for a child saved in Alcântara.
 - **The register's composition:** 228 individual cases plus 912 people of the collective case AEL-0632. There are 229 onset events, of which 31 match a reported rescue.
 - **The first known Lua-era save:** Duarte's tram, 14 May 2031, 17:42, paid by AEL-0117 in Porto.

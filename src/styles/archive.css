@@ -219,3 +219,13 @@
   .entry { margin-inline: calc(-1 * var(--pad)); padding-inline: var(--pad); }
 }
 @media (max-width: 600px) { .doc-head h1 { font-size: 1.875rem; } }
+
+/* Liftable black bars: the bar is the control. It gives under the pointer like a strip of tape. */
+.lift { display: inline; padding: 0; margin: 0; border: 0; background: none; cursor: pointer; font: inherit; vertical-align: baseline; }
+.lift .blackbar { transition: transform 200ms var(--ease-out); transform-origin: 0 100%; }
+.lift:hover .blackbar, .lift:focus-visible .blackbar { transform: rotate(-1.5deg) translateY(-2px); }
+.lift:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.lifted { background: var(--paper-grey); padding: 0 0.25em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.lifted:focus { outline: none; }
+@media (prefers-reduced-motion: reduce) { .lift .blackbar { transition: none; } }
+.lift[hidden] { display: none; }

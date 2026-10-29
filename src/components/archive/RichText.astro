@@ -15,6 +15,7 @@ const requires = (id: string) => byId(id)?.requires.join(',') ?? '';
 {segs.map((s) =>
   s.k === 'text' ? s.v
   : s.k === 'em' ? <em>{s.v}</em>
+  : s.k === 'bar' && s.reveal ? <span class="liftable" data-lift={s.reveal}><button class="lift" type="button"><span class="blackbar" style={`width: ${s.w}em`} aria-hidden="true"></span><span class="sr-only">Redacted by the Continuity Office. Lift the redaction.</span></button><span class="lifted" hidden>{s.reveal}</span></span>
   : s.k === 'bar' ? <span class="redact"><span class="blackbar" style={`width: ${s.w}em`} aria-hidden="true"></span><span class="sr-only">[redacted by the Continuity Office]</span></span>
   : s.k === 'white' ? <span class="whiteout gap" style={`width: ${s.w}em`}><span class="sr-only">[forgotten]</span></span>
   : <span class="xref" data-requires={requires(s.to)} data-open={requires(s.to) === '' ? '' : undefined}><a class="xref-open" href={`/archive/${s.to}/`}>{s.v}</a><span class="xref-sealed"><span class="blackbar" style={`width: ${Math.max(4, s.v.length * 0.45)}em`} aria-hidden="true"></span><span class="sr-only">a record that is still sealed</span></span></span>

@@ -1,6 +1,6 @@
 /** What the site remembers, in this browser only (EXPERIENCE_MAP.md §1). Never sent anywhere. */
 const PREFIX = 'gc.';
-const KEYS = ['prologue', 'cyclist', 'forgotten', 'tap', 'archive'];
+const KEYS = ['prologue', 'cyclist', 'forgotten', 'tap', 'archive', 'lifted'];
 
 export const store = {
   get(key: string): string | null {

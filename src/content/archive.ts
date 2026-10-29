@@ -96,6 +96,7 @@ export const records: ArchiveRecord[] = [
       { t: 'p', text: 'The ferry’s hull shows no damage and no water inside it. The tender that struck her is still crushed at the bow; its crew are unhurt. Only the ferry was returned.' },
       { t: 'p', text: 'All 212 people aboard describe being in the water. Several describe drowning. None of them is injured.' },
       { t: 'p', text: 'Five witnesses at the quay were interviewed the same night. Their descriptions of the kneeling figure do not agree on height, age or sex. Each witness is certain of their own account.' },
+      { t: 'p', text: 'Footage from camera 3: [[bar:12|collected from this unit at 23:05 the same night by officials who did not give their names. No copy was kept.]]' },
       { t: 'p', text: 'The interval between the collision and the reversal is six minutes and fifty seconds.' },
       { t: 'h', text: 'Cost' },
       { t: 'p', text: 'None identified at the time of filing.' },
@@ -103,8 +104,8 @@ export const records: ArchiveRecord[] = [
     ],
     notes: [
       { after: 2, by: 'Continuity Office, Oct 2033', text: 'Earliest recording of the full signature: silence, loss of colour, reversal. Compare [[ref:flor-de-maio|the review of October 2033]].' },
-      { after: 8, by: 'Continuity Office, Feb 2033', text: 'Under seven minutes. Every reversal on file so far falls inside a seven-minute window.' },
-      { after: 10, by: 'Continuity Office, Feb 2033', text: 'Superseded. See [[ref:interim-analysis|the interim analysis]], onset event of 18 June 2032 at 21:14.' },
+      { after: 9, by: 'Continuity Office, Feb 2033', text: 'Under seven minutes. Every reversal on file so far falls inside a seven-minute window.' },
+      { after: 11, by: 'Continuity Office, Feb 2033', text: 'Superseded. See [[ref:interim-analysis|the interim analysis]], onset event of 18 June 2032 at 21:14.' },
     ],
     connections: [
       { to: 'interim-analysis', note: '21:14 on 18 June 2032 appears in both records.' },
@@ -243,7 +244,7 @@ export const records: ArchiveRecord[] = [
         { time: '29 Jan', text: 'AEL-0388. Me. 9 October 2031, 08:15 in Geneva, which is 07:15 in Lisbon. I looked it up. At 07:15 a man fell from scaffolding at Martim Moniz and stood up.' },
         { time: '29 Jan, 23:40, voice memo', text: 'A stranger’s fall cost me Tobi at two, and at three, and at four. She didn’t choose me. Nobody chose me. It’s random. It has to be random, or someone is choosing.' },
         { time: '30 Jan', text: 'Found a note in my own handwriting from 2029: “Tobi’s third birthday. The cake shaped like a boat.” I don’t remember the cake. I believe the note.' },
-        { time: '3 Feb', text: 'The Office asked me not to publish. They said it would cause panic. I said the word they’re avoiding is cost.' },
+        { time: '3 Feb', text: 'The Office asked me not to publish. [[bar:13|Dr Solvang asked me herself, in her office, with the door shut.]] They said it would cause panic. I said the word they’re avoiding is cost.' },
         { time: '10 Feb', text: 'Publishing tomorrow. 1,140 people. If this goes out they will call her a thief. If it doesn’t, nobody will ever know what they paid.' },
       ] },
       { t: 'p', voice: 'story', text: 'The paper was published on 11 February 2033. The newspapers called it the Okafor Correlation.' },
@@ -285,7 +286,7 @@ export const records: ArchiveRecord[] = [
       { t: 'p', text: 'Found during a review of anomalous survivals recorded in Lusophone ports before 2031. The account contains every element of the LETHE signature: a fatal harm reversed, an interval with no sound and no colour, a survivor unhurt, and afterwards the complete loss of one relationship from autobiographical memory.' },
       { t: 'p', text: 'The Office’s working assumption, from LETHE-INC-0001 onward, is that the phenomenon begins with Subject LETHE in 2031. This record is from 1970.' },
       { t: 'p', text: 'Either the account is mistaken, or the phenomenon is older than the subject.' },
-      { t: 'p', text: 'Recommendation: extend the review to every port register held. Director’s response: [[bar:14]].' },
+      { t: 'p', text: 'Recommendation: extend the review to every port register held. Director’s response: [[bar:14|Do not extend. Close the review and hold this record under my name. I. S.]]' },
       { t: 'sign', name: 'T. Varela', role: 'Archivist, Continuity Office' },
     ],
     notes: [

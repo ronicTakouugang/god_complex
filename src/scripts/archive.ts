@@ -80,9 +80,42 @@ function restorePlace() {
   }
 }
 
+/** Black bars the visitor can lift: the Office's secrets still exist (DESIGN.md §2.2). White-out never lifts. */
+function initLifts() {
+  let lifted: string[] = [];
+  try {
+    lifted = JSON.parse(store.get('lifted') ?? '[]') as string[];
+  } catch {
+    lifted = [];
+  }
+  const open = (box: HTMLElement, focus: boolean) => {
+    const btn = box.querySelector<HTMLButtonElement>('.lift');
+    const text = box.querySelector<HTMLElement>('.lifted');
+    if (!btn || !text) return;
+    btn.hidden = true;
+    text.hidden = false;
+    if (focus) {
+      text.tabIndex = -1;
+      text.focus();
+    }
+  };
+  document.querySelectorAll<HTMLElement>('[data-lift]').forEach((box) => {
+    const key = box.dataset.lift ?? '';
+    if (lifted.includes(key)) open(box, false);
+    box.querySelector('.lift')?.addEventListener('click', () => {
+      open(box, true);
+      if (!lifted.includes(key)) {
+        lifted.push(key);
+        store.set('lifted', JSON.stringify(lifted));
+      }
+    });
+  });
+}
+
 export function initArchive() {
   const read = readSet();
   applyGates(read);
+  initLifts();
   const page = document.querySelector<HTMLElement>('.record-page');
   if (page) initRecord(page, read);
   // The browser moves focus to the #fragment target as the page finishes loading, so restore after that.

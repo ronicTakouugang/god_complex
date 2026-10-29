@@ -166,11 +166,16 @@ Ivone's heart restarts. **Celeste's entire autobiographical past is erased.** It
 
 That she lost her memory in some unknown trauma, and that her powers began afterwards. That Night Zero, which she can't remember, was the start.
 
-### 4.3 The first person she saves as Lua (May 2031)
+### 4.3 The first person she saves as Lua (14 May 2031, 17:42)
 
 She undoes a tram accident on Rua da Conceição and saves **Duarte Mbala** (§6.1). He's the first person who can **recognise her again**, because he knows her by voice. He gives her his spare room.
 
-**Through 2031–32** she saves someone roughly every month: a choking child, a cyclist, a fall from scaffolding. **Each life costs a stranger a relationship**, and each stranger's loss echoes what Lua longs for: childhoods, grandmothers, homes by the sea. The cases are scattered worldwide, so doctors call them strokes or early dementia. **October 2031:** a neurologist in Geneva, **Mara Okafor**, loses every memory of her son's first five years (§6.2).
+**Through 2031–32** the public hears of a rescue roughly every month: a choking child, a cyclist, a fall from scaffolding. **The real number is far higher.** Between May 2031 and January 2033 she undoes 228 harms that cost a single stranger each, plus the Tagus. Only 31 of them are ever reported, because no witness can describe her and most happen at night on streets where nobody is filming. (FACT, fixed by the archive's interim analysis, AEL-IA-07.) **Each life costs a stranger a relationship**, and each stranger's loss echoes what Lua longs for: childhoods, grandmothers, homes by the sea. The cases are scattered worldwide, so doctors call them strokes or early dementia. **October 2031:** a neurologist in Geneva, **Mara Okafor**, loses every memory of her son's first five years (§6.2).
+
+**Named payers (FACT, from the archive):**
+- **Duarte's tram rescue** was paid for by a woman in Porto, who forgot her grandmother (AEL-0117).
+- **On 2 September 2031, 08:52,** a boy was pulled from under a bus in Alcântara. At the same minute, **I. M.**, 38, an accountant in Setúbal, forgot her seven-year-old son **Rafael** (AEL-0261).
+- **Mara's loss** (AEL-0388, 9 October 2031) was paid for by a man's fall from scaffolding at Martim Moniz, at 07:15 Lisbon time.
 
 From the first weeks, Lua dreams of **a red door in a whitewashed wall, a valley of terraced cane fields, a chapel bell at noon, and a woman singing a morna.** She draws them obsessively.
 
@@ -186,7 +191,7 @@ The ferry is upright, undamaged, its passengers dry on deck, remembering the wat
 
 Following her dreams, Lua finds the valley: the red door, the terraces, the chapel. She believes she has found home. The villagers, emptied, take her in: *"Maybe you were one of us. We don't remember."* She becomes close to **Djina Lopes** (§6.5), the schoolteacher.
 
-**11 February 2033:** Mara Okafor publishes the **Okafor Correlation**, which matches 1,140 cases of sudden memory loss **to the minute** with every known Amnesty rescue. Case 0632 is Ribeira da Prata, at 21:14 on 18 June 2032.
+**11 February 2033:** Mara Okafor publishes the **Okafor Correlation**. The register holds 1,140 people: 228 individual cases plus the 912 villagers of case group 0632. They fall in 229 onset events, and **every one of the 31 publicly known Amnesty rescues matches an onset to the minute**. The other 198 events match nothing anyone reported, which tells the world she has been saving far more people than it knew. Case 0632 is Ribeira da Prata, at 21:14 on 18 June 2032.
 
 Lua reads it at the village fountain. That same evening, Djina shows her the house with the red door, her mother's house. Lua recognises the song Djina's mother sang **because she dreamed it.** It was never Lua's own past; it was Djina's. → **Revelation 1.**
 
@@ -230,7 +235,7 @@ Solvang **knows L4 before Lua does.** She proved it on herself. That is why she 
 | Mystery | Status |
 |---|---|
 | **What *is* the Ledger:** a natural law, a mind, or her? | **Open.** Never fully answered. |
-| **Why Celeste?** One seed: Ivone's husband Abílio survived the 1970 wreck of the schooner *Flor de Maio* "by a miracle," then couldn't remember his own wedding. There may have been others. | **Open.** Reserved for future stories. |
+| **Why Celeste?** One seed: Ivone's husband Abílio survived the 1970 wreck of the schooner *Flor de Maio* "by a miracle," then couldn't remember his own wedding. There may have been others. The Continuity Office finds the harbour log in October 2033 (archive record LETHE-HIS-1970): 2 March 1970, 23:40, Mindelo, eight crew lost, one survivor aged 32, a watchman who heard "nothing" and saw a lamp "with no colour in it". Who undid the wreck, and who paid besides Abílio, stays unanswered. | **Open.** Reserved for future stories. |
 | **Do the memories exist anywhere after they're taken?** She dreams some of them. Whether all of them go somewhere is unknown. They can never be returned (L3). | **Open.** |
 
 **Not mysteries, but FACT (don't turn them into puzzles):**
