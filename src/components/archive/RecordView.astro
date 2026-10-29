@@ -7,12 +7,16 @@ import { Picture } from 'astro:assets';
 import RichText from './RichText.astro';
 import type { ArchiveRecord, Block } from '../../content/archive';
 import tagusDrained from '../../assets/img/tagus-drained.png';
+import evCctv from '../../assets/img/ev-cctv.png';
+import evSwimbag from '../../assets/img/ev-swimbag.png';
+import evNotebook from '../../assets/img/ev-notebook.png';
+import evHarbourLog from '../../assets/img/ev-harbour-log.png';
 
 interface Props {
   record: ArchiveRecord;
 }
 const { record: r } = Astro.props;
-const images = { 'tagus-drained': tagusDrained } as const;
+const images = { 'tagus-drained': tagusDrained, 'ev-cctv': evCctv, 'ev-swimbag': evSwimbag, 'ev-notebook': evNotebook, 'ev-harbour-log': evHarbourLog } as const;
 const notesAfter = (i: number) => r.notes.filter((n) => n.after === i);
 const blocks: Block[] = r.blocks;
 ---

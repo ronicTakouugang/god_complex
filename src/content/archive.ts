@@ -20,7 +20,7 @@ export type Block =
   | { t: 'log'; caption: string; rows: { time: string; text: string }[] }
   | { t: 'qa'; rows: { who: string; text: string }[] }
   | { t: 'table'; caption: string; head: string[]; rows: string[][] }
-  | { t: 'figure'; img: 'tagus-drained'; alt: string; caption: string }
+  | { t: 'figure'; img: 'tagus-drained' | 'ev-cctv' | 'ev-swimbag' | 'ev-notebook' | 'ev-harbour-log'; alt: string; caption: string }
   | { t: 'sign'; name: string; role: string };
 
 /** An annotation in the margin. `after` is the index of the block it belongs to. */
@@ -91,7 +91,7 @@ export const records: ArchiveRecord[] = [
         { time: '21:15:30', text: 'The figure leaves on foot, east along the quay. Not traced.' },
         { time: '21:19', text: 'Rescue craft arrive. Nobody is in the water.' },
       ] },
-      { t: 'figure', img: 'tagus-drained', alt: 'The ferry rising upright out of the river, the water and the vessel drained to grey. A small figure kneels at the water’s edge, the only thing in colour.', caption: 'Quay camera 3, frame 21:14:03. Illustrated reconstruction.' },
+      { t: 'figure', img: 'ev-cctv', alt: 'A grainy fisheye security-camera frame of a wet stone quay at night in the rain. At the water’s edge a kneeling figure is only a ghosted smear; a teal lanyard and an empty white badge hang sharp against it. The ferry is upright on the river behind.', caption: 'Quay camera 3, frame 21:14:05 (reconstruction). The badge holder is the only sharp object in the frame.' },
       { t: 'h', text: 'Findings' },
       { t: 'p', text: 'The ferry’s hull shows no damage and no water inside it. The tender that struck her is still crushed at the bow; its crew are unhurt. Only the ferry was returned.' },
       { t: 'p', text: 'All 212 people aboard describe being in the water. Several describe drowning. None of them is injured.' },
@@ -152,6 +152,7 @@ export const records: ArchiveRecord[] = [
       { t: 'p', text: 'MRI and EEG unremarkable. No lesion, no bleed, no seizure activity. Language, skills and general knowledge intact.' },
       { t: 'p', text: 'Autobiographical memory of the son is absent from his birth to the morning of onset. New memories of him have formed normally since.' },
       { t: 'p', text: 'Prognosis: no recovery has been observed in any case of this kind.' },
+      { t: 'figure', img: 'ev-swimbag', alt: 'A child’s blue drawstring swimming bag on a wooden school bench, beside a folded striped towel and a pair of goggles.', caption: 'Photographed at the school, 9 September 2031 (reconstruction): the swimming bag from the voice message.' },
       { t: 'sign', name: 'Dr R. Pires', role: 'AEL Surveillance, field team, Lisbon' },
     ],
     notes: [
@@ -247,6 +248,7 @@ export const records: ArchiveRecord[] = [
         { time: '3 Feb', text: 'The Office asked me not to publish. [[bar:13|Dr Solvang asked me herself, in her office, with the door shut.]] They said it would cause panic. I said the word they’re avoiding is cost.' },
         { time: '10 Feb', text: 'Publishing tomorrow. 1,140 people. If this goes out they will call her a thief. If it doesn’t, nobody will ever know what they paid.' },
       ] },
+      { t: 'figure', img: 'ev-notebook', alt: 'An open spiral notebook under a desk lamp at night, one page dense with handwriting in black ink, an old yellowed note taped to the facing page, reading glasses beside it.', caption: 'Dr Okafor’s notebook, seized 14 February 2033 (reconstruction). The taped note is from 2029.' },
       { t: 'p', voice: 'story', text: 'The paper was published on 11 February 2033. The newspapers called it the Okafor Correlation.' },
     ],
     notes: [
@@ -280,6 +282,7 @@ export const records: ArchiveRecord[] = [
         { time: '23:41', text: 'Watchman reports that for a moment he heard nothing, “not the sea, not the wind,” and that the lamp on the quay “had no colour in it.” He is a reliable man.' },
         { time: '06:10', text: 'Crew of eight lost. One man found on the rocks below the light, unhurt and dry. The priest calls it a miracle.' },
       ] },
+      { t: 'figure', img: 'ev-harbour-log', alt: 'An old harbour log book open on a worn desk, its ruled pages filled with faded handwriting, an oil stain and a round ink stamp. Beside it, a small black-and-white photograph of a two-masted schooner at anchor in a calm bay under bare volcanic mountains.', caption: 'The Mindelo harbour log, March 1970, and a photograph of the Flor de Maio found loose between its pages (reconstruction).' },
       { t: 'h', text: 'Harbour doctor’s note, 20 April 1970' },
       { t: 'p', text: 'A. [[bar:5]], fisherman, 32, the survivor of the *Flor de Maio*. Physically well. He does not remember his wedding, or his wife from before it. Everything else he remembers. His wife sings to him in the evenings. He says it is like hearing her for the first time.' },
       { t: 'h', text: 'Review' },
@@ -290,9 +293,9 @@ export const records: ArchiveRecord[] = [
       { t: 'sign', name: 'T. Varela', role: 'Archivist, Continuity Office' },
     ],
     notes: [
-      { after: 3, by: 'Continuity Office', text: 'Surname redacted: living relatives. Office privacy rules apply.' },
-      { after: 5, by: 'Continuity Office', text: 'Compare [[ref:barreiro-nova|LETHE-INC-0001]], 21:14:02: silence, then colour lost.' },
-      { after: 6, by: 'Continuity Office', text: 'And [[ref:okafor-notes|Dr Okafor’s notes]], 26 January: “Nothing before May 2031.”' },
+      { after: 4, by: 'Continuity Office', text: 'Surname redacted: living relatives. Office privacy rules apply.' },
+      { after: 6, by: 'Continuity Office', text: 'Compare [[ref:barreiro-nova|LETHE-INC-0001]], 21:14:02: silence, then colour lost.' },
+      { after: 7, by: 'Continuity Office', text: 'And [[ref:okafor-notes|Dr Okafor’s notes]], 26 January: “Nothing before May 2031.”' },
     ],
     connections: [
       { to: 'barreiro-nova', note: 'The same signature on the same kind of night, in 1970 and in 2032.' },

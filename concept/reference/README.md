@@ -74,3 +74,14 @@ Where the views disagree, follow the front view.
 - **Back view:** the cable crosses over her right shoulder down her back, which doesn't work physically. It should run down her front into the right pocket.
 - **Darning style:** the fringed edges are slightly cartoonish. In future renders, prefer flatter woven darning.
 - **Hair:** short natural coils, about 3 cm. Accepted as canon for "close-cropped."
+
+## Archive evidence
+
+These are in-world reconstructions, captioned as such on the site, and used in `/archive/` (ASSET_PLAN §9).
+
+| File | Record | Notes |
+|---|---|---|
+| `ar1-cctv.png` | LETHE-INC-0001 | Fisheye CCTV frame of the quay in the rain. Lua is a motion smear with no face; the teal lanyard and blank badge are sharp. The ferry is upright behind. |
+| `ar2-swimbag.png` | AEL-0261 / S1 | Rafael's blue swimming bag, towel and goggles on a school bench. Blue is fine here: it's an object in the world, not a `--self` UI colour. |
+| `ar4-notebook.png` | LETHE-PER-0019 | Mara's notebook, black ink only, with the taped 2029 note, glasses, a mug ring and lamp light. |
+| `ar5-harbour-log.png` | LETHE-HIS-1970 | Locked from `ar5-harbour-log-02.png`: the ledger, oil stain and stamp, plus a 1970s photograph of a two-masted schooner under bare volcanic mountains with low white houses (Mindelo). The first try had snowy alpine mountains. |

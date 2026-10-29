@@ -227,11 +227,11 @@ Each record has room for one evidence image, using the `figure` block in `src/co
 
 | ID | Record | Asset | Status |
 |---|---|---|---|
-| AR-1 | LETHE-INC-0001 | **Quay camera 3 still**, 21:14:05. A colour-keeping motion smear of a kneeling figure at the quay edge; only the badge holder is sharp, and the card is blank. Night, rain, CCTV grain. The timestamp is added in code. | MAKE (same as I-4) |
-| AR-2 | AEL-0261 / S1 | **Rafael's swimming bag on a school bench.** An ordinary object, no people, soft morning light. | MAKE |
+| AR-1 | LETHE-INC-0001 | **Quay camera 3 still**, 21:14:05. A colour-keeping motion smear of a kneeling figure at the quay edge; only the badge holder is sharp, and the card is blank. Night, rain, CCTV grain. The timestamp is added in code. | HAVE: `ar1-cctv.png`, placed |
+| AR-2 | AEL-0261 / S1 | **Rafael's swimming bag on a school bench.** An ordinary object, no people, soft morning light. | HAVE: `ar2-swimbag.png`, placed |
 | AR-3 | AEL-IA-07 | Event plot: 229 onset events on a timeline, one large mark at 21:14 on 18 June 2032 | CODE (SVG from data) |
-| AR-4 | LETHE-PER-0019 | **A page of Mara's notebook**, her handwriting in **black** ink (blue belongs to Lua), with the line "Tobi's 3rd birthday — the cake shaped like a boat" taped in from 2029. The words will be overlaid as live text. | MAKE |
-| AR-5 | LETHE-HIS-1970 | **The Mindelo harbour log**, March 1970: a ledger page with faded handwriting in Portuguese, a lamp-oil stain, the harbour stamp. Plus a black-and-white 1970s photograph of a small schooner at anchor in Mindelo bay. | MAKE |
+| AR-4 | LETHE-PER-0019 | **A page of Mara's notebook**, her handwriting in **black** ink (blue belongs to Lua), with the line "Tobi's 3rd birthday — the cake shaped like a boat" taped in from 2029. The words will be overlaid as live text. | HAVE: `ar4-notebook.png`, placed |
+| AR-5 | LETHE-HIS-1970 | **The Mindelo harbour log**, March 1970: a ledger page with faded handwriting in Portuguese, a lamp-oil stain, the harbour stamp. Plus a black-and-white 1970s photograph of a small schooner at anchor in Mindelo bay. | HAVE: `ar5-harbour-log.png`, placed |
 
 **Prompts** (style reference: `lua-emblem-stilllife.png` for the objects, `lua-power-tagus.png` for night scenes):
 - **AR-1:** "Grainy night CCTV frame from a high camera over a wet stone quay on a river, rain. At the water's edge a kneeling figure appears only as a soft ghosted motion smear that keeps its colours (grey-blue, brown skin tones); one small object on the figure is perfectly sharp: an empty clear badge holder on a teal lanyard with a blank white card. No face visible, no text, no timestamp."
