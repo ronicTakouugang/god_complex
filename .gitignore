@@ -1,1 +1,9 @@
 CLAUDE.md
+node_modules/
+dist/
+.astro/
+.taste-skill/inspect*/
+.taste-skill/last-inspect.txt
+.taste-skill/before/
+.taste-skill/after/
+.impeccable/

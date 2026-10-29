@@ -173,3 +173,34 @@ This is everything the site remembers. It lives only in the browser, and the sit
 2. **There are three holds:** Prologue (Tagus), Chapter I (cyclist), Chapter VII (the Choice).
 3. **Audio in v1 is ambience only:** rain and river, plus the silence cut during an undo. Off by default. The sung morna and the voiced confession are **deferred**; for now the text and transcripts carry them.
 4. **The first viewport is the Tagus undo,** and the badge closes the site (VISUAL_DIRECTION §7.5 updated).
+
+---
+
+## 6. The archive (`/archive/`, v1 built 2026-10-29)
+
+The leaked records: five documents from Case LETHE that Dr Okafor copied in late 2033. The homepage reaches it from the bar ("Archive"), the sealed section ("Read the leaked records") and the footer. Content lives in `src/content/archive.ts`; presentation lives in `src/components/archive/`.
+
+- **Order:** the index lists records by the date of their events. Records **unseal in the order Mara read them**:
+  1. The Barreiro Nova report and the Setúbal statement are open from the start.
+  2. Both of those unseal the interim analysis.
+  3. The analysis unseals her notes.
+  4. Her notes unseal the 1970 record.
+- **Progress** is tracked in this browser only (`gc.archive`), and cleared by "Forget this visit". Without JavaScript, every record is open.
+- **Cross-references** to a record that is still sealed show as a black bar until the visitor has read what unseals it.
+- **Scope:** the archive reaches the Okafor Correlation (public, February 2033) and seeds one open mystery (CHARACTER_BIBLE §5.5, "Why Celeste?"). **It reveals none of Revelations 1–3.**
+
+| Record | Reference | What it adds |
+|---|---|---|
+| Capsizing of the ferry *Barreiro Nova* | LETHE-INC-0001 | The Office's own timing of the signature: 6 min 50 s from collision to reversal, 1.4 s of silence on every recording, colour lost and returning from the frame edges, a blank badge on camera, the tender still crushed. No cost identified at filing. |
+| Statement of I. M., Setúbal | AEL-0261 / S1 | What paying feels like: the white blink and the hot dust, no sense of loss, a son she cares for and does not know. Skills intact (L2), no recovery (L3). |
+| Interim analysis of the losses | AEL-IA-07 | The clinical definition. 1,140 people: 228 individuals and one collective event of 912. No trace on imaging. Distribution "consistent with random selection" (Mara's BELIEF, L4-B). Onsets are instantaneous and arrive one at a time. |
+| Notes of Dr Mara Okafor | LETHE-PER-0019 | The Correlation found: all 31 reported rescues match an onset to the minute ("a boy for a boy"). Her own loss (AEL-0388: Tobi at two, three and four). The decision to publish. "Whatever this is, it starts then" (May 2031). |
+| The *Flor de Maio*, 1970 | LETHE-HIS-1970 | **The contradiction:** the full signature at Mindelo in 1970, before the subject could have existed. A. ███ (Abílio), the survivor, forgot his wedding; his wife sings to him. The Director's response is redacted. |
+
+**New canon introduced by the archive:** the details below are FACT for this archive and need the writers' confirmation before they're copied into CHARACTER_BIBLE.
+- **I. M.** and her son **Rafael**: AEL-0261, Setúbal, 2 Sep 2031, 08:52, paid for a child saved in Alcântara.
+- **The register's composition:** 228 individual cases plus 912 people of the collective case AEL-0632. There are 229 onset events, of which 31 match a reported rescue.
+- **The first known Lua-era save:** Duarte's tram, 14 May 2031, 17:42, paid by AEL-0117 in Porto.
+- **Mara's own case** (AEL-0388) was paid for by a fall at Martim Moniz.
+- **The *Flor de Maio*:** wrecked 2 March 1970, 23:40; crew of eight lost; a 32-year-old survivor.
+- **Minor characters:** Insp. C. Brandão, Dr R. Pires, archivist T. Varela.

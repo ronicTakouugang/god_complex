@@ -1,0 +1,369 @@
+---
+/**
+ * THE GOD COMPLEX: first release. Prologue, the reveal, the rules, Mara's letter,
+ * the register, and the sealed file. Journey: EXPERIENCE_MAP.md. Rules: DESIGN.md.
+ */
+import '@fontsource-variable/archivo/wdth.css';
+import '@fontsource-variable/literata/opsz.css';
+import '../styles/global.css';
+import { Picture } from 'astro:assets';
+import HoldScene from '../components/HoldScene.astro';
+import Bar from '../components/Bar.astro';
+
+import tagusHarm from '../assets/img/tagus-harm.png';
+import tagusDrained from '../assets/img/tagus-drained.png';
+import tagusAfter from '../assets/img/tagus-after.png';
+import luaFront from '../assets/img/lua-front.png';
+import cyclistHarm from '../assets/img/cyclist-harm.png';
+import cyclistDrained from '../assets/img/cyclist-drained.jpg';
+import mara from '../assets/img/mara.png';
+import hand from '../assets/img/hand.png';
+import effects from '../assets/img/effects.png';
+import badge from '../assets/img/badge.png';
+
+const half = '(min-width: 1024px) 50vw, 100vw';
+const fmt = ['avif', 'webp'] as const;
+
+// The slip's cut edge: a straight top, a zigzag bottom.
+const teeth = 24;
+const zig = Array.from({ length: teeth * 2 + 1 }, (_, i) => `${((i / (teeth * 2)) * 100).toFixed(3)}% ${i % 2 ? 'calc(100% - 12px)' : '100%'}`);
+const slipClip = `polygon(0 0, 100% 0, ${zig.reverse().join(', ')})`;
+
+const witnesses = [
+  { q: 'A tall man in a grey coat. He knelt on the stones like he was praying.', who: 'Witness 1, Cais do Sodré' },
+  { q: 'She was a girl. Sixteen, maybe. Her hair was in her face.', who: 'Witness 2, ferry deck' },
+  { q: 'An old woman in a long cardigan. I would swear to it.', who: 'Witness 3, Cais do Sodré' },
+  { q: 'I looked straight at her for a whole minute. I can’t tell you one thing.', who: 'Witness 4, riverside café' },
+  { q: 'There was a lanyard round the neck. The card in it was blank.', who: 'Witness 5, ferry deck' },
+];
+
+// Reveal order (CHARACTER_BIBLE §8.1): this page stops before the Correlation. Case 0632 stays withheld,
+// and the places are spread so the pattern behind them (L4) is not yet readable.
+type Row = { place: string; no: string; when: string; what: string } | { withheld: true };
+const register: { group: string; rows: Row[] }[] = [
+  {
+    group: 'A person',
+    rows: [
+      { place: 'Porto', no: '0117', when: '14 May 2031 · 17:42', what: 'Her grandmother. Every memory of her, gone between two sentences.' },
+      { place: 'Lyon', no: '0244', when: '3 Aug 2031 · 09:10', what: 'His twin brother. He thinks the photographs show a cousin.' },
+      { place: 'Montréal', no: '0301', when: '21 Sep 2031 · 22:05', what: 'Her husband of thirty-one years.' },
+    ],
+  },
+  {
+    group: 'A childhood',
+    rows: [
+      { place: 'Geneva', no: '0388', when: '9 Oct 2031 · 08:15', what: 'Her son’s first five years. She compiled this register.' },
+      { place: 'Recife', no: '0402', when: '30 Oct 2031 · 14:27', what: 'His own childhood, up to the age of eleven.' },
+    ],
+  },
+  {
+    group: 'A home',
+    rows: [
+      { place: 'Kraków', no: '0415', when: '12 Nov 2031 · 06:30', what: 'The street she grew up on. She walked down it the same morning.' },
+      { place: 'Luanda', no: '0466', when: '2 Jan 2032 · 19:48', what: 'The village his family came from.' },
+      { place: 'Rotterdam', no: '0519', when: '17 Mar 2032 · 11:52', what: 'The flat she lived in for twenty years.' },
+    ],
+  },
+  {
+    group: 'Something shared',
+    rows: [
+      { place: 'Osaka', no: '0548', when: '26 Apr 2032 · 23:14', what: 'The festival her street held every August.' },
+      { place: 'Mindelo', no: '0590', when: '30 May 2032 · 16:02', what: 'The words of a song he has sung for fifty years.' },
+      { withheld: true },
+    ],
+  },
+];
+
+// The Prologue's cost line is set one character at a time so it can be forgotten halfway through.
+const costPre = 'At 21:14, three thousand four hundred kilometres away, ';
+const costName = 'Ribeira da Prata';
+const costPost = ' forgot why it was a village.';
+
+const description =
+  'An interactive case file on AMNESTY, a woman who can undo any harm she sees. Every rescue costs a stranger a memory. An original graphic-novel universe.';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>The God Complex · Case LETHE</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#17191c" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <a class="skip" href="#prologue">Skip to the case file</a>
+
+    <Bar homeHref="#top" homeLabel="The God Complex, back to the top" tap links={[{ href: '/archive/', label: 'Archive' }, { href: '#contents', label: 'Contents' }]} />
+
+    <div id="announce" class="sr-only" aria-live="polite"></div>
+
+    <main id="top">
+      <!-- PROLOGUE: the window. Stage right: the Tagus, 21:14. -->
+      <div class="split split--hero">
+        <div class="stage stage--hero">
+          <HoldScene id="tagus" harm={tagusHarm} drained={tagusDrained} after={tagusAfter} origin="50% 74%" eager
+            alt="Night on the Tagus in a storm. A white ferry lies on its side in the river with people in the water. A woman kneels at the water's edge, seen from behind." />
+          <div class="stage-foot">
+            <p class="caption" data-caption="tagus-before">
+              <strong class="tab">18 June 2032 · 21:14 · the Tagus, Lisbon</strong>
+              <span class="tab" data-forget="212"><span aria-hidden="true">212</span><span class="sr-only">212</span></span> people in the water. 41 of them are dying. You have seven minutes.
+            </p>
+            <p class="caption" data-caption="tagus-after" hidden>
+              <strong class="tab">21:15</strong>
+              The ferry is upright. All <span class="tab" data-forget="212"><span aria-hidden="true">212</span><span class="sr-only">212</span></span> of them are dry on deck, and they all remember the water.
+            </p>
+            <button class="btn stage-hold" type="button" data-hold="tagus" data-label-idle="Hold to undo" data-label-holding="Keep holding" data-label-done="Undone at 21:14"
+              aria-describedby="hold-hint"><span class="btn-text">Hold to undo</span></button>
+          </div>
+        </div>
+
+        <div class="col">
+          <section class="card" id="prologue" aria-labelledby="title">
+            <div class="card-body">
+              <h1 id="title" class="title">The God Complex</h1>
+              <blockquote class="claim">
+                <p>“She can undo any harm.”</p>
+                <footer><cite>Diário do Tejo</cite>, 19 June 2032</footer>
+              </blockquote>
+              <p class="lede">The press call her AMNESTY. The Continuity Office calls her Subject LETHE. This is its file on what she does, and on what it costs.</p>
+              <button class="btn card-hold" type="button" data-hold="tagus" data-label-idle="Hold to undo" data-label-holding="Keep holding" data-label-done="Undone at 21:14"
+                aria-describedby="hold-hint"><span class="btn-text">Hold to undo</span></button>
+              <p id="hold-hint" class="sr-only">Press and hold the button or the picture, or hold the Space key, to undo the capsizing. Turn on “Tap instead of hold” in the top bar to undo with one press.</p>
+              <p class="cost" id="cost-tagus" hidden>
+                <span class="typed" aria-hidden="true">{[...costPre].map((c) => <span class="ch">{c}</span>)}<span class="fname">{[...costName].map((c) => <span class="ch">{c}</span>)}</span>{[...costPost].map((c) => <span class="ch">{c}</span>)}</span>
+                <span class="sr-only">{costPre}[forgotten]{costPost}</span>
+              </p>
+              <noscript><p class="cost">At 21:14 she undid it. At the same minute, far away, a village forgot why it was a village.</p></noscript>
+            </div>
+            <div class="card-foot">
+              <nav class="card-links" aria-label="In this file">
+                <a href="#amnesty">Witness statements</a>
+                <a href="#rules">Observed properties</a>
+                <a href="#register">Register of losses</a>
+              </nav>
+              <p class="file-ref tab">Continuity Office, Lisbon · Case LETHE · opened 19 June 2032</p>
+            </div>
+          </section>
+
+          <section class="section world" id="morning" aria-labelledby="morning-h">
+            <div data-enter>
+              <h2 id="morning-h">The morning after</h2>
+              <p class="measure" data-refused hidden>You didn’t hold. Forty-one people drowned at 21:14, and no one, anywhere, forgot anything. But she didn’t wait for you: at 21:14 she said yes.</p>
+            </div>
+            <figure class="paper" data-enter aria-label="Front page of the Diário do Tejo, Saturday 19 June 2032">
+              <p class="masthead">Diário do Tejo</p>
+              <p class="headline" lang="en">AMNESTY</p>
+              <p class="deck">212 people pulled from the Tagus, unhurt. Not one witness can say who did it.</p>
+              <p class="dateline tab">Saturday, 19 June 2032 · Lisbon</p>
+            </figure>
+            <div class="after-text measure" data-enter>
+              <p>By dawn there were candles along the river at Cais do Sodré. By the weekend people were calling her <span lang="pt">Nossa Senhora do Tejo</span>, Our Lady of the Tagus.</p>
+              <p>Months later, a columnist pointed out that <em>amnesty</em> and <em>amnesia</em> share a root: the Greek word for forgetting. By then nobody was laughing.</p>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- A night panel: the one deliberate rest, a survivor's words (CHARACTER_BIBLE §3.4). Breaks the split. -->
+      <section class="quiet night" aria-labelledby="quiet-h">
+        <h2 id="quiet-h" data-enter><span>“The quietest second of my life.”</span></h2>
+        <p class="quiet-cite">A passenger on the <cite>Barreiro Nova</cite>, describing 21:14 to the Continuity Office</p>
+      </section>
+
+      <!-- AMNESTY: the reveal. Breaks the split. -->
+      <section class="reveal" id="amnesty" aria-labelledby="amnesty-h">
+        <div class="reveal-figure">
+          <Picture src={luaFront} alt="A woman in a long, darned grey-blue cardigan, with old headphones round her neck and an empty badge on a teal lanyard. The frame stops at her jaw." widths={[600, 900, 1300]} sizes="(min-width: 1024px) 42vw, 100vw" formats={fmt} fallbackFormat="jpg" loading="lazy" />
+        </div>
+        <div class="reveal-text">
+          <div data-enter>
+            <h2 id="amnesty-h">Nobody can describe her</h2>
+            <p class="measure">Five people watched her undo the Tagus from a few metres away. This is what they told the Continuity Office that night.</p>
+          </div>
+          <ul class="witnesses" data-enter>
+            {witnesses.map((w) => (
+              <li>
+                <blockquote>{w.q}</blockquote>
+                <cite>{w.who}</cite>
+              </li>
+            ))}
+          </ul>
+          <p class="verdict" data-enter><span>Every witness remembers what she did. None of them can tell you what she looks like.</span></p>
+        </div>
+      </section>
+
+      <!-- THE STATIC: rules, letter, register. Stage left follows the column. -->
+      <div class="split split--file">
+        <div class="stage" data-stage data-active="cyclist">
+          <div class="slide" data-slide-id="cyclist">
+            <HoldScene id="cyclist" harm={cyclistHarm} drained={cyclistDrained} origin="60% 56%"
+              alt="A rainy Lisbon street at night. A cyclist lies on the cobbles beside his bike, and a woman in a grey-blue cardigan kneels with her hand flat on his chest, her face turned away.">
+              <p class="caption"><strong>Lisbon, 2031</strong>A cyclist, a wet street, a car that didn’t stop.</p>
+            </HoldScene>
+          </div>
+          <div class="slide" data-slide-id="mara">
+            <Picture src={mara} alt="Dr Mara Okafor: a woman in an olive wool coat, reading glasses pushed up into her locs, holding a thick paper file to her chest." widths={[600, 1024]} sizes={half} formats={fmt} fallbackFormat="jpg" loading="lazy" />
+            <p class="caption"><strong>Dr Mara Okafor</strong>Neurologist. Compiler of the register of Acute Episodic Loss.</p>
+          </div>
+          <div class="slide" data-slide-id="hand">
+            <Picture src={hand} alt="A small room at night. A woman sits on the edge of a narrow bed with her back to us, headphones on, looking at writing on the back of her hand under a desk lamp." widths={[600, 1024]} sizes={half} formats={fmt} fallbackFormat="jpg" loading="lazy" />
+            <p class="caption"><strong class="self" lang="pt">Eu sou a Lua</strong>Every night she writes it on the back of her hand. I am Lua.</p>
+          </div>
+        </div>
+
+        <div class="col">
+          <section class="section night" id="rules" data-slide="cyclist" aria-labelledby="rules-h">
+            <div data-enter>
+              <h2 id="rules-h">Seven minutes and a yes</h2>
+              <p class="measure">The rule is the same for one life as for a ferry. Try it once more, on a smaller harm.</p>
+            </div>
+            <div class="try" data-enter>
+              <div class="try-slot" data-scene-slot="cyclist"></div>
+              <button class="btn btn--bone" type="button" data-hold="cyclist" data-label-idle="Hold to undo the crash" data-label-holding="Keep holding" data-label-done="Undone"><span class="btn-text">Hold to undo the crash</span></button>
+              <div class="cost" id="cost-cyclist" hidden>
+                <p>The crash is undone. Somewhere, someone forgot something of the same weight. So did this page. The first caption you read now says:</p>
+                <blockquote class="quoted"><p><span class="tab" data-forget="212"><span aria-hidden="true">212</span><span class="sr-only">212</span></span> people in the water. 41 of them are dying.</p></blockquote>
+              </div>
+            </div>
+            <p class="measure slip-intro" data-enter>What the Continuity Office could confirm. Part of it is redacted.</p>
+            <div class="slip" style={`clip-path: ${slipClip}`} data-enter>
+              <p class="slip-title">Case LETHE · observed properties</p>
+              <p class="slip-sub">Continuity Office, Lisbon. Revised February 2033.</p>
+              <h3>Before</h3>
+              <dl>
+                <div class="row"><dt>Undoable harm</dt><span class="lead"></span><dd>last 7 minutes</dd></div>
+                <div class="row"><dt>Reach</dt><span class="lead"></span><dd>sight or touch</dd></div>
+                <div class="row"><dt>Works on</dt><span class="lead"></span><dd>injury, not illness</dd></div>
+              </dl>
+              <h3>The moment</h3>
+              <dl>
+                <div class="row"><dt>Needs</dt><span class="lead"></span><dd>the subject’s yes</dd></div>
+                <div class="row"><dt>Sound</dt><span class="lead"></span><dd>none</dd></div>
+                <div class="row"><dt>Keeps its colour</dt><span class="lead"></span><dd>the subject</dd></div>
+              </dl>
+              <div class="sealed-part" data-sealed>
+                <h3>After</h3>
+                <dl>
+                  {[['The saved remember', 'everything'], ['A stranger loses', 'an equal memory'], ['Comes back', 'never']].map(([k, v]) => (
+                    <div class="row"><dt>{k}</dt><span class="lead"></span><dd><span class="v">{v}</span><span class="sr-only red">[redacted by the Continuity Office]</span></dd></div>
+                  ))}
+                </dl>
+                <p class="total"><span><span class="v">One life saved</span></span><span><span class="v">One memory gone</span><span class="sr-only red">[redacted]</span></span></p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section" id="letter" data-slide="mara" aria-labelledby="letter-h">
+            <div class="letter" data-enter>
+              <h2 id="letter-h">Why you have this file</h2>
+              <div class="letter-head">
+                <div class="portrait"><Picture src={mara} alt="" widths={[256]} sizes="128px" formats={fmt} fallbackFormat="jpg" loading="lazy" /></div>
+                <p>From Dr Mara Okafor<br />Lisbon, 2033</p>
+              </div>
+              <div class="letter-body">
+                <p>You’re reading this because I’ve stopped trusting the people I work for.</p>
+                <p>For two years I’ve collected cases of something that shouldn’t exist: healthy adults who wake up without one piece of their own life. A husband. A childhood. The words to every song their mother sang.</p>
+                <p>The Continuity Office calls her Subject LETHE. The newspapers call her AMNESTY. I think of her every time my son shows me a photograph of himself at three and waits for me to feel something.</p>
+                <p>I’m not asking you to hate her. I’m asking you to look at what she costs, the way I’ve had to.</p>
+              </div>
+              <p class="sign">Mara Okafor</p>
+              <p>Clinical neurologist, Acute Episodic Loss surveillance</p>
+            </div>
+          </section>
+
+          <section class="section night" id="register" data-slide="hand" aria-labelledby="register-h">
+            <figure class="inline-figure mobile-only">
+              <Picture src={hand} alt="A woman sits on the edge of a narrow bed at night with her back to us, headphones on, looking at writing on the back of her hand under a desk lamp." widths={[480, 768]} sizes="100vw" formats={fmt} fallbackFormat="jpg" loading="lazy" />
+              <figcaption class="caption"><strong class="self" lang="pt">Eu sou a Lua</strong>Every night she writes it on the back of her hand. I am Lua.</figcaption>
+            </figure>
+            <div class="sheet" data-enter>
+              <h2 id="register-h">Acute Episodic Loss</h2>
+              <p class="note">Register compiled by Dr M. Okafor. Healthy adults who lost one part of their own past, suddenly and completely. Cause unknown.</p>
+              <table>
+                <caption class="sr-only">A page of the register: case, place, date and time of onset, and what was lost.</caption>
+                {register.map((g) => (
+                  <tbody>
+                    <tr><th scope="rowgroup" colspan="2">{g.group}</th></tr>
+                    {g.rows.map((r) =>
+                      'withheld' in r ? (
+                        <tr class="withheld">
+                          <td>
+                            <span class="sr-only">Entry withheld by the Continuity Office.</span>
+                            <span aria-hidden="true"><span class="blackbar" style="width: 3.5em"></span> <span class="blackbar" style="width: 6em"></span>
+                            <span class="what"><span class="blackbar" style="width: 13em"></span></span></span>
+                          </td>
+                          <td class="when" aria-hidden="true"><span class="blackbar" style="width: 7em"></span></td>
+                        </tr>
+                      ) : (
+                        <tr>
+                          <td>
+                            <span class="case tab">AEL-{r.no}</span> {r.place}
+                            <span class="what">{r.what}</span>
+                          </td>
+                          <td class="when">{r.when}</td>
+                        </tr>
+                      ),
+                    )}
+                  </tbody>
+                ))}
+              </table>
+              <p class="end">Page 1 of 95 · 1,140 cases to date<br />One entry on this page has been withheld by the Continuity Office.</p>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- The sealed file: last picture, text beside. -->
+      <section class="sealed" id="sealed" aria-labelledby="sealed-h">
+        <div class="sealed-img">
+          <Picture src={effects} alt="Personal effects laid out like evidence on a grey-blue cardigan: an empty badge holder on a teal lanyard, a worn black notebook, a blue ballpoint, and old studio headphones with one cup wrapped in silver tape." widths={[768, 1280, 1536]} sizes="100vw" formats={fmt} fallbackFormat="jpg" loading="lazy" />
+        </div>
+        <div class="sealed-text">
+          <h2 id="sealed-h">The rest is sealed</h2>
+          <p>Five more chapters of Case LETHE are still under the Continuity Office’s seal: who pays, why them, and where it began. Some of the evidence has already leaked.</p>
+          <a class="btn btn--bone" href="/archive/">Read the leaked records</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot" id="contents" aria-labelledby="contents-h">
+      <div class="foot-img">
+        <Picture src={badge} alt="An empty badge holder on a teal lanyard, close up: a blank white card where a name should be." widths={[768, 1280, 1536]} sizes={half} formats={fmt} fallbackFormat="jpg" loading="lazy" />
+      </div>
+      <div class="foot-menu">
+        <p class="foot-word">The God Complex</p>
+        <h2 id="contents-h">Case contents</h2>
+        <ul class="contents">
+          <li><a href="#prologue">The window</a></li>
+          <li><a href="#amnesty">AMNESTY</a></li>
+          <li><a href="#rules">The static</a></li>
+          {Array.from({ length: 5 }, (_, i) => (
+            <li><span class="sealed-row"><span class="blackbar" style={`width: ${[7.5, 9, 6, 8.5, 10][i]}em`} aria-hidden="true"></span><span class="sealed-label">Sealed<span class="sr-only"> chapter</span></span></span></li>
+          ))}
+        </ul>
+        <div class="foot-blocks">
+          <div>
+            <h3>This release</h3>
+            <p>The prologue, the first two parts of the file, and <a href="/archive/">five leaked records</a>. The illustrations are working concept art.</p>
+          </div>
+          <div>
+            <h3>Settings</h3>
+            <button class="toggle" type="button" data-toggle-tap aria-pressed="false"><span class="dot" aria-hidden="true"></span>Tap instead of hold</button>
+            <br /><button class="textbtn" type="button" data-clear>Forget this visit and start again</button>
+          </div>
+        </div>
+        <p class="legal">THE GOD COMPLEX is a work of fiction. All persons and case files are invented. Institutions named in the story are portrayed fictionally. Nothing you do here leaves this browser.</p>
+      </div>
+    </footer>
+
+    <script>
+      import { initHolds } from '../scripts/hold';
+      import { initPage } from '../scripts/page';
+      initPage();
+      initHolds();
+    </script>
+  </body>
+</html>

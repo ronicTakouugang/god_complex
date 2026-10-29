@@ -1,0 +1,221 @@
+/* The archive: documents from the fiction on the night ground. Tokens and faces come from global.css
+   (DESIGN.md §1 FILE register). No cards, no dashboard: one contents sheet, then one sheet per record. */
+
+.archive-body { background: var(--ink); }
+.archive-main { padding: calc(var(--bar) + var(--m)) var(--m) clamp(72px, 10vw, 144px); }
+.archive-main :focus-visible { outline-color: var(--ink); }
+.after-doc :focus-visible, .doc-margin :focus-visible { outline-color: var(--bone); }
+
+/* ---------- Gating: sealed until the visitor has read what Dr Okafor read first ---------- */
+.entry-sealed, .xref-sealed, .conn-sealed { display: none; }
+.js .entry:not([data-open]) .entry-open { display: none; }
+.js .entry:not([data-open]) .entry-sealed { display: block; }
+.js [data-requires]:not([data-open]) > .xref-open { display: none; }
+.js [data-requires]:not([data-open]) > .xref-sealed { display: inline; }
+.js .conn:not([data-open]) .conn-open, .js .conn:not([data-open]) .conn-note { display: none; }
+.js .conn:not([data-open]) .conn-sealed { display: block; }
+.whiteout.gap { display: inline-block; height: 0.95em; vertical-align: -0.12em; }
+
+/* ---------- The contents sheet ---------- */
+.index-sheet {
+  max-width: 1200px; margin-inline: auto;
+  background: var(--bone); color: var(--ink);
+  padding: clamp(32px, 6vw, 96px) var(--pad) clamp(40px, 5vw, 72px);
+}
+.index-head h1 {
+  font-family: var(--f-inst); font-weight: 800; font-stretch: 62%; text-transform: uppercase;
+  font-size: var(--fs-display); line-height: 0.86; letter-spacing: -0.01em; max-width: 10ch;
+}
+.index-lede { margin-top: 32px; font-size: var(--fs-state); line-height: 1.32; max-width: 34ch; }
+.fiction { margin-top: 20px; font-family: var(--f-inst); font-size: var(--fs-small); color: var(--ink-soft); max-width: 60ch; }
+
+/* Chronology: years, the gap between them, one mark per record. */
+.chrono { list-style: none; padding: 0; margin: clamp(48px, 6vw, 80px) 0 0; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 20px clamp(20px, 4vw, 56px); font-family: var(--f-inst); }
+.chrono-year { display: grid; gap: 10px; }
+.chrono-y { font-size: var(--fs-state); font-weight: 700; font-stretch: 85%; line-height: 1; }
+.chrono-marks { display: flex; gap: 8px; }
+.mark-dot { width: 22px; height: 22px; background: var(--bone); border: 3px solid var(--ink); display: block; transition: transform var(--t-ui) var(--ease-out); }
+.mark-dot:hover { transform: translateY(-2px); }
+.mark-dot.is-read { background: var(--ink); }
+.js .mark-dot:not([data-open]) { background: var(--ink); border-color: var(--ink); opacity: 0.25; }
+.chrono-gap { font-size: var(--fs-small); color: var(--ink-soft); font-style: italic; padding-bottom: 4px; }
+
+.entries { list-style: none; padding: 0; margin: clamp(40px, 5vw, 64px) 0 0; display: grid; gap: 8px; }
+.entry {
+  display: grid; grid-template-columns: 1fr; gap: 10px;
+  padding: 24px clamp(16px, 2vw, 28px);
+  background: var(--newsprint);
+}
+.entry.is-read { background: color-mix(in srgb, var(--newsprint) 55%, var(--bone)); }
+.entry-date { font-family: var(--f-inst); font-size: var(--fs-small); font-weight: 600; }
+.entry-open { display: grid; gap: 6px; text-decoration: none; transition: transform 240ms var(--ease-out); }
+.entry-open:hover, .entry-open:focus-visible { transform: translateX(8px); }
+.entry-open:hover .entry-title { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.16em; }
+.entry-title { font-size: var(--fs-state); line-height: 1.2; }
+.entry-summary { font-size: var(--fs-body); max-width: 52ch; }
+.entry-sealed .entry-summary { font-family: var(--f-inst); font-size: var(--fs-small); color: var(--ink-soft); margin-top: 8px; }
+.entry-meta { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 18px; font-family: var(--f-inst); font-size: var(--fs-small); }
+.entry-meta dd { margin: 0; }
+.entry-meta div:first-child dd { font-weight: 700; }
+.entry-class { color: var(--stamp); font-weight: 600; }
+.entry-status { color: var(--ink-soft); }
+@media (min-width: 900px) {
+  .entry { grid-template-columns: 11rem minmax(0, 1fr) 14rem; gap: 32px; align-items: start; }
+  .entry-meta { flex-direction: column; }
+}
+.index-foot { margin-top: 48px; font-family: var(--f-inst); font-size: var(--fs-small); font-weight: 600; }
+.index-foot a { min-height: 44px; display: inline-flex; align-items: center; }
+
+/* ---------- One record: the sheet, its margin, and what comes after ---------- */
+.record-page { max-width: 1280px; margin-inline: auto; }
+.record-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--m); }
+@media (min-width: 1024px) {
+  .record-grid { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: clamp(24px, 3vw, 48px); align-items: start; }
+  .doc-margin { position: sticky; top: calc(var(--bar) + var(--m)); }
+}
+
+.doc { background: var(--bone); color: var(--ink); padding: clamp(28px, 5vw, 72px) var(--pad); font-family: var(--f-inst); font-size: var(--fs-body); line-height: 1.55; }
+.doc-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 20px 32px; }
+.doc-head h1 { font-family: var(--f-story); font-size: var(--fs-head); font-weight: 350; line-height: 1.06; letter-spacing: -0.02em; max-width: 16ch; }
+/* The Office's stamp: its one mark in stamp red, one per document (DESIGN.md §6). */
+.stamp {
+  flex: none; color: var(--stamp);
+  border: 3px solid currentColor; padding: 6px 12px 7px;
+  font-weight: 800; font-stretch: 75%; text-transform: uppercase; font-size: var(--fs-body); line-height: 1.1;
+  rotate: -3deg; transform-origin: 100% 0; /* rotate, not transform: the entrance animation owns transform */
+}
+.doc-meta { margin: 36px 0 0; display: grid; grid-template-columns: 1fr; gap: 6px 32px; font-size: var(--fs-small); }
+.doc-meta div { display: grid; grid-template-columns: 12rem minmax(0, 1fr); gap: 12px; }
+.doc-meta dt { color: var(--ink-soft); }
+.doc-meta dd { margin: 0; font-weight: 600; }
+@media (max-width: 600px) { .doc-meta div { grid-template-columns: 1fr; gap: 0; } .doc-meta div + div { margin-top: 6px; } }
+.doc-translated { margin-top: 16px; font-size: var(--fs-small); color: var(--ink-soft); font-style: italic; }
+.early { margin-top: 24px; background: var(--newsprint); padding: 12px 16px; font-size: var(--fs-small); }
+
+.doc-body { margin-top: 24px; }
+.doc-body > h2 { font-family: var(--f-inst); font-weight: 700; font-stretch: 85%; font-size: var(--fs-state); line-height: 1.15; margin-top: 56px; }
+.doc-body > p { margin-top: 16px; max-width: 66ch; }
+.doc-body > p.story { font-family: var(--f-story); font-size: var(--fs-state); line-height: 1.35; max-width: 30ch; margin-top: 48px; }
+
+.fields { margin: 24px 0 0; display: grid; gap: 10px; }
+.fields div { display: grid; grid-template-columns: 1fr; gap: 2px; }
+.fields dt { font-size: var(--fs-small); font-weight: 700; color: var(--ink-soft); }
+.fields dd { margin: 0; }
+@media (min-width: 700px) { .fields div { grid-template-columns: 10rem minmax(0, 1fr); gap: 16px; } .fields dt { padding-top: 3px; } }
+
+.log { margin: 20px 0 0; }
+.log figcaption { font-size: var(--fs-small); color: var(--ink-soft); }
+.log ol { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 4px; }
+.log li { display: grid; grid-template-columns: 1fr; gap: 2px; padding: 12px 14px; background: var(--newsprint); }
+.log-time { font-weight: 700; font-size: var(--fs-small); }
+@media (min-width: 700px) { .log li { grid-template-columns: 9.5rem minmax(0, 1fr); gap: 16px; } .log-time { padding-top: 3px; } }
+
+.qa { margin: 20px 0 0; display: grid; gap: 14px; }
+.qa div { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); gap: 12px; }
+.qa dt { font-weight: 700; font-size: var(--fs-small); padding-top: 3px; }
+.qa dd { margin: 0; max-width: 62ch; }
+.qa .a dd { font-family: var(--f-story); }
+.qa .q dd { color: var(--ink-soft); }
+
+.doc-table { width: 100%; margin-top: 20px; border-collapse: collapse; font-size: var(--fs-small); font-variant-numeric: tabular-nums; }
+.doc-table caption { text-align: left; color: var(--ink-soft); padding-bottom: 10px; }
+.doc-table th { text-align: left; font-weight: 700; padding: 8px 12px; background: var(--paper-grey); }
+.doc-table td { padding: 10px 12px; vertical-align: top; }
+.doc-table tbody tr:nth-child(odd) { background: var(--newsprint); }
+
+.doc-figure { margin: 28px 0 0; }
+.doc-figure img { width: 100%; height: auto; max-height: 72svh; object-fit: cover; }
+.doc-figure figcaption { margin-top: 8px; font-size: var(--fs-small); color: var(--ink-soft); }
+
+.sign-off { margin-top: 56px; display: grid; gap: 2px; }
+.sign-name { font-family: var(--f-story); font-size: var(--fs-state); font-style: italic; line-height: 1.2; }
+.sign-role { font-size: var(--fs-small); color: var(--ink-soft); }
+
+/* Notes in the margin: on desktop beside the sheet, on phones after the paragraph they annotate. */
+.note { font-family: var(--f-inst); font-size: var(--fs-small); line-height: 1.5; }
+.note-by { display: block; font-weight: 700; margin-bottom: 2px; }
+.note-inline { margin-top: 12px; padding: 10px 14px; background: var(--newsprint); color: var(--ink); max-width: 60ch; }
+.doc-margin { color: var(--bone); display: none; }
+.doc-margin .note { padding: 0 0 20px; max-width: 34ch; }
+.doc-margin .note + .note { padding-top: 20px; }
+.doc-margin .note-by { color: var(--paper-grey); }
+.doc-margin a { color: var(--bone); }
+@media (min-width: 1024px) {
+  .doc-margin { display: block; padding-top: clamp(28px, 5vw, 72px); }
+  .note-inline { display: none; }
+}
+
+.after-doc { color: var(--bone); padding: clamp(48px, 6vw, 96px) var(--pad) 0; max-width: 860px; }
+.after-doc h2 { font-size: var(--fs-state); line-height: 1.2; }
+.after-doc ul { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 22px; }
+.conn-open { display: inline-grid; gap: 2px; text-decoration: none; min-height: 44px; }
+.conn-open:hover .conn-title, .conn-open:focus-visible .conn-title { text-decoration: underline; text-underline-offset: 0.16em; }
+.conn-title { font-size: var(--fs-state); line-height: 1.2; }
+.conn-ref { font-family: var(--f-inst); font-size: var(--fs-small); color: var(--paper-grey); }
+.conn-note { margin-top: 4px; font-family: var(--f-inst); font-size: var(--fs-small); color: var(--paper-grey); max-width: 52ch; }
+.conn-sealed .blackbar { background: var(--paper-grey); height: 1.4em; }
+.unsealed { margin-top: 56px; }
+.unsealed a { font-size: var(--fs-state); min-height: 44px; display: inline-flex; align-items: center; }
+.chrono-nav { margin-top: 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px; font-family: var(--f-inst); font-size: var(--fs-small); font-weight: 600; }
+.chrono-nav a { min-height: 44px; display: inline-flex; align-items: center; }
+.chrono-nav .blackbar { background: var(--paper-grey); }
+.close-btn { margin-top: 40px; }
+
+.archive-foot { padding: 0 var(--pad) 48px; max-width: 1280px; margin-inline: auto; color: var(--paper-grey); font-family: var(--f-inst); font-size: var(--fs-small); line-height: 1.5; }
+.archive-foot p { max-width: 70ch; }
+
+/* Review fixes: bars never wider than their column; sealed references visible on the night ground;
+   stamp red reserved for the Office's stamps; the chronology fills the header's second column on desktop. */
+.archive-main .blackbar { max-width: 100%; }
+.doc-margin .blackbar { background: var(--paper-grey); }
+.entry-class { color: var(--ink); }
+.entry-main { min-width: 0; }
+@media (min-width: 1024px) {
+  .index-head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: end; }
+  .index-head .chrono { margin-top: 0; flex-direction: column; align-items: flex-start; gap: 18px; }
+  .chrono-year { grid-template-columns: 5.5rem auto; align-items: center; gap: 16px; }
+}
+.entry-date, .entry-meta { font-size: var(--fs-body); }
+.doc-margin .note { max-width: none; }
+@media (min-width: 900px) {
+  .entry-meta { align-items: flex-end; text-align: right; }
+}
+@media (min-width: 1024px) {
+  .index-head .chrono { justify-self: end; align-items: flex-end; }
+}
+.entry-sealed .entry-summary { font-size: var(--fs-body); }
+.archive-foot { max-width: 1200px; }
+@media (min-width: 1024px) { .doc-margin { padding-right: clamp(24px, 3vw, 48px); } }
+/* The fiction notice is read, not skimmed: body size (DESIGN.md §11 footer, PRODUCT.md). */
+.fiction, .archive-foot, .index-foot { font-size: var(--fs-body); }
+@media (max-width: 899px) {
+  .index-lede, .fiction, .entry-summary { max-width: none; }
+}
+
+/* The margin column carries the notes and the record's connections. On phones the notes are inline
+   in the document, so the margin holds only the connections and follows the sheet. */
+.doc-margin { display: block; padding: 48px var(--pad) 0; }
+.doc-margin .note { display: none; }
+.doc-margin h2 { font-size: var(--fs-state); line-height: 1.2; color: var(--bone); }
+.doc-margin ul { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 22px; }
+.doc-margin .connections, .doc-margin .unsealed { color: var(--bone); }
+.doc-margin .unsealed { margin-top: 48px; }
+@media (min-width: 1024px) {
+  .doc-margin { padding: clamp(28px, 5vw, 72px) clamp(24px, 3vw, 48px) 0 0; }
+  .doc-margin .note { display: block; }
+  .doc-margin .connections { margin-top: 32px; }
+}
+@media (max-width: 600px) { .doc-head h1 { font-size: var(--fs-state); line-height: 1.15; } }
+.after-doc { padding-top: clamp(40px, 5vw, 72px); }
+.chrono-nav { margin-top: 0; }
+
+/* The footer sits on the same frame as the sheet above it. */
+.archive-foot { max-width: none; padding: 0 var(--m) 48px; }
+.archive-foot p { max-width: 1200px; margin-inline: auto; padding-inline: var(--pad); }
+.archive-foot p { max-width: 70ch; margin-inline: 0; padding-inline: 0; }
+.foot-frame { max-width: 1200px; margin-inline: auto; padding-inline: var(--pad); }
+@media (max-width: 899px) {
+  /* Rows run to the sheet's edges so their text shares the sheet's margins. */
+  .entry { margin-inline: calc(-1 * var(--pad)); padding-inline: var(--pad); }
+}
+@media (max-width: 600px) { .doc-head h1 { font-size: 1.875rem; } }

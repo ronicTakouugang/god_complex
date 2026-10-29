@@ -2,6 +2,14 @@
 
 > **Status: pre-build specification** (2026-10-29). It translates the approved canon into rules for the web experience. After the build, it gets reconciled against what actually shipped (Impeccable's documenter step), and differences are resolved in favour of the canon, never by quietly drifting.
 >
+> **v1 build decisions that override this file** (made with the Taste skill; record any reversal here):
+> - **Composition:** the Taste direction is **split stage** (seed 1907602659, `.taste-skill/direction.json`). A fixed picture half holds the undoable scene, beside a scrolling case-file column.
+> - **Labels are not uppercase or tracked.** The `label` step (§3.2) is dropped. Labels are sentence case at 14px or more.
+> - **No chapter numerals.** §3.2 allowed I–VII; Taste bans index numbering. Chapters are named only.
+> - **No hairline rules in documents.** §6 rules are replaced by space, tone steps and dot leaders. Real `<table>` markup is kept for the register.
+> - **Five type sizes:** 14 / 18 / 27 / 52 px and display (`--fs-*` in `src/styles/global.css`).
+> - **The drain edge is a soft radial mask with a 20% feather.** The grain-broken edge (S-10) is still to be made.
+>
 > **Sources of authority, in order:**
 > 1. [CHARACTER_BIBLE.md](CHARACTER_BIBLE.md): story facts.
 > 2. [VISUAL_DIRECTION.md](VISUAL_DIRECTION.md) and [concept/reference/](concept/reference/README.md): how the hero and her world look.

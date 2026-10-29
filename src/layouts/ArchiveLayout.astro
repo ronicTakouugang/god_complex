@@ -1,0 +1,43 @@
+---
+/** Shell for the archive's pages: the same faces, tokens and bar as the homepage, and the fiction notice. */
+import '@fontsource-variable/archivo/wdth.css';
+import '@fontsource-variable/literata/opsz.css';
+import '../styles/global.css';
+import '../styles/archive.css';
+import Bar from '../components/Bar.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  links: { href: string; label: string }[];
+}
+const { title, description, links } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#17191c" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body class="archive-body">
+    <a class="skip" href="#main">Skip to the record</a>
+    <Bar homeHref="/" homeLabel="The God Complex, back to the start" links={links} />
+    <main id="main" class="archive-main">
+      <slot />
+    </main>
+    <footer class="archive-foot">
+      <div class="foot-frame"><p>THE GOD COMPLEX is a work of fiction. These records, the people in them and the Continuity Office are invented; no real agency, system or archive is involved. Nothing you do here leaves this browser.</p></div>
+    </footer>
+    <script>
+      import { initArchive } from '../scripts/archive';
+      import { initPage } from '../scripts/page';
+      initPage();
+      initArchive();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+---
+/**
+ * The archive: the contents sheet of the leaked file. Records are listed in the order their events
+ * happened, and unseal in the order Dr Okafor read them (EXPERIENCE_MAP.md §6).
+ */
+import ArchiveLayout from '../../layouts/ArchiveLayout.astro';
+import { chronological, byId } from '../../content/archive';
+
+const years = [...new Set(chronological.map((r) => r.event.iso.slice(0, 4)))];
+const titles = (ids: string[]) => ids.map((id) => byId(id)?.title ?? id);
+---
+<ArchiveLayout title="The archive · Case LETHE · The God Complex"
+  description="Five fictional records from Case LETHE, the file on AMNESTY. Part of THE GOD COMPLEX, an original graphic-novel universe."
+  links={[{ href: '/', label: 'The file' }, { href: '/#contents', label: 'Contents' }]}>
+  <div class="index-sheet">
+    <div class="index-head">
+      <div class="index-intro" data-enter>
+      <h1>The leaked records</h1>
+      <p class="index-lede">Five documents from Case LETHE, copied by Dr Mara Okafor in late 2033. They are listed in the order things happened. They open in the order she read them.</p>
+      <p class="fiction">This archive is part of THE GOD COMPLEX, a work of fiction. There is nothing to log in to: every record is already here.</p>
+      </div>
+      <ol class="chrono" aria-label="When each record's events happened">
+      {years.map((y, i) => (
+        <>
+          {i > 0 && Number(y) - Number(years[i - 1]) > 1 && <li class="chrono-gap" aria-hidden="true">{Number(y) - Number(years[i - 1])} years</li>}
+          <li class="chrono-year">
+            <span class="chrono-y tab">{y}</span>
+            <span class="chrono-marks">
+              {chronological.filter((r) => r.event.iso.startsWith(y)).map((r) => (
+                <a class="mark-dot" href={`#${r.id}`} tabindex="-1" aria-hidden="true" data-mark={r.id} data-requires={r.requires.join(',')} data-open={r.requires.length === 0 ? '' : undefined}></a>
+              ))}
+            </span>
+          </li>
+        </>
+      ))}
+    </ol>
+    </div>
+
+    <ol class="entries" data-enter>
+      {chronological.map((r) => (
+        <li class="entry" id={r.id} data-id={r.id} data-requires={r.requires.join(',')} data-open={r.requires.length === 0 ? '' : undefined}>
+          <p class="entry-date tab"><time datetime={r.event.iso}>{r.event.label}</time></p>
+          <div class="entry-main">
+            <a class="entry-open" href={`/archive/${r.id}/`}>
+              <span class="entry-title">{r.title}</span>
+              <span class="entry-summary">{r.summary}</span>
+            </a>
+            <div class="entry-sealed">
+              <p class="entry-title" aria-hidden="true"><span class="blackbar" style={`width: ${Math.min(16, r.title.length * 0.5)}em`}></span></p>
+              <p class="entry-summary">Sealed. It opens once you have read {titles(r.requires).join(' and ')}.</p>
+            </div>
+          </div>
+          <dl class="entry-meta tab">
+            <div><dt class="sr-only">Reference</dt><dd>{r.ref}</dd></div>
+            <div><dt class="sr-only">Type</dt><dd>{r.kind}</dd></div>
+            <div><dt class="sr-only">Classification</dt><dd class="entry-class">{r.classification}</dd></div>
+            <div><dt class="sr-only">Status</dt><dd class="entry-status" data-status>{r.requires.length ? 'Sealed' : 'Unread'}</dd></div>
+          </dl>
+        </li>
+      ))}
+    </ol>
+
+    <p class="index-foot"><a href="/">Back to the file</a></p>
+  </div>
+</ArchiveLayout>

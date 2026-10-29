@@ -11,6 +11,24 @@
 
 ---
 
+## v1 build: what is temporary (2026-10-29)
+
+The first release (`src/pages/index.astro`) uses these locked images, copied into `src/assets/img/`. Every one is **working concept art at 1536px or less** and needs the 2× upscale (§0, rule 1) before launch. Nothing on the page is a stand-in from outside the project.
+
+| On the page | File in `src/assets/img/` | From `concept/reference/` | Replace with |
+|---|---|---|---|
+| Prologue stage: harm, drained, after | `tagus-harm.png`, `tagus-drained.png`, `tagus-after.png` | `prologue-capsized`, `lua-power-tagus`, `prologue-after` | Upscaled masters, plus **landscape (L) versions** (P-1, P-3), because on desktop the portrait images are cropped to the stage. `tagus-after` doesn't line up pixel for pixel; it's used as the colour-return layer. |
+| "Nobody can describe her" figure | `lua-front.png` | `lua-turnaround-front` | A **finished panel** of Lua, not the design sheet. The sheet's warm paper is faded into the page paper with an edge mask. |
+| Cyclist stage: harm and drained | `cyclist-harm.png`, `cyclist-drained.jpg` | `lua-pose-kneel`, `lua-power-undoing-peak` | Upscaled masters, plus a pixel-aligned **after** state (I-3: cyclist sitting up). Without it the cyclist scene stays drained after the hold. |
+| Mara (stage slide and letter portrait) | `mara.png` | `cast-mara` | A **scene of Mara at work** (II-2). The design sheet shows two figures side by side. |
+| Eu sou a Lua (stage slide, phone figure) | `hand.png` | `lua-pose-hand` | Upscaled. The hand inscription will be hand-lettered (S-9). |
+| "The rest is sealed" | `effects.png` | `lua-emblem-stilllife` | Upscaled. |
+| Footer badge | `badge.png` | `badge-blank` | Upscaled. It's visibly soft at desktop width. |
+
+**Written as sample content** (fiction, consistent with CHARACTER_BIBLE but not yet reviewed): the witness statements, the *Diário do Tejo* front page, the observed-properties slip, Mara's letter, and the eleven register entries (AEL-0117 to AEL-0632). The case numbers, places, dates and losses are invented to fit §3.2 of the bible; confirm them before launch.
+
+---
+
 ## 0. Production rules
 
 1. **Masters** are at least 2400px on the long edge, saved as PNG in `assets-src/` (outside the built site). Astro generates AVIF and WebP at responsive widths. Never ship a master. **The current image tool outputs at most 1536px**, so every locked image needs a **2× upscale** (an AI upscaler) before production. Until then, the 1536px files are fine for building and layout.
