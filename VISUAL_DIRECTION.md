@@ -85,7 +85,7 @@ Every image of her must keep these five shape features, which read at thumbnail 
 
 1. **The column.** A knee-length cardigan falling straight from narrow shoulders, slightly A-tapered. It is never belted.
 2. **The collar loop.** Over-ear headphones resting around her neck. The cups stick out past the line of her shoulders in profile and front view. *(Removed at a key story point, §6.)*
-3. **The small round head.** Close-cropped natural hair, so the head's outline is clean. **Never a hood.**
+3. **The small round head.** Close-cropped natural hair (short coils, about 3 cm, as locked in the reference), so the head's outline is clean. **Never a hood.**
 4. **The drop.** The lanyard falls to the sternum and ends in a hard rectangle, which shows whenever the cardigan hangs open.
 5. **The kneel.** One knee down, the other foot planted, one hand flat on the injured person or the ground, head bowed below shoulder height. It reads as **a low triangle anchored by an open hand.** She never stands over anyone she saves.
 
@@ -155,7 +155,7 @@ Each one has a story reason. Without one, it doesn't appear.
 | **The notebooks** (*Os que eu deixei*) | The dead she refused, and the people who paid | Interiors, evidence imagery |
 | **The red door** | Someone else's home, mistaken for hers | Ribeira da Prata, Revelation 1 |
 | **The paper-grey ring** | The reach of an undoing | Power scenes, transitions |
-| **The blink frame** | A memory leaving someone | Single-panel beats, the site's transition between chapters |
+| **The blink frame** | A memory leaving someone | Single-panel beats. On the site, only where a cost lands. |
 | **Stamp Red marks** | Institutional ownership | Case files, the Continuity Office's documents |
 | **DO NOT SAVE tags** | Refusal, from the public's side | World texture |
 
@@ -271,7 +271,7 @@ Run each **4–8 times**. Judge them with the solid-black silhouette test (§7.4
 
 - **Primary imagery is evidence, not portraits:** Continuity Office photographs (with the long-exposure smear and the sharp badge), objects (badge, notebooks, headphones, the red door), places (Cais do Sodré, Santa Luzia, the Ribeira terraces), and documents with Stamp Red marks.
 - **Comic panels** come in at story beats (the Tagus Miracle, the fountain, the Refusal) as inked flat-colour work.
-- **The site never opens on a hero portrait.** The strongest opening image is the empty badge, or the kneel in silhouette.
-- **The site's visual grammar comes from the power:** colour draining to paper grey, silence, the blink frame between chapters, white rectangles as the redaction shape. **White rectangles are the world's forgetting.** They redact documents and places, **never her face.**
+- **The site never opens on a hero portrait.** It **opens on the Tagus undo** (the ferry capsized, Lua small at the water's edge) and **closes on the badge** in one of its three end states. *(Approved 2026-10-29. This replaces the earlier "open on the badge".)*
+- **The site's visual grammar comes from the power:** colour draining to paper grey, silence, the blink frame **only where a cost lands** (never as a decorative chapter transition), and white rectangles for what was forgotten. There are **two kinds of hiding** (DESIGN §2.2): **white-out** is the world's forgetting and can't be lifted, while **black bars** are the Office's concealment and can be. Neither ever covers **her face.**
 - **Use the colour roles as defined:** world warm, Lua quiet, the Office in Stamp Red, the self in Ballpoint Blue.
 - **The reveal order of imagery follows the knowledge table in bible §8.1.** Celeste's face and the filled badge appear only in the Revelation 3 chapter.

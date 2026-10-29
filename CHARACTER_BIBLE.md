@@ -361,7 +361,9 @@ A major earthquake hits Lisbon, echoing 1755, and a surge follows up the Tagus. 
 
 - **Long, heavy, knee-length knit cardigan in grey-blue** (from the Santa Luzia uniform, worn soft). In silhouette it reads as a long tapered column.
 - **Over-ear radio headphones worn around her neck**, Duarte's old studio pair, cabled to a scanner in her pocket. They form a distinctive loop at the collar line.
-- **Cropped head**, her hair kept short since hospital. The head shape reads clearly.
+- **Cropped head**, her hair kept short since hospital (short natural coils, about 3 cm). The head shape reads clearly.
+- **Right-handed**, which is why the inscription is on her **left** hand.
+- **The locked reference images** are in [concept/reference/](concept/reference/README.md). Every depiction derives from them.
 - **The carer's kneel:** her signature pose. One knee down, one hand flat on the injured person or the ground, head bowed. She never stands over people. **AMNESTY is recognised by her kneeling.**
 - Dark work trousers and non-slip care shoes. Height 1.68 m, lean, leaning in, steady hands.
 
@@ -382,7 +384,7 @@ The Santa Luzia lanyard badge, with its name card missing: **a blank white recta
 - **Lua's palette is quiet:** grey-blue, bone, ink.
 - **Undoing:** colour drains outward from her to paper-grey, **while she alone keeps full colour**. Sound cuts, the harm reverses, and colour floods back from the edges (~2 s).
 - **The headphones are removed after Duarte's betrayal.** This is the one planned change to her silhouette (VISUAL_DIRECTION §6).
-- **The blink** (on the payer's side): a single white frame and silence.
+- **The blink** (on the payer's side): a single white frame and silence. *(The payer lives it as "half a second of white silence" (§3.4); an observer, or the page, sees a single frame. Both are canon.)*
 - **Silence is her sound.** Every undoing cuts all audio.
 
 ---
@@ -393,7 +395,7 @@ The Santa Luzia lanyard badge, with its name card missing: **a blank white recta
 |---|---|
 | **Visual artist** | Silhouette = cardigan column + headphone loop + cropped head + the kneel. Emblem = blank white rectangle. Face hidden by staging only (§9.3). Undoing = desaturation and silence. White never covers her face. |
 | **Screenwriter** | Respect the knowledge table (§8.1). L3 is absolute: memories never come back (re-learning is allowed). L4 stays hidden until Revelation 2. In case files before Revelation 3, she is *the subject* and *they*. Her code is "No one dies in front of me." Refusal has no supernatural consequence. |
-| **Frontend / motion** | The design language is **subtraction**: redaction, desaturation, silence, absence. Undoing = colour drains outward, then floods back from the edges (~2 s). The blink = one white frame. The blank badge rectangle is the core shape. Reveal order follows §8.1. The final chapter is the visitor's Lisbon Choice. |
+| **Frontend / motion** | The design language is **subtraction**: redaction, desaturation, silence, absence. Undoing = colour drains outward, then floods back from the edges (~2 s). The blink = one white frame. The blank badge rectangle is the core shape. Reveal order follows §8.1. The final chapter is the visitor's Lisbon Choice. **Full rules: [DESIGN.md](DESIGN.md), [EXPERIENCE_MAP.md](EXPERIENCE_MAP.md), [ASSET_PLAN.md](ASSET_PLAN.md).** |
 
 ---
 

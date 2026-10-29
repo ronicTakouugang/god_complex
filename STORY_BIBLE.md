@@ -82,7 +82,7 @@ See CHARACTER_BIBLE §6 for full profiles.
 - triumphant hero imagery without the cost alongside it;
 - references or visual echoes of existing franchises. This is an original property.
 
-**The site's core experiential idea [PROPOSED]:** *the site itself forgets.* As the visitor moves deeper, earlier content fades, degrades, or gets redacted. Learning the truth costs the visitor something, just as every rescue costs the world something.
+**The site's core experiential idea:** *the site itself forgets.* Learning the truth costs the visitor something, just as every rescue costs the world something. **Concretely** (see [EXPERIENCE_MAP.md](EXPERIENCE_MAP.md)): the visitor performs three undoings, and each one whites out something they've already seen or written. Forgotten content is never restored, only relearned *as new* in "What you forgot" at the end. That end record also keeps the site accessible.
 
 ## 9. Canon rules (quick reference)
 
