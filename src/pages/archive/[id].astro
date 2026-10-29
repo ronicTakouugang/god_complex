@@ -25,7 +25,7 @@ const req = (x: ArchiveRecord) => x.requires.join(',');
   <div class="record-page" data-close={closeHref} data-requires-titles={r.requires.map((id) => byId(id)?.title).join(' and ')}>
     <RecordView record={r}>
       <Fragment slot="aside">
-      <section class="connections" aria-labelledby="conn-h" data-enter>
+      <section class="connections" aria-labelledby="conn-h">
         <h2 id="conn-h">Connections</h2>
         <ul>
           {r.connections.map((c) => {

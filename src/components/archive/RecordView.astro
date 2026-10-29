@@ -22,12 +22,12 @@ const blocks: Block[] = r.blocks;
 ---
 <div class="record-grid">
   <article class="doc" aria-labelledby="doc-title" data-record={r.id} data-requires={r.requires.join(',')}>
-    <header class="doc-head" data-enter>
-      <h1 id="doc-title">{r.title}</h1>
+    <header class="doc-head">
+      <h1 id="doc-title" style={`view-transition-name: rec-${r.id}`}>{r.title}</h1>
       <p class="stamp" aria-label={`Office stamp: ${r.stamp}`}>{r.stamp}</p>
     </header>
 
-    <dl class="doc-meta tab" data-enter>
+    <dl class="doc-meta tab">
       <div><dt>Reference</dt><dd>{r.ref}</dd></div>
       <div><dt>Type</dt><dd>{r.kind}</dd></div>
       <div><dt>From</dt><dd>{r.origin}</dd></div>

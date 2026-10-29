@@ -35,7 +35,7 @@
 .chrono-y { font-size: var(--fs-state); font-weight: 700; font-stretch: 85%; line-height: 1; }
 .chrono-marks { display: flex; gap: 8px; }
 .mark-dot { width: 22px; height: 22px; background: var(--bone); border: 3px solid var(--ink); display: block; transition: transform var(--t-ui) var(--ease-out); }
-.mark-dot:hover { transform: translateY(-2px); }
+@media (hover: hover) and (pointer: fine) { .mark-dot:hover { transform: translateY(-2px); } }
 .mark-dot.is-read { background: var(--ink); }
 .js .mark-dot:not([data-open]) { background: var(--ink); border-color: var(--ink); opacity: 0.25; }
 .chrono-gap { font-size: var(--fs-small); color: var(--ink-soft); font-style: italic; padding-bottom: 4px; }
@@ -49,7 +49,7 @@
 .entry.is-read { background: color-mix(in srgb, var(--newsprint) 55%, var(--bone)); }
 .entry-date { font-family: var(--f-inst); font-size: var(--fs-small); font-weight: 600; }
 .entry-open { display: grid; gap: 6px; text-decoration: none; transition: transform 240ms var(--ease-out); }
-.entry-open:hover, .entry-open:focus-visible { transform: translateX(8px); }
+@media (hover: hover) and (pointer: fine) { .entry-open:hover { transform: translateX(8px); } }
 .entry-open:hover .entry-title { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.16em; }
 .entry-title { font-size: var(--fs-state); line-height: 1.2; }
 .entry-summary { font-size: var(--fs-body); max-width: 52ch; }
@@ -223,7 +223,8 @@
 /* Liftable black bars: the bar is the control. It gives under the pointer like a strip of tape. */
 .lift { display: inline; padding: 0; margin: 0; border: 0; background: none; cursor: pointer; font: inherit; vertical-align: baseline; }
 .lift .blackbar { transition: transform 200ms var(--ease-out); transform-origin: 0 100%; }
-.lift:hover .blackbar, .lift:focus-visible .blackbar { transform: rotate(-1.5deg) translateY(-2px); }
+.lift:focus-visible .blackbar { transform: rotate(-1.5deg) translateY(-2px); }
+@media (hover: hover) and (pointer: fine) { .lift:hover .blackbar { transform: rotate(-1.5deg) translateY(-2px); } }
 .lift:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .lifted { background: var(--paper-grey); padding: 0 0.25em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .lifted:focus { outline: none; }

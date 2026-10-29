@@ -92,6 +92,7 @@ const description =
     <meta name="theme-color" content="#17191c" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script is:inline>document.documentElement.classList.add('js');</script>
+    <style is:inline>@view-transition { navigation: auto; } @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }</style>
   </head>
   <body>
     <a class="skip" href="#prologue">Skip to the case file</a>
@@ -149,17 +150,17 @@ const description =
           </section>
 
           <section class="section world" id="morning" aria-labelledby="morning-h">
-            <div data-enter>
+            <div>
               <h2 id="morning-h">The morning after</h2>
               <p class="measure" data-refused hidden>You didn’t hold. Forty-one people drowned at 21:14, and no one, anywhere, forgot anything. But she didn’t wait for you: at 21:14 she said yes.</p>
             </div>
-            <figure class="paper" data-enter aria-label="Front page of the Diário do Tejo, Saturday 19 June 2032">
+            <figure class="paper" aria-label="Front page of the Diário do Tejo, Saturday 19 June 2032">
               <p class="masthead">Diário do Tejo</p>
               <p class="headline" lang="en">AMNESTY</p>
               <p class="deck">212 people pulled from the Tagus, unhurt. Not one witness can say who did it.</p>
               <p class="dateline tab">Saturday, 19 June 2032 · Lisbon</p>
             </figure>
-            <div class="after-text measure" data-enter>
+            <div class="after-text measure">
               <p>By dawn there were candles along the river at Cais do Sodré. By the weekend people were calling her <span lang="pt">Nossa Senhora do Tejo</span>, Our Lady of the Tagus.</p>
               <p>Months later, a columnist pointed out that <em>amnesty</em> and <em>amnesia</em> share a root: the Greek word for forgetting. By then nobody was laughing.</p>
             </div>
@@ -169,7 +170,7 @@ const description =
 
       <!-- A night panel: the one deliberate rest, a survivor's words (CHARACTER_BIBLE §3.4). Breaks the split. -->
       <section class="quiet night" aria-labelledby="quiet-h">
-        <h2 id="quiet-h" data-enter><span>“The quietest second of my life.”</span></h2>
+        <h2 id="quiet-h" data-enter="fade"><span>“The quietest second of my life.”</span></h2>
         <p class="quiet-cite">A passenger on the <cite>Barreiro Nova</cite>, describing 21:14 to the Continuity Office</p>
       </section>
 
@@ -179,7 +180,7 @@ const description =
           <Picture src={luaFront} alt="A woman in a long, darned grey-blue cardigan, with old headphones round her neck and an empty badge on a teal lanyard. The frame stops at her jaw." widths={[600, 900, 1300]} sizes="(min-width: 1024px) 42vw, 100vw" formats={fmt} fallbackFormat="jpg" loading="lazy" />
         </div>
         <div class="reveal-text">
-          <div data-enter>
+          <div>
             <h2 id="amnesty-h">Nobody can describe her</h2>
             <p class="measure">Five people watched her undo the Tagus from a few metres away. This is what they told the Continuity Office that night.</p>
           </div>
@@ -191,7 +192,7 @@ const description =
               </li>
             ))}
           </ul>
-          <p class="verdict" data-enter><span>Every witness remembers what she did. None of them can tell you what she looks like.</span></p>
+          <p class="verdict"><span>Every witness remembers what she did. None of them can tell you what she looks like.</span></p>
         </div>
       </section>
 
@@ -216,11 +217,11 @@ const description =
 
         <div class="col">
           <section class="section night" id="rules" data-slide="cyclist" aria-labelledby="rules-h">
-            <div data-enter>
+            <div>
               <h2 id="rules-h">Seven minutes and a yes</h2>
               <p class="measure">The rule is the same for one life as for a ferry. Try it once more, on a smaller harm.</p>
             </div>
-            <div class="try" data-enter>
+            <div class="try">
               <div class="try-slot" data-scene-slot="cyclist"></div>
               <button class="btn btn--bone" type="button" data-hold="cyclist" data-label-idle="Hold to undo the crash" data-label-holding="Keep holding" data-label-done="Undone"><span class="btn-text">Hold to undo the crash</span></button>
               <div class="cost" id="cost-cyclist" hidden>
@@ -228,8 +229,8 @@ const description =
                 <blockquote class="quoted"><p><span class="tab" data-forget="212"><span aria-hidden="true">212</span><span class="sr-only">212</span></span> people in the water. 41 of them are dying.</p></blockquote>
               </div>
             </div>
-            <p class="measure slip-intro" data-enter>What the Continuity Office could confirm. Part of it is redacted.</p>
-            <div class="slip" style={`clip-path: ${slipClip}`} data-enter>
+            <p class="measure slip-intro">What the Continuity Office could confirm. Part of it is redacted.</p>
+            <div class="slip" style={`clip-path: ${slipClip}`}>
               <p class="slip-title">Case LETHE · observed properties</p>
               <p class="slip-sub">Continuity Office, Lisbon. Revised February 2033.</p>
               <h3>Before</h3>
@@ -257,7 +258,7 @@ const description =
           </section>
 
           <section class="section" id="letter" data-slide="mara" aria-labelledby="letter-h">
-            <div class="letter" data-enter>
+            <div class="letter">
               <h2 id="letter-h">Why you have this file</h2>
               <div class="letter-head">
                 <div class="portrait"><Picture src={mara} alt="" widths={[256]} sizes="128px" formats={fmt} fallbackFormat="jpg" loading="lazy" /></div>

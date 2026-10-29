@@ -9,6 +9,14 @@
 > - **No hairline rules in documents.** §6 rules are replaced by space, tone steps and dot leaders. Real `<table>` markup is kept for the register.
 > - **Five type sizes:** 14 / 18 / 27 / 52 px and display (`--fs-*` in `src/styles/global.css`).
 > - **The drain edge is a soft radial mask with a 20% feather.** The grain-broken edge (S-10) is still to be made.
+> - **Motion pass (2026-10-29),** following Emil Kowalski's principles via the installed `improve-animations` and `animate` skills.
+>   - **Removed:** nothing on the page moves on its own.
+>   - **Entrances:** only the witness statements (staggered), the register sheet, and the night panel (a motionless 1.2s fade). The archive has none, because it is visited too often.
+>   - **The power:** the stage crossfade is 700ms on `--ease-in-out` with a 2px blur on the outgoing picture. The colour return eases on `--ease-in-out`, while the drain stays linear. After the blink, the white-out paints on left to right in 260ms on `--ease-out`.
+>   - **The archive:** black bars peel up and away in 220ms on `--ease-out`, and the words fade in. A newly unsealed record peels open once in the index.
+>   - **Navigation:** pages change through cross-document View Transitions. The root crossfades in 180ms, and a record's title travels from its index row in 260ms. The opt-in sits inline in each page head, because it must be known at the first render.
+>   - **Hover:** hover motion is gated to fine pointers, and keyboard focus never moves text.
+>   - **Reduced motion:** holds still need a real hold, the white-out fades in over 200ms, bars don't peel, and page changes are plain cuts.
 >
 > **Sources of authority, in order:**
 > 1. [CHARACTER_BIBLE.md](CHARACTER_BIBLE.md): story facts.

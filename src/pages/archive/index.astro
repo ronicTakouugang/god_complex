@@ -14,7 +14,7 @@ const titles = (ids: string[]) => ids.map((id) => byId(id)?.title ?? id);
   links={[{ href: '/', label: 'The file' }, { href: '/#contents', label: 'Contents' }]}>
   <div class="index-sheet">
     <div class="index-head">
-      <div class="index-intro" data-enter>
+      <div class="index-intro">
       <h1>The leaked records</h1>
       <p class="index-lede">Five documents from Case LETHE, copied by Dr Mara Okafor in late 2033. They are listed in the order things happened. They open in the order she read them.</p>
       <p class="fiction">This archive is part of THE GOD COMPLEX, a work of fiction. There is nothing to log in to: every record is already here. Some of the Office’s black bars can be lifted.</p>
@@ -36,13 +36,13 @@ const titles = (ids: string[]) => ids.map((id) => byId(id)?.title ?? id);
     </ol>
     </div>
 
-    <ol class="entries" data-enter>
+    <ol class="entries">
       {chronological.map((r) => (
         <li class="entry" id={r.id} data-id={r.id} data-requires={r.requires.join(',')} data-open={r.requires.length === 0 ? '' : undefined}>
           <p class="entry-date tab"><time datetime={r.event.iso}>{r.event.label}</time></p>
           <div class="entry-main">
             <a class="entry-open" href={`/archive/${r.id}/`}>
-              <span class="entry-title">{r.title}</span>
+              <span class="entry-title" style={`view-transition-name: rec-${r.id}`}>{r.title}</span>
               <span class="entry-summary">{r.summary}</span>
             </a>
             <div class="entry-sealed">

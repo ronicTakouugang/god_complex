@@ -23,6 +23,7 @@ const { title, description, links } = Astro.props;
     <meta name="theme-color" content="#17191c" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script is:inline>document.documentElement.classList.add('js');</script>
+    <style is:inline>@view-transition { navigation: auto; } @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }</style>
   </head>
   <body class="archive-body">
     <a class="skip" href="#main">Skip to the record</a>

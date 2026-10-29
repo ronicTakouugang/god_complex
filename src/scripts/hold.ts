@@ -11,7 +11,27 @@ const RETURN_MS = 2000;
 const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const tapMode = () => document.documentElement.dataset.tap === 'on';
 
-type Phase = 'idle' | 'holding' | 'releasing' | 'committed' | 'done';
+/** cubic-bezier(x1, y1, x2, y2) as a function of progress, solved by Newton's method. */
+function bezier(x1: number, y1: number, x2: number, y2: number) {
+  const a = (p1: number, p2: number) => 1 - 3 * p2 + 3 * p1;
+  const b = (p1: number, p2: number) => 3 * p2 - 6 * p1;
+  const c = (p1: number) => 3 * p1;
+  const at = (t: number, p1: number, p2: number) => ((a(p1, p2) * t + b(p1, p2)) * t + c(p1)) * t;
+  const slope = (t: number, p1: number, p2: number) => 3 * a(p1, p2) * t * t + 2 * b(p1, p2) * t + c(p1);
+  return (x: number) => {
+    let t = x;
+    for (let i = 0; i < 8; i++) {
+      const d = slope(t, x1, x2);
+      if (Math.abs(d) < 1e-6) break;
+      t -= (at(t, x1, x2) - x) / d;
+    }
+    return at(Math.min(1, Math.max(0, t)), y1, y2);
+  };
+}
+/** The site's --ease-in-out token (DESIGN.md §7.2), for motion driven from script. */
+const easeInOut = bezier(0.65, 0, 0.35, 1);
+
+type Phase ='idle' | 'holding' | 'releasing' | 'committed' | 'done';
 
 class Undoing {
   phase: Phase = 'idle';
@@ -146,7 +166,8 @@ class Undoing {
     const t0 = performance.now();
     const step = (now: number) => {
       const t = Math.min(1, (now - t0) / RETURN_MS);
-      this.scene.style.setProperty('--r2', `${(1 - t) * max}px`);
+      // The drain is linear (forgetting isn't eased); the return breathes out on --ease-in-out.
+      this.scene.style.setProperty('--r2', `${(1 - easeInOut(t)) * max}px`);
       if (t < 1) requestAnimationFrame(step);
       else {
         this.scene.classList.add('is-after');
@@ -230,16 +251,24 @@ const blink = (el: Element | null) => {
   window.setTimeout(() => el.classList.remove('blinking'), 100);
 };
 
-/** White-out: what the power took. Screen readers hear "[forgotten]" from then on. */
-function forget(el: Element) {
+/** White-out: what the power took. Screen readers hear "[forgotten]" from then on.
+ *  `paint` brushes it on in front of the visitor (global.css .whiteout.painting); restored visits skip it. */
+function forget(el: Element, paint = false) {
   el.classList.add('whiteout');
+  if (paint) {
+    el.classList.add('painting');
+    el.addEventListener('animationend', () => el.classList.remove('painting'), { once: true });
+  }
   const sr = el.querySelector('.sr-only');
   if (sr) sr.textContent = '[forgotten]';
 }
 
+/** The blink comes first; the white-out is brushed on as it ends. */
+const BLINK_MS = 100;
+
 /** The village line is set as it is written, and forgotten halfway through the name
  *  (EXPERIENCE_MAP.md, Prologue: "immediately whited out halfway through"). */
-function typeCost(line: HTMLElement, instant: boolean) {
+function typeCost(line: HTMLElement, instant: boolean, paint: boolean) {
   const chars = [...line.querySelectorAll<HTMLElement>('.typed .ch')];
   const name = line.querySelector('.fname');
   if (!name) return;
@@ -248,14 +277,14 @@ function typeCost(line: HTMLElement, instant: boolean) {
   const cut = chars.indexOf(nameChars[4] as HTMLElement);
   if (instant) {
     chars.forEach((c) => c.classList.add('on'));
-    forget(name);
+    forget(name, paint);
     return;
   }
   let i = 0;
   const step = () => {
     if (i === cut) {
-      forget(name);
       blink(line);
+      window.setTimeout(() => forget(name, true), BLINK_MS);
     }
     chars[i]?.classList.add('on');
     i += 1;
@@ -277,7 +306,7 @@ export function initHolds() {
       document.querySelectorAll('[data-caption="tagus-after"]').forEach((el) => el.removeAttribute('hidden'));
       document.querySelectorAll('[data-refused]').forEach((el) => el.setAttribute('hidden', ''));
       store.set('prologue', 'undone');
-      if (line) typeCost(line, restoring || reduced());
+      if (line) typeCost(line, restoring || reduced(), !restoring);
       if (!restoring) {
         announce('The ferry is upright and everyone on deck is dry. At the same minute, far away, a village forgot its own history.');
       }
@@ -307,16 +336,22 @@ export function initHolds() {
       const forgotten = new Set((store.get('forgotten') ?? '').split('|').filter(Boolean));
       forgotten.add('212 people in the water');
       store.set('forgotten', [...forgotten].join('|'));
-      const take = () => document.querySelectorAll('[data-forget="212"]').forEach(forget);
-      if (restoring || reduced()) {
-        take();
+      const take = (paint: boolean) => document.querySelectorAll('[data-forget="212"]').forEach((el) => forget(el, paint));
+      if (restoring) {
+        take(false);
         return;
       }
-      // Let the number be read in front of the visitor, then take it.
+      const say = () => announce('The crash is undone. Somewhere, someone forgot something of the same weight, and so did this page: the number of people in the water is gone.');
+      if (reduced()) {
+        take(true);
+        say();
+        return;
+      }
+      // Let the number be read in front of the visitor, then take it: blink, then the white-out is brushed on.
       window.setTimeout(() => {
         blink(cost?.querySelector('.quoted') ?? null);
-        take();
-        announce('The crash is undone. Somewhere, someone forgot something of the same weight, and so did this page: the number of people in the water is gone.');
+        window.setTimeout(() => take(true), BLINK_MS);
+        say();
       }, 1100);
     });
     if (store.get('cyclist') === 'undone') u.restore();
