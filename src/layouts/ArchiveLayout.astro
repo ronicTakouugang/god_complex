@@ -5,16 +5,21 @@ import '@fontsource-variable/literata/opsz.css';
 import '../styles/global.css';
 import '../styles/archive.css';
 import Bar from '../components/Bar.astro';
+import LangNav from '../components/LangNav.astro';
+import { LANG_INFO, href, type Lang } from '../i18n';
+import { ui } from '../i18n/ui';
 
 interface Props {
+  lang: Lang;
   title: string;
   description: string;
   links: { href: string; label: string }[];
 }
-const { title, description, links } = Astro.props;
+const { lang, title, description, links } = Astro.props;
+const u = ui(lang);
 ---
 <!doctype html>
-<html lang="en">
+<html lang={LANG_INFO[lang].html}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -26,13 +31,16 @@ const { title, description, links } = Astro.props;
     <style is:inline>@view-transition { navigation: auto; } @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }</style>
   </head>
   <body class="archive-body">
-    <a class="skip" href="#main">Skip to the record</a>
-    <Bar homeHref="/" homeLabel="The God Complex, back to the start" links={links} />
+    <a class="skip" href="#main">{u.skipRecord}</a>
+    <Bar lang={lang} homeHref={href(lang, '/')} homeLabel={u.homeStart} links={links} />
     <main id="main" class="archive-main">
       <slot />
     </main>
     <footer class="archive-foot">
-      <div class="foot-frame"><p>THE GOD COMPLEX is a work of fiction. These records, the people in them and the Continuity Office are invented; no real agency, system or archive is involved. Nothing you do here leaves this browser.</p></div>
+      <div class="foot-frame">
+        <p>{u.archiveFiction}</p>
+        <LangNav lang={lang} label={u.language} />
+      </div>
     </footer>
     <script>
       import { initArchive } from '../scripts/archive';

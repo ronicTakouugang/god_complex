@@ -1,15 +1,22 @@
 ---
-/** Not found: a missing page reads as a missing record, with clear ways back. */
+/** Not found: a missing page reads as a missing record, with clear ways back in every language. */
 import ArchiveLayout from '../layouts/ArchiveLayout.astro';
+import { OTHER_LANGS, LANG_INFO, href } from '../i18n';
+import { ui } from '../i18n/ui';
+
+const u = ui('en');
 ---
-<ArchiveLayout title="No such record · The God Complex" description="This page does not exist. Return to the case file or the archive."
-  links={[{ href: '/', label: 'The file' }, { href: '/archive/', label: 'Archive' }]}>
+<ArchiveLayout lang="en" title={u.notFoundTitle} description={u.notFoundDesc}
+  links={[{ href: '/', label: u.theFile }, { href: '/archive/', label: u.archive }]}>
   <div class="index-sheet">
     <div class="index-intro">
-      <h1>No such record</h1>
-      <p class="index-lede">There is nothing filed under this address. It may have been withheld, or it was never written down.</p>
-      <p class="fiction">This page doesn’t exist on the site. Everything that does is one step away.</p>
+      <h1>{u.notFoundH1}</h1>
+      <p class="index-lede">{u.notFoundLede}</p>
+      <p class="fiction">{u.notFoundFiction}</p>
     </div>
-    <p class="index-foot"><a href="/">Back to the file</a> · <a href="/archive/">Open the archive</a></p>
+    <p class="index-foot"><a href="/">{u.backToFile}</a> · <a href="/archive/">{u.openArchive}</a></p>
+    {OTHER_LANGS.map((l) => (
+      <p class="index-foot" lang={LANG_INFO[l].html}><a href={href(l, '/')}>{ui(l).backToFile}</a> · <a href={href(l, '/archive/')}>{ui(l).openArchive}</a></p>
+    ))}
   </div>
 </ArchiveLayout>

@@ -510,3 +510,30 @@ main { padding-top: var(--bar); }
   .slip dt, .slip dd { flex: 0 1 auto; }
   .slip .lead { min-width: 8px; }
 }
+
+/* ---------- Languages (PRODUCT.md, Languages) ---------- */
+/* The switcher: the same page in each language, each name in its own language. The current one is marked, not linked away. */
+.langs ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 4px 18px; font-family: var(--f-inst); font-size: var(--fs-small); font-weight: 600; }
+.langs a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.langs a[aria-current] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.3em; }
+@media (hover: hover) and (pointer: fine) { .langs a:not([aria-current]):hover { text-decoration: underline; text-underline-offset: 0.3em; } }
+/* In the bar: short codes after the site links, on wide screens only (the footer carries it on phones). */
+.bar { justify-content: flex-start; }
+.bar > nav:not(.langs) { margin-left: auto; }
+.bar .langs--compact { margin-left: clamp(16px, 2.5vw, 32px); }
+.bar .langs--compact ul { gap: 0 14px; }
+@media (max-width: 899px) { .bar .langs--compact { display: none; } }
+
+/* Simplified Chinese: Latin words (AMNESTY, LETHE, numbers) keep Archivo and Literata; Chinese characters fall
+   through to the reader's system Song (serif) and Hei (sans) faces. No italics or negative tracking in CJK:
+   emphasis uses the Chinese emphasis dot. */
+:root:lang(zh) {
+  --f-inst: 'Archivo Variable', 'Archivo', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Source Han Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --f-story: 'Literata Variable', 'Literata', 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', serif;
+}
+:lang(zh) { letter-spacing: 0 !important; line-break: strict; }
+:lang(zh) :is(.measure, .lede, .letter-body p, .after-text p, .caption, .note, .what, .witnesses cite, .doc-body p, .doc-body dd, .entry-summary, .index-lede, .fiction, .conn-note, .sealed-text p, .legal, .foot-blocks p) { line-height: 1.75; }
+/* Headings and display lines: CJK glyphs fill the em box, so they need more air than Latin at the same size. */
+:lang(zh) :is(h2, h3, .claim p, .verdict, .deck, .pullquote, .witnesses blockquote, .story, .sign-name):not([lang]) { line-height: 1.35; }
+:lang(zh) em, :lang(zh) i, :lang(zh) cite { font-style: normal; }
+:lang(zh) em { text-emphasis: filled dot; -webkit-text-emphasis: filled dot; text-emphasis-position: under right; -webkit-text-emphasis-position: under; }

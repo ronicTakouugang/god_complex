@@ -132,6 +132,10 @@ The scale is fluid, minimum to maximum across 360 to 1600px viewports. Each step
 
 ---
 
+### 3.3 Other scripts (added 2026-10-30)
+
+**Simplified Chinese** uses no extra webfont: Chinese characters fall through from Archivo and Literata to the reader's system Hei and Song faces (PingFang SC, Microsoft YaHei, Noto Sans SC; Songti SC, Noto Serif SC, SimSun), so Latin words (AMNESTY, LETHE, numbers) keep the house faces. In Chinese: no italics (emphasis dots instead), no negative tracking, running text at line height 1.75 and headings at 1.35. The title wordmark *The God Complex* is never translated.
+
 ## 4. Layout and composition
 
 ### 4.1 Principles

@@ -1,0 +1,27 @@
+---
+/**
+ * The language switcher: the same page in each language. Each link is named in its own language
+ * and marked with lang and hreflang, so it is read correctly whatever the page's language.
+ */
+import { LANGS, LANG_INFO, swap, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  /** Short codes (EN · FR · ES · 中文) for the bar; full names elsewhere. */
+  compact?: boolean;
+  label?: string;
+  labelledby?: string;
+}
+const { lang, compact = false, label, labelledby } = Astro.props;
+const path = Astro.url.pathname;
+---
+<nav class:list={['langs', { 'langs--compact': compact }]} aria-label={label} aria-labelledby={labelledby}>
+  <ul>
+    {LANGS.map((l) => (
+      <li>
+        <a href={swap(path, l)} lang={LANG_INFO[l].html} hreflang={LANG_INFO[l].html} aria-current={l === lang ? 'true' : undefined}
+          aria-label={compact ? LANG_INFO[l].name : undefined}>{compact ? LANG_INFO[l].short : LANG_INFO[l].name}</a>
+      </li>
+    ))}
+  </ul>
+</nav>

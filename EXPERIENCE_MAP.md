@@ -16,6 +16,8 @@
 
 **What the site does in return:** **it forgets.** Every undoing the visitor performs whites out something they've already seen, or something they wrote. That's the STORY_BIBLE §8 idea, made concrete.
 
+**Languages (2026-10-30):** the whole experience, homepage and archive, exists in English, French, Spanish and Simplified Chinese (PRODUCT.md, Languages). The journey, the holds, the costs and the unlock order are identical in every language; only the words change. The village name *Ribeira da Prata* stays in Portuguese everywhere, because it is typed and whited out letter by letter.
+
 ---
 
 ## 1. The visitor's state

@@ -1,0 +1,10 @@
+---
+import ArchiveRecord from '../../../views/ArchiveRecord.astro';
+import { archive } from '../../../content/archive-i18n';
+import { OTHER_LANGS, type Lang } from '../../../i18n';
+
+export function getStaticPaths() {
+  return OTHER_LANGS.flatMap((lang) => archive(lang).records.map((record) => ({ params: { lang, id: record.id }, props: { record } })));
+}
+---
+<ArchiveRecord lang={Astro.params.lang as Lang} record={Astro.props.record} />

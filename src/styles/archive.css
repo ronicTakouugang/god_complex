@@ -236,3 +236,11 @@
 /* The stamp sits beside the title on wide screens whatever font has loaded, so the Literata swap never
    rewraps the header and pushes the document down (measured CLS 0.12–0.16 on long titles). */
 @media (min-width: 601px) { .doc-head { flex-wrap: nowrap; } .doc-head h1 { flex: 1 1 auto; min-width: 0; } .doc-head .stamp { flex: none; } }
+
+/* The archive footer carries the language switcher under the fiction notice. */
+.foot-frame .langs { margin-top: 16px; }
+/* Narrow phones: a wide black bar (a 16em redaction) never makes the sheet wider than the screen. */
+@media (max-width: 699px) { .fields div { grid-template-columns: minmax(0, 1fr); } }
+.doc .lift, .doc .redact, .doc .blackbar { max-width: 100%; }
+/* The language links sit on the night ground: bone focus rings. */
+.archive-foot :focus-visible { outline-color: var(--bone); }

@@ -5,7 +5,10 @@
  */
 import { Picture } from 'astro:assets';
 import RichText from './RichText.astro';
-import { byId, type ArchiveRecord, type Block } from '../../content/archive';
+import type { ArchiveRecord, Block } from '../../content/archive';
+import { archive } from '../../content/archive-i18n';
+import { ui } from '../../i18n/ui';
+import type { Lang } from '../../i18n';
 import tagusDrained from '../../assets/img/tagus-drained.png';
 import evCctv from '../../assets/img/ev-cctv.png';
 import evSwimbag from '../../assets/img/ev-swimbag.png';
@@ -15,34 +18,37 @@ import solvangOffice from '../../assets/img/solvang-office.jpg';
 
 interface Props {
   record: ArchiveRecord;
+  lang: Lang;
 }
-const { record: r } = Astro.props;
+const { record: r, lang } = Astro.props;
+const u = ui(lang);
+const { byId } = archive(lang);
 const images = { 'tagus-drained': tagusDrained, 'ev-cctv': evCctv, 'ev-swimbag': evSwimbag, 'ev-notebook': evNotebook, 'ev-harbour-log': evHarbourLog, 'solvang-office': solvangOffice } as const;
 const notesAfter = (i: number) => r.notes.filter((n) => n.after === i);
 const blocks: Block[] = r.blocks;
-const requireTitles = r.requires.map((id) => byId(id)?.title ?? id).join(' and ');
+const requireTitles = r.requires.map((id) => byId(id)?.title ?? id).join(u.and);
 ---
 <div class="record-grid">
   <article class="doc" aria-labelledby="doc-title" data-record={r.id} data-requires={r.requires.join(',')}>
     <header class="doc-head">
       <h1 id="doc-title" style={`view-transition-name: rec-${r.id}`}>{r.title}</h1>
-      <p class="stamp" aria-label={`Office stamp: ${r.stamp}`}>{r.stamp}</p>
+      <p class="stamp" aria-label={u.stamp(r.stamp)}>{r.stamp}</p>
     </header>
 
     <dl class="doc-meta tab">
-      <div><dt>Reference</dt><dd>{r.ref}</dd></div>
-      <div><dt>Type</dt><dd>{r.kind}</dd></div>
-      <div><dt>From</dt><dd>{r.origin}</dd></div>
-      <div><dt>Classification</dt><dd>{r.classification}</dd></div>
-      <div><dt>Event</dt><dd><time datetime={r.event.iso}>{r.event.label}</time></dd></div>
-      <div><dt>Filed</dt><dd><time datetime={r.filed.iso}>{r.filed.label}</time></dd></div>
-      <div><dt>Entered into Case LETHE</dt><dd>{r.entered}</dd></div>
+      <div><dt>{u.reference}</dt><dd>{r.ref}</dd></div>
+      <div><dt>{u.type}</dt><dd>{r.kind}</dd></div>
+      <div><dt>{u.from}</dt><dd>{r.origin}</dd></div>
+      <div><dt>{u.classification}</dt><dd>{r.classification}</dd></div>
+      <div><dt>{u.event}</dt><dd><time datetime={r.event.iso}>{r.event.label}</time></dd></div>
+      <div><dt>{u.filed}</dt><dd><time datetime={r.filed.iso}>{r.filed.label}</time></dd></div>
+      <div><dt>{u.entered}</dt><dd>{r.entered}</dd></div>
     </dl>
     {r.translated && <p class="doc-translated">{r.translated}</p>}
 
     {r.requires.length > 0 && (
       <>
-        <p class="early" data-early hidden>You have opened this record out of order. Dr Okafor read it after {requireTitles}.</p>
+        <p class="early" data-early hidden>{u.outOfOrder(requireTitles)}</p>
         {/* Decided before the first paint, so the notice never pushes the document down after load. */}
         <script is:inline define:vars={{ requires: r.requires }}>
           try {
@@ -57,30 +63,30 @@ const requireTitles = r.requires.map((id) => byId(id)?.title ?? id).join(' and '
       {blocks.map((b, i) => (
         <>
           {b.t === 'h' && <h2>{b.text}</h2>}
-          {b.t === 'p' && <p class={b.voice === 'story' ? 'story' : undefined}><RichText text={b.text} /></p>}
+          {b.t === 'p' && <p class={b.voice === 'story' ? 'story' : undefined}><RichText lang={lang} scope={r.id} text={b.text} /></p>}
           {b.t === 'fields' && (
             <dl class="fields">
-              {b.rows.map(([k, v]) => <div><dt>{k}</dt><dd><RichText text={v} /></dd></div>)}
+              {b.rows.map(([k, v]) => <div><dt>{k}</dt><dd><RichText lang={lang} scope={r.id} text={v} /></dd></div>)}
             </dl>
           )}
           {b.t === 'log' && (
             <figure class="log">
               <figcaption>{b.caption}</figcaption>
               <ol>
-                {b.rows.map((row) => <li><span class="log-time tab">{row.time}</span><span class="log-text"><RichText text={row.text} /></span></li>)}
+                {b.rows.map((row) => <li><span class="log-time tab">{row.time}</span><span class="log-text"><RichText lang={lang} scope={r.id} text={row.text} /></span></li>)}
               </ol>
             </figure>
           )}
           {b.t === 'qa' && (
             <dl class="qa">
-              {b.rows.map((row) => <div class={row.who.startsWith('R.') ? 'q' : 'a'}><dt>{row.who}</dt><dd><RichText text={row.text} /></dd></div>)}
+              {b.rows.map((row) => <div class={row.who.startsWith('R.') ? 'q' : 'a'}><dt>{row.who}</dt><dd><RichText lang={lang} scope={r.id} text={row.text} /></dd></div>)}
             </dl>
           )}
           {b.t === 'table' && (
             <table class="doc-table">
               <caption>{b.caption}</caption>
               <thead><tr>{b.head.map((h) => <th scope="col">{h}</th>)}</tr></thead>
-              <tbody>{b.rows.map((row) => <tr>{row.map((c) => <td><RichText text={c} /></td>)}</tr>)}</tbody>
+              <tbody>{b.rows.map((row) => <tr>{row.map((c) => <td><RichText lang={lang} scope={r.id} text={c} /></td>)}</tr>)}</tbody>
             </table>
           )}
           {b.t === 'figure' && (
@@ -91,16 +97,16 @@ const requireTitles = r.requires.map((id) => byId(id)?.title ?? id).join(' and '
           )}
           {b.t === 'sign' && <p class="sign-off"><span class="sign-name">{b.name}</span><span class="sign-role">{b.role}</span></p>}
           {notesAfter(i).map((n) => (
-            <p class="note note-inline"><span class="note-by">{n.by}</span><RichText text={n.text} /></p>
+            <p class="note note-inline"><span class="note-by">{n.by}</span><RichText lang={lang} scope={r.id} text={n.text} /></p>
           ))}
         </>
       ))}
     </div>
   </article>
 
-  <aside class="doc-margin" aria-label="Margin: notes and connections">
+  <aside class="doc-margin" aria-label={u.margin}>
     {r.notes.map((n) => (
-      <p class="note"><span class="note-by">{n.by}</span><RichText text={n.text} /></p>
+      <p class="note"><span class="note-by">{n.by}</span><RichText lang={lang} scope={r.id} text={n.text} /></p>
     ))}
     <slot name="aside" />
   </aside>

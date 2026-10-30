@@ -42,6 +42,8 @@ const met = (requires: string, read: Set<string>) => requires.split(',').filter(
 
 /** Opens every gated element whose requirements are met. Without script everything is already open. */
 function applyGates(read: Set<string>) {
+  // The status words come from the page, in its own language.
+  const words = document.querySelector<HTMLElement>('.entries')?.dataset ?? {};
   document.querySelectorAll<HTMLElement>('[data-requires]').forEach((el) => {
     if (met(el.dataset.requires ?? '', read)) el.dataset.open = '';
     else delete el.dataset.open;
@@ -49,7 +51,7 @@ function applyGates(read: Set<string>) {
   document.querySelectorAll<HTMLElement>('.entry').forEach((row) => {
     const status = row.querySelector('[data-status]');
     const id = row.dataset.id ?? '';
-    if (status) status.textContent = read.has(id) ? 'Read' : row.dataset.open !== undefined ? 'Unread' : 'Sealed';
+    if (status) status.textContent = (read.has(id) ? words.read : row.dataset.open !== undefined ? words.unread : words.sealedLabel) ?? '';
     row.classList.toggle('is-read', read.has(id));
   });
   document.querySelectorAll<HTMLElement>('[data-mark]').forEach((m) => m.classList.toggle('is-read', read.has(m.dataset.mark ?? '')));

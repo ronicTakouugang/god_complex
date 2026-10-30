@@ -38,6 +38,8 @@
 
 **Totals after the update:** 11 PASS (4 with checks still outstanding), 1 FAIL (criterion 11).
 
+> **Update 2026-10-30, languages:** the site now also exists in French, Spanish and Simplified Chinese, at `/fr/`, `/es/` and `/zh/` (homepage, archive and interface). It passes the same behaviour tests and page audit in every language. The three translations are first drafts and **add three native-speaker reviews to criterion 11** (TRANSLATION.md).
+
 ## Remaining critical defects (block release)
 
 1. ~~The antagonist is absent as an idea (criterion 6).~~ **Fixed 2026-10-30** with the Director’s memorandum.

@@ -1,0 +1,339 @@
+---
+/**
+ * THE GOD COMPLEX: first release. Prologue, the reveal, the rules, Mara's letter,
+ * the register, and the sealed file. Journey: EXPERIENCE_MAP.md. Rules: DESIGN.md.
+ * Built once per language (src/i18n); the markup and the interactions are the same in all of them.
+ */
+import '@fontsource-variable/archivo/wdth.css';
+import '@fontsource-variable/literata/opsz.css';
+import '../styles/global.css';
+import { Picture } from 'astro:assets';
+import HoldScene from '../components/HoldScene.astro';
+import Bar from '../components/Bar.astro';
+import LangNav from '../components/LangNav.astro';
+import { type Lang, LANG_INFO, href } from '../i18n';
+import { HOME } from '../i18n/home';
+import { ui } from '../i18n/ui';
+
+import tagusHarm from '../assets/img/tagus-harm.png';
+import tagusDrained from '../assets/img/tagus-drained.png';
+import tagusAfter from '../assets/img/tagus-after.png';
+import luaFront from '../assets/img/lua-tramstop.jpg';
+import cyclistHarm from '../assets/img/cyclist-harm.png';
+import cyclistDrained from '../assets/img/cyclist-drained.jpg';
+import cyclistAfter from '../assets/img/cyclist-after.jpg';
+import mara from '../assets/img/mara-desk.jpg';
+import hand from '../assets/img/hand.png';
+import effects from '../assets/img/effects.png';
+import badge from '../assets/img/badge.png';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = HOME[lang];
+const u = ui(lang);
+const archiveHref = href(lang, '/archive/');
+
+const half = '(min-width: 1024px) 50vw, 100vw';
+const fmt = ['avif', 'webp'] as const;
+
+// The slip's cut edge: a straight top, a zigzag bottom.
+const teeth = 24;
+const zig = Array.from({ length: teeth * 2 + 1 }, (_, i) => `${((i / (teeth * 2)) * 100).toFixed(3)}% ${i % 2 ? 'calc(100% - 12px)' : '100%'}`);
+const slipClip = `polygon(0 0, 100% 0, ${zig.reverse().join(', ')})`;
+
+/** A sentence around the forgettable number: [before, after]. */
+const around = (s: string) => s.split('{n}') as [string, string];
+const [beforePre, beforePost] = around(t.tagusBefore);
+const [afterPre, afterPost] = around(t.tagusAfter);
+const [quotedPre, quotedPost] = around(t.quoted);
+const [releasePre, releasePost] = t.release.split('{archive}');
+
+// Reveal order (CHARACTER_BIBLE §8.1): this page stops before the Correlation. Case 0632 stays withheld,
+// and the places are spread so the pattern behind them (L4) is not yet readable.
+// The Prologue's cost line is set one character at a time so it can be forgotten halfway through.
+// The village keeps its Portuguese name in every language.
+const costName = 'Ribeira da Prata';
+---
+<!doctype html>
+<html lang={LANG_INFO[lang].html}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{t.title}</title>
+    <meta name="description" content={t.description} />
+    <meta name="theme-color" content="#17191c" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <style is:inline>@view-transition { navigation: auto; } @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }</style>
+  </head>
+  <body>
+    <a class="skip" href="#prologue">{t.skip}</a>
+
+    <Bar lang={lang} homeHref="#top" homeLabel={u.homeTop} tap links={[{ href: archiveHref, label: u.archive }, { href: '#contents', label: u.contents }]} />
+
+    <div id="announce" class="sr-only" aria-live="polite" data-say-tagus={t.sayTagus} data-say-cyclist={t.sayCyclist} data-forgotten={u.forgotten}></div>
+
+    <main id="top">
+      <!-- PROLOGUE: the window. Stage right: the Tagus, 21:14. -->
+      <div class="split split--hero">
+        <div class="stage stage--hero">
+          <HoldScene id="tagus" harm={tagusHarm} drained={tagusDrained} after={tagusAfter} origin="50% 74%" eager alt={t.tagusAlt} />
+          <div class="stage-foot">
+            <p class="caption" data-caption="tagus-before">
+              <strong class="tab">{t.tagusStamp}</strong>
+              {beforePre}<span class="tab" data-forget="212"><span aria-hidden="true">212</span><span class="sr-only">212</span></span>{beforePost}
+            </p>
+            <p class="caption" data-caption="tagus-after" hidden>
+              <strong class="tab">{t.tagusAfterStamp}</strong>
+              {afterPre}<span class="tab" data-forget="212"><span aria-hidden="true">212</span><span class="sr-only">212</span></span>{afterPost}
+            </p>
+            <button class="btn stage-hold" type="button" data-hold="tagus" data-label-idle={t.holdIdle} data-label-holding={t.holdHolding} data-label-done={t.holdDoneTagus}
+              aria-describedby="hold-hint"><span class="btn-text">{t.holdIdle}</span></button>
+          </div>
+        </div>
+
+        <div class="col">
+          <section class="card" id="prologue" aria-labelledby="title">
+            <div class="card-body">
+              <h1 id="title" class="title" lang="en">The God Complex</h1>
+              <blockquote class="claim">
+                <p>{t.claim}</p>
+                <footer set:html={t.claimFootHtml} />
+              </blockquote>
+              <p class="lede">{t.lede}</p>
+              <button class="btn card-hold" type="button" data-hold="tagus" data-label-idle={t.holdIdle} data-label-holding={t.holdHolding} data-label-done={t.holdDoneTagus}
+                aria-describedby="hold-hint"><span class="btn-text">{t.holdIdle}</span></button>
+              <p id="hold-hint" class="sr-only">{t.holdHint}</p>
+              <p class="cost" id="cost-tagus" hidden>
+                <span class="typed" aria-hidden="true">{[...t.costPre].map((c) => <span class="ch">{c}</span>)}<span class="fname" lang="pt">{[...costName].map((c) => <span class="ch">{c}</span>)}</span>{[...t.costPost].map((c) => <span class="ch">{c}</span>)}</span>
+                <span class="sr-only">{t.costPre}{u.forgotten}{t.costPost}</span>
+              </p>
+              <noscript><p class="cost">{t.costNoscript}</p></noscript>
+            </div>
+            <div class="card-foot">
+              <nav class="card-links" aria-label={t.inThisFile}>
+                <a href="#amnesty">{t.linkWitnesses}</a>
+                <a href="#rules">{t.linkRules}</a>
+                <a href="#register">{t.linkRegister}</a>
+              </nav>
+              <p class="file-ref tab">{t.fileRef}</p>
+            </div>
+          </section>
+
+          <section class="section world" id="morning" aria-labelledby="morning-h">
+            <div>
+              <h2 id="morning-h">{t.morningH}</h2>
+              <p class="measure" data-refused hidden>{t.refused}</p>
+            </div>
+            <figure class="paper" aria-label={t.paperLabel}>
+              <p class="masthead" lang="pt">Diário do Tejo</p>
+              <p class="headline" lang="en">AMNESTY</p>
+              <p class="deck">{t.deck}</p>
+              <p class="pullquote">{t.pullquote}</p>
+              <p class="dateline tab">{t.dateline}</p>
+            </figure>
+            <div class="after-text measure">
+              <p set:html={t.after1Html} />
+              <p set:html={t.after2Html} />
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- A night panel: the one deliberate rest, a survivor's words (CHARACTER_BIBLE §3.4). Breaks the split. -->
+      <section class="quiet night" aria-labelledby="quiet-h">
+        <h2 id="quiet-h" data-enter="fade"><span>{t.quiet}</span></h2>
+        <p class="quiet-cite" set:html={t.quietCiteHtml} />
+      </section>
+
+      <!-- AMNESTY: the reveal. Breaks the split. -->
+      <section class="reveal" id="amnesty" aria-labelledby="amnesty-h">
+        <div class="reveal-figure">
+          <Picture src={luaFront} alt={t.figureAlt} widths={[600, 900, 1300]} sizes="(min-width: 1024px) 42vw, 100vw" formats={fmt} fallbackFormat="jpg" loading="lazy" />
+        </div>
+        <div class="reveal-text">
+          <div>
+            <h2 id="amnesty-h">{t.revealH}</h2>
+            <p class="measure">{t.revealIntro}</p>
+          </div>
+          <ul class="witnesses" data-enter>
+            {t.witnesses.map((w) => (
+              <li>
+                <blockquote>{w.q}</blockquote>
+                <cite>{w.who}</cite>
+              </li>
+            ))}
+          </ul>
+          <p class="verdict"><span>{t.verdict}</span></p>
+        </div>
+      </section>
+
+      <!-- THE STATIC: rules, letter, register. Stage left follows the column. -->
+      <div class="split split--file">
+        <div class="stage" data-stage data-active="cyclist">
+          <div class="slide" data-slide-id="cyclist">
+            <HoldScene id="cyclist" harm={cyclistHarm} drained={cyclistDrained} after={cyclistAfter} origin="60% 56%" alt={t.cyclistAlt}>
+              <p class="caption"><strong>{t.cyclistStamp}</strong>{t.cyclistCaption}</p>
+            </HoldScene>
+          </div>
+          <div class="slide" data-slide-id="mara">
+            <Picture src={mara} alt={t.maraAlt} widths={[600, 1024]} sizes={half} formats={fmt} fallbackFormat="jpg" loading="lazy" />
+            <p class="caption"><strong>{t.maraName}</strong>{t.maraCaption}</p>
+          </div>
+          <div class="slide" data-slide-id="hand">
+            <Picture src={hand} alt={t.handAlt} widths={[600, 1024]} sizes={half} formats={fmt} fallbackFormat="jpg" loading="lazy" />
+            <p class="caption"><strong class="self" lang="pt">Eu sou a Lua</strong>{t.handCaption}</p>
+          </div>
+        </div>
+
+        <div class="col">
+          <section class="section night" id="rules" data-slide="cyclist" aria-labelledby="rules-h">
+            <div>
+              <h2 id="rules-h">{t.rulesH}</h2>
+              <p class="measure">{t.rulesIntro}</p>
+            </div>
+            <div class="try">
+              <div class="try-slot" data-scene-slot="cyclist"></div>
+              <button class="btn btn--bone" type="button" data-hold="cyclist" data-label-idle={t.holdCrash} data-label-holding={t.holdHolding} data-label-done={t.holdDone}><span class="btn-text">{t.holdCrash}</span></button>
+              <div class="cost" id="cost-cyclist" hidden>
+                <p>{t.crashCost}</p>
+                <blockquote class="quoted"><p>{quotedPre}<span class="tab" data-forget="212"><span aria-hidden="true">212</span><span class="sr-only">212</span></span>{quotedPost}</p></blockquote>
+              </div>
+            </div>
+            <p class="measure slip-intro">{t.slipIntro}</p>
+            <div class="slip" style={`clip-path: ${slipClip}`}>
+              <p class="slip-title">{t.slipTitle}</p>
+              <p class="slip-sub">{t.slipSub}</p>
+              <h3>{t.slipBefore}</h3>
+              <dl>
+                {t.slipBeforeRows.map(([k, v]) => <div class="row"><dt>{k}</dt><span class="lead"></span><dd>{v}</dd></div>)}
+              </dl>
+              <h3>{t.slipMoment}</h3>
+              <dl>
+                {t.slipMomentRows.map(([k, v]) => <div class="row"><dt>{k}</dt><span class="lead"></span><dd>{v}</dd></div>)}
+              </dl>
+              <div class="sealed-part" data-sealed>
+                <h3>{t.slipAfter}</h3>
+                <dl>
+                  {t.slipAfterRows.map(([k, v]) => (
+                    <div class="row"><dt>{k}</dt><span class="lead"></span><dd><span class="v">{v}</span><span class="sr-only red">{u.redacted}</span></dd></div>
+                  ))}
+                </dl>
+                <p class="total"><span><span class="v">{t.slipTotalSaved}</span></span><span><span class="v">{t.slipTotalGone}</span><span class="sr-only red">{u.redactedShort}</span></span></p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section" id="letter" data-slide="mara" aria-labelledby="letter-h">
+            <div class="letter">
+              <h2 id="letter-h">{t.letterH}</h2>
+              <div class="letter-head">
+                <div class="portrait"><Picture src={mara} alt="" widths={[600]} sizes="300px" formats={fmt} fallbackFormat="jpg" loading="lazy" /></div>
+                <p set:html={t.letterFromHtml} />
+              </div>
+              <div class="letter-body">
+                {t.letter.map((p) => <p>{p}</p>)}
+              </div>
+              <p class="sign">{t.letterSign}</p>
+              <p>{t.letterRole}</p>
+            </div>
+          </section>
+
+          <section class="section night" id="register" data-slide="hand" aria-labelledby="register-h">
+            <figure class="inline-figure mobile-only">
+              <Picture src={hand} alt={t.handAltPhone} widths={[480, 768]} sizes="100vw" formats={fmt} fallbackFormat="jpg" loading="lazy" />
+              <figcaption class="caption"><strong class="self" lang="pt">Eu sou a Lua</strong>{t.handCaption}</figcaption>
+            </figure>
+            <div class="sheet" data-enter>
+              <h2 id="register-h">{t.registerH}</h2>
+              <p class="note">{t.registerNote}</p>
+              <table>
+                <caption class="sr-only">{t.registerCaption}</caption>
+                {t.register.map((g, gi) => (
+                  <tbody>
+                    <tr><th scope="rowgroup" colspan="2">{g.group}</th></tr>
+                    {g.rows.map((r) => (
+                      <tr>
+                        <td>
+                          <span class="case tab">AEL-{r.no}</span> {r.place}
+                          <span class="what">{r.what}</span>
+                        </td>
+                        <td class="when"><span class="when-d">{r.when.split(' · ')[0]}</span><span class="when-sep"> · </span><span class="when-t">{r.when.split(' · ')[1]}</span></td>
+                      </tr>
+                    ))}
+                    {gi === t.register.length - 1 && (
+                      <tr class="withheld">
+                        <td>
+                          <span class="sr-only">{t.withheld}</span>
+                          <span aria-hidden="true"><span class="blackbar" style="width: 3.5em"></span> <span class="blackbar" style="width: 6em"></span>
+                          <span class="what"><span class="blackbar" style="width: 13em"></span></span></span>
+                        </td>
+                        <td class="when" aria-hidden="true"><span class="blackbar" style="width: 7em"></span></td>
+                      </tr>
+                    )}
+                  </tbody>
+                ))}
+              </table>
+              <p class="end" set:html={t.registerEndHtml} />
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- The sealed file: last picture, text beside. -->
+      <section class="sealed" id="sealed" aria-labelledby="sealed-h">
+        <div class="sealed-img">
+          <Picture src={effects} alt={t.effectsAlt} widths={[768, 1280, 1536]} sizes="100vw" formats={fmt} fallbackFormat="jpg" loading="lazy" />
+        </div>
+        <div class="sealed-text">
+          <h2 id="sealed-h">{t.sealedH}</h2>
+          <p>{t.sealedText}</p>
+          <a class="btn btn--bone" href={archiveHref}>{t.sealedCta}</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot" id="contents" aria-labelledby="contents-h">
+      <div class="foot-img">
+        <Picture src={badge} alt={t.badgeAlt} widths={[768, 1280, 1536]} sizes={half} formats={fmt} fallbackFormat="jpg" loading="lazy" />
+      </div>
+      <div class="foot-menu">
+        <p class="foot-word" lang="en">The God Complex</p>
+        <h2 id="contents-h">{t.contentsH}</h2>
+        <ul class="contents">
+          <li><a href="#prologue">{t.chapters[0]}</a></li>
+          <li><a href="#amnesty">{t.chapters[1]}</a></li>
+          <li><a href="#rules">{t.chapters[2]}</a></li>
+          {Array.from({ length: 5 }, (_, i) => (
+            <li><span class="sealed-row"><span class="blackbar" style={`width: ${[7.5, 9, 6, 8.5, 10][i]}em`} aria-hidden="true"></span><span class="sealed-label">{t.sealedChapter}<span class="sr-only">{t.sealedChapterSr}</span></span></span></li>
+          ))}
+        </ul>
+        <div class="foot-blocks">
+          <div>
+            <h3>{t.releaseH}</h3>
+            <p>{releasePre}<a href={archiveHref}>{t.releaseLink}</a>{releasePost}</p>
+          </div>
+          <div>
+            <h3>{t.settingsH}</h3>
+            <button class="toggle" type="button" data-toggle-tap aria-pressed="false"><span class="dot" aria-hidden="true"></span>{u.tap}</button>
+            <br /><button class="textbtn" type="button" data-clear>{t.clear}</button>
+          </div>
+          <div>
+            <h3 id="lang-h">{u.language}</h3>
+            <LangNav lang={lang} labelledby="lang-h" />
+          </div>
+        </div>
+        <p class="legal">{t.legal}</p>
+      </div>
+    </footer>
+
+    <script>
+      import { initHolds } from '../scripts/hold';
+      import { initPage } from '../scripts/page';
+      initPage();
+      initHolds();
+    </script>
+  </body>
+</html>

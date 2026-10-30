@@ -1,0 +1,74 @@
+---
+/**
+ * The archive: the contents sheet of the leaked file. Records are listed in the order their events
+ * happened, and unseal in the order Dr Okafor read them (EXPERIENCE_MAP.md §6).
+ */
+import ArchiveLayout from '../layouts/ArchiveLayout.astro';
+import { archive } from '../content/archive-i18n';
+import { href, type Lang } from '../i18n';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const u = ui(lang);
+const { chronological, byId } = archive(lang);
+const years = [...new Set(chronological.map((r) => r.event.iso.slice(0, 4)))];
+const titles = (ids: string[]) => ids.map((id) => byId(id)?.title ?? id);
+// A sealed title's black bar is about as long as the title. CJK characters are about twice as wide as Latin letters.
+const perChar = lang === 'zh' ? 1 : 0.5;
+---
+<ArchiveLayout lang={lang} title={u.archiveTitle} description={u.archiveDesc}
+  links={[{ href: href(lang, '/'), label: u.theFile }, { href: `${href(lang, '/')}#contents`, label: u.contents }]}>
+  <div class="index-sheet">
+    <div class="index-head">
+      <div class="index-intro">
+      <h1>{u.leaked}</h1>
+      <p class="index-lede">{u.indexLede}</p>
+      <p class="fiction">{u.indexFiction}</p>
+      </div>
+      <ol class="chrono" aria-label={u.chrono}>
+      {years.map((y, i) => (
+        <>
+          {i > 0 && Number(y) - Number(years[i - 1]) > 1 && <li class="chrono-gap" aria-hidden="true">{u.years(Number(y) - Number(years[i - 1]))}</li>}
+          <li class="chrono-year">
+            <span class="chrono-y tab">{y}</span>
+            <span class="chrono-marks">
+              {chronological.filter((r) => r.event.iso.startsWith(y)).map((r) => (
+                <a class="mark-dot" href={`#${r.id}`} tabindex="-1" aria-hidden="true" data-mark={r.id} data-requires={r.requires.join(',')} data-open={r.requires.length === 0 ? '' : undefined}></a>
+              ))}
+            </span>
+          </li>
+        </>
+      ))}
+    </ol>
+    </div>
+
+    <ol class="entries" data-read={u.statusRead} data-unread={u.statusUnread} data-sealed-label={u.statusSealed}>
+      {chronological.map((r) => (
+        <li class="entry" id={r.id} data-id={r.id} data-requires={r.requires.join(',')} data-open={r.requires.length === 0 ? '' : undefined}>
+          <p class="entry-date tab"><time datetime={r.event.iso}>{r.event.label}</time></p>
+          <div class="entry-main">
+            <a class="entry-open" href={href(lang, `/archive/${r.id}/`)}>
+              <span class="entry-title" style={`view-transition-name: rec-${r.id}`}>{r.title}</span>
+              <span class="entry-summary">{r.summary}</span>
+            </a>
+            <div class="entry-sealed">
+              <p class="entry-title" aria-hidden="true"><span class="blackbar" style={`width: ${Math.min(16, r.title.length * perChar)}em`}></span></p>
+              <p class="entry-summary">{u.opensAfter(titles(r.requires).join(u.and))}</p>
+            </div>
+          </div>
+          <dl class="entry-meta tab">
+            <div><dt class="sr-only">{u.reference}</dt><dd>{r.ref}</dd></div>
+            <div><dt class="sr-only">{u.type}</dt><dd>{r.kind}</dd></div>
+            <div><dt class="sr-only">{u.classification}</dt><dd class="entry-class">{r.classification}</dd></div>
+            <div><dt class="sr-only">{u.status}</dt><dd class="entry-status" data-status>{r.requires.length ? u.statusSealed : u.statusUnread}</dd></div>
+          </dl>
+        </li>
+      ))}
+    </ol>
+
+    <p class="index-foot"><a href={href(lang, '/')}>{u.backToFile}</a></p>
+  </div>
+</ArchiveLayout>

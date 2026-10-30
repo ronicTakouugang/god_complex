@@ -1,0 +1,9 @@
+---
+import ArchiveIndex from '../../../views/ArchiveIndex.astro';
+import { OTHER_LANGS, type Lang } from '../../../i18n';
+
+export function getStaticPaths() {
+  return OTHER_LANGS.map((lang) => ({ params: { lang } }));
+}
+---
+<ArchiveIndex lang={Astro.params.lang as Lang} />

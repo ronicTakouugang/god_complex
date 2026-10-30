@@ -239,10 +239,12 @@ class Undoing {
   }
 }
 
-const announce = (msg: string) => {
+/** Speaks one of the page's prepared lines (data-say-*, in the page's language) to screen readers. */
+const announce = (key: 'sayTagus' | 'sayCyclist') => {
   const live = document.getElementById('announce');
-  if (live) live.textContent = msg;
+  if (live) live.textContent = live.dataset[key] ?? '';
 };
+const forgottenWord = () => document.getElementById('announce')?.dataset.forgotten ?? '[forgotten]';
 
 /** The blink: one white frame where the cost lands (DESIGN.md §7.3, §7.5). The words under it vanish for that frame. */
 const blink = (el: Element | null) => {
@@ -251,7 +253,7 @@ const blink = (el: Element | null) => {
   window.setTimeout(() => el.classList.remove('blinking'), 100);
 };
 
-/** White-out: what the power took. Screen readers hear "[forgotten]" from then on.
+/** White-out: what the power took. Screen readers hear "[forgotten]" (in the page's language) from then on.
  *  `paint` brushes it on in front of the visitor (global.css .whiteout.painting); restored visits skip it. */
 function forget(el: Element, paint = false) {
   el.classList.add('whiteout');
@@ -260,7 +262,7 @@ function forget(el: Element, paint = false) {
     el.addEventListener('animationend', () => el.classList.remove('painting'), { once: true });
   }
   const sr = el.querySelector('.sr-only');
-  if (sr) sr.textContent = '[forgotten]';
+  if (sr) sr.textContent = forgottenWord();
 }
 
 /** The blink comes first; the white-out is brushed on as it ends. */
@@ -308,7 +310,7 @@ export function initHolds() {
       store.set('prologue', 'undone');
       if (line) typeCost(line, restoring || reduced(), !restoring);
       if (!restoring) {
-        announce('The ferry is upright and everyone on deck is dry. At the same minute, far away, a village forgot its own history.');
+        announce('sayTagus');
       }
     });
     if (store.get('prologue') === 'undone') u.restore();
@@ -341,7 +343,7 @@ export function initHolds() {
         take(false);
         return;
       }
-      const say = () => announce('The crash is undone. Somewhere, someone forgot something of the same weight, and so did this page: the number of people in the water is gone.');
+      const say = () => announce('sayCyclist');
       if (reduced()) {
         take(true);
         say();

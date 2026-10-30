@@ -10,6 +10,10 @@ web
 
 Astro, generating a static site with no backend. Hosting is undecided, so the build output must stay plain static files that can be deployed anywhere: GitHub Pages, Vercel, Netlify or a basic file host.
 
+## Languages
+
+English (the source, at `/`), French (`/fr/`), Spanish (`/es/`) and Simplified Chinese (`/zh/`), added 2026-10-30. Every page exists in every language from the same templates; a visitor switches from the bar (wide screens) or the footer, and stays on the same page. Progress (holds, records read, bars lifted) is one visit in all languages. **Each translation needs a native speaker's review before release** (the same dignity commitment as the Portuguese lines). Rules, glossary and review status: [TRANSLATION.md](TRANSLATION.md).
+
 ## Users
 
 The primary visitors are **peers, prospective clients and a course or community audience** who come to the site as a **showcase piece**: a flagship work of world-building and digital craft, made with the same method as the author's earlier *Museum of Lost Futures*. They arrive from a shared link, a portfolio or a talk, curious but with no prior knowledge of the story. Their job is to experience the work and judge its craft.

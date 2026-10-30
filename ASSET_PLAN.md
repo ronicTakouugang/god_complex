@@ -156,7 +156,7 @@ All of these are **real HTML text** styled as documents, not images. They also n
 | D-15 | *Os que eu deixei*, notebook entries (names) | VII (refuse) | Lua, **handwriting** | WRITE |
 | D-16 | "What you forgot", credits, the fiction disclaimer | E | — | WRITE |
 
-**Language rule:** every Portuguese and Kriolu line gets a native-speaker check before launch (PRODUCT.md dignity commitment). Until then, mark them `REVIEW` in the source.
+**Language rule:** every Portuguese and Kriolu line gets a native-speaker check before launch (PRODUCT.md dignity commitment). Until then, mark them `REVIEW` in the source. **Since 2026-10-30 every document also exists in French, Spanish and Simplified Chinese**; those translations need their own native review ([TRANSLATION.md](TRANSLATION.md)).
 
 ---
 
