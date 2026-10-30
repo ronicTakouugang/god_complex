@@ -240,6 +240,10 @@ Each detail exists because a real object in the world has it.
 - Scroll-linked motion becomes static positions.
 - The meaning stays intact: every state change is also stated in text.
 
+### 7.6 The Undoing in WebGL (approved 2026-10-30: option B on A; prototype at `/lab/tagus/`)
+
+A hand-written WebGL2 renderer (`src/scripts/undoing-gl/`, ~6 KB gzipped, loaded after the page) may draw an Undoing scene over its own `<img>` layers. It is an **enhancement only**: the CSS Undoing above stays the default and the fallback, and reduced motion, Data Saver, low memory, no WebGL, `?gl=0`, a lost context or slow frames all leave the visitor on it. What WebGL adds, all from §7.3: the **grain-broken drain edge**; **the Pull** (edges soften and lose colour as the hold begins); the field spreading **through depth** (a depth map per plate, or a ground-plane estimate without one); the colour returning **onto the drained plate's own geometry** before a cut to the aftermath; an **opening camera move** (once per visit, skipped by any input; CSS plays the same move without WebGL, from a first shot painted before load); and **camera 3's lens** for the cut into the archive. It never renders at rest, off screen or in a hidden tab, and releases the GPU on `pagehide`. Story text never lives in the canvas.
+
 ### 7.5 Flash safety
 
 There is never more than one flash in any 1-second window (WCAG 2.3.1). The blink never covers more than 25% of the viewport.

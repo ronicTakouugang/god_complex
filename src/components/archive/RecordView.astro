@@ -90,7 +90,7 @@ const requireTitles = r.requires.map((id) => byId(id)?.title ?? id).join(u.and);
             </table>
           )}
           {b.t === 'figure' && (
-            <figure class="doc-figure">
+            <figure class="doc-figure" style={`view-transition-name: fig-${b.img}`}>
               <Picture src={images[b.img]} alt={b.alt} widths={[480, 840]} sizes="(min-width: 1024px) 760px, 100vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" />
               <figcaption>{b.caption}</figcaption>
             </figure>

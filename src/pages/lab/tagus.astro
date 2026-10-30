@@ -1,0 +1,124 @@
+---
+/**
+ * PROTOTYPE (not linked, not indexed): the WebGL Undoing on the Prologue, for review before it replaces
+ * anything on the site. One environment (the Tagus), one camera move (the opening), her silhouette in the plate,
+ * the erasure, and the cut to camera 3 that leads into the archive. Without WebGL it is today's CSS scene.
+ * Plan: the 3D/WebGL proposal (option B on A), prototype section.
+ */
+import '@fontsource-variable/archivo/wdth.css';
+import '@fontsource-variable/literata/opsz.css';
+import '../../styles/global.css';
+import { Picture } from 'astro:assets';
+import HoldScene from '../../components/HoldScene.astro';
+import Bar from '../../components/Bar.astro';
+import { HOME } from '../../i18n/home';
+import { ui } from '../../i18n/ui';
+
+import tagusHarm from '../../assets/img/tagus-harm.png';
+import tagusDrained from '../../assets/img/tagus-drained.png';
+import tagusAfter from '../../assets/img/tagus-after.png';
+import evCctv from '../../assets/img/ev-cctv.png';
+
+const t = HOME.en;
+const u = ui('en');
+const [beforePre, beforePost] = t.tagusBefore.split('{n}');
+const [afterPre, afterPost] = t.tagusAfter.split('{n}');
+const costName = 'Ribeira da Prata';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Prototype · The Tagus · The God Complex</title>
+    <meta name="theme-color" content="#17191c" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <script is:inline>
+      // The opening's first shot is painted by CSS before anything loads (opening.ts). Never with reduced
+      // motion, ?gl=0, or once seen; and never stuck if the scripts fail.
+      try {
+        var d = document.documentElement;
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches && localStorage.getItem('gc.opening') !== 'seen' && new URLSearchParams(location.search).get('gl') !== '0') {
+          d.dataset.opening = 'pending';
+          setTimeout(function () { if (d.dataset.opening === 'pending') d.dataset.opening = 'done'; }, 7000);
+        }
+      } catch (e) {}
+    </script>
+    <style is:inline>@view-transition { navigation: auto; } @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }</style>
+  </head>
+  <body>
+    <a class="skip" href="#prologue">{t.skip}</a>
+    <Bar lang="en" homeHref="/" homeLabel={u.homeStart} links={[{ href: '/archive/', label: u.archive }]} />
+    <div id="announce" class="sr-only" aria-live="polite" data-say-tagus={t.sayTagus} data-say-cyclist={t.sayCyclist} data-forgotten={u.forgotten}></div>
+
+    <main id="top">
+      <div class="split split--hero">
+        <div class="stage stage--hero">
+          <HoldScene id="tagus" harm={tagusHarm} drained={tagusDrained} after={tagusAfter} origin="50% 74%" eager gl camera="opening" alt={t.tagusAlt}>
+            <Picture class="layer layer-cctv" src={evCctv} alt="" widths={[768, 1536]} sizes="(min-width: 1024px) 50vw, 100vw" formats={['avif', 'webp']} fallbackFormat="jpg" loading="lazy" aria-hidden="true" />
+            <p class="cctv-stamp tab" data-cctv-stamp hidden aria-hidden="true">CAM 3 · CAIS DO SODRÉ · 2032-06-18 21:14:05</p>
+          </HoldScene>
+          <div class="stage-foot">
+            <p class="caption" data-caption="tagus-before">
+              <strong class="tab">{t.tagusStamp}</strong>
+              {beforePre}<span class="tab" data-forget="212"><span aria-hidden="true">212</span><span class="sr-only">212</span></span>{beforePost}
+            </p>
+            <p class="caption" data-caption="tagus-after" hidden>
+              <strong class="tab">{t.tagusAfterStamp}</strong>
+              {afterPre}<span class="tab" data-forget="212"><span aria-hidden="true">212</span><span class="sr-only">212</span></span>{afterPost}
+            </p>
+            <p class="caption" data-caption="cctv" hidden>
+              <strong class="tab">Quay camera 3 · 21:14:05</strong>
+              What the Continuity Office saw: a figure that is only a smear of motion, and one sharp object, an identity badge holder with a blank card.
+            </p>
+            <button class="btn stage-hold" type="button" data-hold="tagus" data-label-idle={t.holdIdle} data-label-holding={t.holdHolding} data-label-done={t.holdDoneTagus}
+              aria-describedby="hold-hint"><span class="btn-text">{t.holdIdle}</span></button>
+          </div>
+        </div>
+
+        <div class="col">
+          <section class="card" id="prologue" aria-labelledby="title">
+            <div class="card-body">
+              <h1 id="title" class="title" lang="en">The God Complex</h1>
+              <blockquote class="claim">
+                <p>{t.claim}</p>
+                <footer set:html={t.claimFootHtml} />
+              </blockquote>
+              <p class="lede">{t.lede}</p>
+              <button class="btn card-hold" type="button" data-hold="tagus" data-label-idle={t.holdIdle} data-label-holding={t.holdHolding} data-label-done={t.holdDoneTagus}
+                aria-describedby="hold-hint"><span class="btn-text">{t.holdIdle}</span></button>
+              <p id="hold-hint" class="sr-only">{t.holdHint}</p>
+              <p class="cost" id="cost-tagus" hidden>
+                <span class="typed" aria-hidden="true">{[...t.costPre].map((c) => <span class="ch">{c}</span>)}<span class="fname" lang="pt">{[...costName].map((c) => <span class="ch">{c}</span>)}</span>{[...t.costPost].map((c) => <span class="ch">{c}</span>)}</span>
+                <span class="sr-only">{t.costPre}{u.forgotten}{t.costPost}</span>
+              </p>
+              <noscript><p class="cost">{t.costNoscript}</p></noscript>
+              <div class="lab-next" data-cctv-offer hidden>
+                <button class="btn" type="button" data-cctv>See what the Office saw</button>
+                <a class="lab-report" href="/archive/barreiro-nova/" data-cctv-report hidden>Read the incident report</a>
+              </div>
+            </div>
+            <div class="card-foot">
+              <p class="file-ref tab">Prototype: WebGL Undoing on the Prologue. <button class="textbtn" type="button" data-clear>Start again</button> · <a href="?gl=0">Without WebGL</a></p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      import { initHolds } from '../../scripts/hold';
+      import { initPage } from '../../scripts/page';
+      import { initOpening } from '../../scripts/opening';
+      import { loadUndoingGL } from '../../scripts/undoing-gl';
+      import { initLab } from '../../scripts/lab';
+      initPage();
+      initOpening();
+      initHolds();
+      loadUndoingGL();
+      initLab();
+    </script>
+  </body>
+</html>

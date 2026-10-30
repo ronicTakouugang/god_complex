@@ -29,13 +29,27 @@ function bezier(x1: number, y1: number, x2: number, y2: number) {
   };
 }
 /** The site's --ease-in-out token (DESIGN.md §7.2), for motion driven from script. */
-const easeInOut = bezier(0.65, 0, 0.35, 1);
+export const easeInOut = bezier(0.65, 0, 0.35, 1);
 
-type Phase ='idle' | 'holding' | 'releasing' | 'committed' | 'done';
+export type Phase = 'idle' | 'holding' | 'releasing' | 'committed' | 'done';
+
+/** What the scene element announces on every change (`undoing` event), so an optional renderer
+ *  (src/scripts/undoing-gl) can draw the same moment. The CSS layers never depend on it. */
+export interface UndoingState {
+  phase: Phase;
+  /** The drain, 0 to 1: the hold's progress. */
+  p: number;
+  /** The colour's return from the edges, 0 to 1, already eased. */
+  ret: number;
+  /** Where the drain starts, as a fraction of the scene. */
+  ox: number;
+  oy: number;
+}
 
 class Undoing {
   phase: Phase = 'idle';
   private p = 0;
+  private ret = 0;
   private last = 0;
   private raf = 0;
   private buttons: HTMLButtonElement[] = [];
@@ -85,6 +99,16 @@ class Undoing {
   private paint() {
     this.scene.style.setProperty('--r', `${this.p * this.max()}px`);
     this.buttons.forEach((b) => b.style.setProperty('--p', String(this.p)));
+    this.emit();
+  }
+
+  private emit() {
+    const r = this.scene.getBoundingClientRect();
+    const detail: UndoingState = {
+      phase: this.phase, p: this.p, ret: this.ret,
+      ox: r.width ? this.ox / r.width : 0.5, oy: r.height ? this.oy / r.height : 0.6,
+    };
+    this.scene.dispatchEvent(new CustomEvent('undoing', { detail }));
   }
 
   private label(state: 'idle' | 'holding' | 'done') {
@@ -111,6 +135,7 @@ class Undoing {
     if (this.phase !== 'holding') return;
     this.phase = 'releasing';
     this.label('idle');
+    this.emit();
   }
 
   private loop() {
@@ -159,6 +184,7 @@ class Undoing {
   private returnColour() {
     const max = this.max();
     if (reduced()) {
+      this.ret = 1;
       this.scene.classList.add('is-after');
       this.finish(false);
       return;
@@ -168,6 +194,8 @@ class Undoing {
       const t = Math.min(1, (now - t0) / RETURN_MS);
       // The drain is linear (forgetting isn't eased); the return breathes out on --ease-in-out.
       this.scene.style.setProperty('--r2', `${(1 - easeInOut(t)) * max}px`);
+      this.ret = easeInOut(t);
+      this.emit();
       if (t < 1) requestAnimationFrame(step);
       else {
         this.scene.classList.add('is-after');
@@ -182,6 +210,7 @@ class Undoing {
     this.phase = 'done';
     this.scene.classList.remove('is-holding', 'is-returning');
     this.scene.classList.add('is-done');
+    this.emit();
     this.onCost(restoring);
   }
 
@@ -189,6 +218,7 @@ class Undoing {
   restore() {
     this.phase = 'committed';
     this.p = 1;
+    this.ret = this.hasAfter ? 1 : 0;
     this.scene.classList.add('is-drained', 'is-done');
     if (this.hasAfter) this.scene.classList.add('is-after');
     this.scene.style.setProperty('--r', '9999px');

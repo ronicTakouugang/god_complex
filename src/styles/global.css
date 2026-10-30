@@ -537,3 +537,31 @@ main { padding-top: var(--bar); }
 :lang(zh) :is(h2, h3, .claim p, .verdict, .deck, .pullquote, .witnesses blockquote, .story, .sign-name):not([lang]) { line-height: 1.35; }
 :lang(zh) em, :lang(zh) i, :lang(zh) cite { font-style: normal; }
 :lang(zh) em { text-emphasis: filled dot; -webkit-text-emphasis: filled dot; text-emphasis-position: under right; -webkit-text-emphasis-position: under; }
+
+/* ---------- The Undoing in WebGL (src/scripts/undoing-gl, an enhancement) ---------- */
+/* The canvas sits over the plates; the plates are hidden only while it is live, and return the instant it is not. */
+.scene .layer-gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.scene.gl-on img.layer { visibility: hidden; }
+/* Camera 3 (the cut to the Office's footage): shown by WebGL through its lens, or as the plain still without it. */
+.scene img.layer-cctv { visibility: hidden; }
+.scene.is-cctv:not(.gl-on) img.layer-cctv { visibility: visible; }
+
+/* The opening camera (camera.ts OPENING; opening.ts). Before first paint the plates are framed at the first shot;
+   WebGL takes it from there, or CSS plays the same move. The two must stay in step with camera.ts. */
+.scene[data-camera="opening"] img.layer { transform-origin: 50% 50%; }
+:root[data-opening="pending"] .scene[data-camera="opening"] img.layer { transform: scale(1.8) translateY(22%); }
+:root[data-opening="css"] .scene[data-camera="opening"] img.layer { transition: transform 5200ms var(--ease-in-out); }
+@media (max-width: 1023px), (pointer: coarse) {
+  :root[data-opening="pending"] .scene[data-camera="opening"] img.layer { transform: scale(1.55) translateY(18%); }
+  :root[data-opening="css"] .scene[data-camera="opening"] img.layer { transition-duration: 3600ms; }
+}
+:root.opening-cut .scene[data-camera="opening"] img.layer { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  :root[data-opening] .scene[data-camera="opening"] img.layer { transform: none; transition: none; }
+}
+/* Prototype page (src/pages/lab/tagus.astro): camera 3's timestamp and the way on into the archive. */
+.cctv-stamp { position: absolute; left: 12px; top: 12px; z-index: 3; margin: 0; font-family: var(--f-inst); font-size: var(--fs-small); font-weight: 600; color: var(--bone); }
+.cctv-stamp[hidden] { display: none; }
+.lab-next { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; }
+.lab-next[hidden], .lab-report[hidden], .lab-next .btn[hidden] { display: none; }
+.lab-report { font-family: var(--f-inst); font-weight: 600; text-underline-offset: 0.2em; min-height: 44px; display: inline-flex; align-items: center; }

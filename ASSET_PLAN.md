@@ -344,6 +344,15 @@ The character illustrations set the quality ceiling of the whole experience. Thi
 
 Documents stay **live text**, never images (§3).
 
+#### 7. Depth maps for the WebGL Undoing (DESIGN.md §7.6)
+
+| ID | Asset | Status |
+|---|---|---|
+| K-7a | **Depth maps for the Tagus set**: one greyscale map per plate (`tagus-harm`, `tagus-drained`, `tagus-after`), near = white, far = black, about 1024 px, **aligned with its plate**. Prompt for an edit of each plate: "Convert this exact image into a smooth greyscale depth map: nearest surfaces white, farthest black, no lines or text, same framing." Save as `src/assets/img/depth/tagus-*.png`. Until then the shader uses a ground-plane estimate. | MAKE |
+| K-7b | The same for the cyclist set, if the cyclist scene moves to WebGL | Later |
+
+**Known defect on the live site (CSS path):** `tagus-after` is not pixel-aligned with `tagus-drained`, so the homepage's colour return shows two figures for about two seconds. The WebGL path avoids it (DESIGN.md §7.6). The CSS fix: return the colour with a `mix-blend-mode: color` copy over the drained plate, then cut to the aftermath. To do before release.
+
 ### 10.4 Production order
 
 1. **K-3b** and **K-3d**: done, and in the cyclist hold.

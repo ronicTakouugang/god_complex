@@ -3,6 +3,8 @@
  * One undoing: the harm, the drained moment (only Lua keeps her colour) and,
  * optionally, the aftermath. The layers share one crop, so the drain mask lines up.
  * Behaviour lives in src/scripts/hold.ts (DESIGN.md §7.3).
+ * With `gl`, src/scripts/undoing-gl may draw the same layers in WebGL over them (an enhancement only):
+ * `depth` is a greyscale depth map aligned with the plates (near = white), `camera` names a camera move.
  */
 import { Picture } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
@@ -16,14 +18,17 @@ interface Props {
   /** Where the drain starts when the hold comes from the keyboard or the button: Lua's hand. */
   origin: string;
   eager?: boolean;
+  gl?: boolean;
+  depth?: ImageMetadata;
+  camera?: 'opening';
 }
 
-const { id, harm, drained, after, alt, origin, eager = false } = Astro.props;
+const { id, harm, drained, after, alt, origin, eager = false, gl = false, depth, camera } = Astro.props;
 const widths = [480, 768, 1024, 1536];
 const sizes = '(min-width: 1024px) 50vw, 100vw';
 const loading = eager ? 'eager' : 'lazy';
 ---
-<div class="scene" id={`scene-${id}`} data-undo={id} data-origin={origin}>
+<div class="scene" id={`scene-${id}`} data-undo={id} data-origin={origin} data-gl={gl ? '' : undefined} data-depth={depth?.src} data-camera={camera}>
   <Picture class="layer layer-harm" src={harm} alt={alt} widths={widths} sizes={sizes} formats={['avif', 'webp']} fallbackFormat="jpg" loading={loading} fetchpriority={eager ? 'high' : 'auto'} />
   <Picture class="layer layer-drained" src={drained} alt="" widths={widths} sizes={sizes} formats={['avif', 'webp']} fallbackFormat="jpg" loading={loading} aria-hidden="true" />
   {after && <Picture class="layer layer-after" src={after} alt="" widths={widths} sizes={sizes} formats={['avif', 'webp']} fallbackFormat="jpg" loading={loading} aria-hidden="true" />}
