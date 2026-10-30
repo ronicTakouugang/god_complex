@@ -10,7 +10,7 @@ const years = [...new Set(chronological.map((r) => r.event.iso.slice(0, 4)))];
 const titles = (ids: string[]) => ids.map((id) => byId(id)?.title ?? id);
 ---
 <ArchiveLayout title="The archive · Case LETHE · The God Complex"
-  description="Five fictional records from Case LETHE, the file on AMNESTY. Part of THE GOD COMPLEX, an original graphic-novel universe."
+  description="Six fictional records from Case LETHE, the file on AMNESTY. Part of THE GOD COMPLEX, an original graphic-novel universe."
   links={[{ href: '/', label: 'The file' }, { href: '/#contents', label: 'Contents' }]}>
   <div class="index-sheet">
     <div class="index-head">

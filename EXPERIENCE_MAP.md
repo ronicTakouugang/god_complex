@@ -178,13 +178,14 @@ This is everything the site remembers. It lives only in the browser, and the sit
 
 ## 6. The archive (`/archive/`, v1 built 2026-10-29)
 
-The leaked records: five documents from Case LETHE that Dr Okafor copied in late 2033. The homepage reaches it from the bar ("Archive"), the sealed section ("Read the leaked records") and the footer. Content lives in `src/content/archive.ts`; presentation lives in `src/components/archive/`.
+The leaked records: six documents from Case LETHE that Dr Okafor copied in late 2033. The homepage reaches it from the bar ("Archive"), the sealed section ("Read the leaked records") and the footer. Content lives in `src/content/archive.ts`; presentation lives in `src/components/archive/`.
 
 - **Order:** the index lists records by the date of their events. Records **unseal in the order Mara read them**:
   1. The Barreiro Nova report and the Setúbal statement are open from the start.
   2. Both of those unseal the interim analysis.
   3. The analysis unseals her notes.
-  4. Her notes unseal the 1970 record.
+  4. Her notes unseal the Director’s memorandum (added 2026-10-30).
+  5. The memorandum unseals the 1970 record, so the Director’s redacted “Do not extend” lands after the visitor knows her.
 - **Progress** is tracked in this browser only (`gc.archive`), and cleared by "Forget this visit". Without JavaScript, every record is open.
 - **Cross-references** to a record that is still sealed show as a black bar until the visitor has read what unseals it.
 - **Scope:** the archive reaches the Okafor Correlation (public, February 2033) and seeds one open mystery (CHARACTER_BIBLE §5.5, "Why Celeste?"). **It reveals none of Revelations 1–3.**
@@ -195,6 +196,7 @@ The leaked records: five documents from Case LETHE that Dr Okafor copied in late
 | Statement of I. M., Setúbal | AEL-0261 / S1 | What paying feels like: the white blink and the hot dust, no sense of loss, a son she cares for and does not know. Skills intact (L2), no recovery (L3). |
 | Interim analysis of the losses | AEL-IA-07 | The clinical definition. 1,140 people: 228 individuals and one collective event of 912. No trace on imaging. Distribution "consistent with random selection" (Mara's BELIEF, L4-B). Onsets are instantaneous and arrive one at a time. |
 | Notes of Dr Mara Okafor | LETHE-PER-0019 | The Correlation found: all 31 reported rescues match an onset to the minute ("a boy for a boy"). Her own loss (AEL-0388: Tobi at two, three and four). The decision to publish. "Whatever this is, it starts then" (May 2031). |
+| The Director’s memorandum | LETHE-DIR-0003 | **The antagonist’s argument** (release criterion 6): Solvang accepts the Correlation and calls Lua’s mercy *a lottery* whose losers never agreed to play, set against her own triage work (“in daylight, by rules, with names written down”). Mara answers in the margin: “She kneels because someone is dying in front of her.” A liftable bar hides recommendation 4, *establish whether the cost obeys any rule*, which foreshadows her experiment without revealing it. The memo never names the Protocol or the Tithe. |
 | The *Flor de Maio*, 1970 | LETHE-HIS-1970 | **The contradiction:** the full signature at Mindelo in 1970, before the subject could have existed. A. ███ (Abílio), the survivor, forgot his wedding; his wife sings to him. The Director's response is redacted. |
 
 **New canon introduced by the archive** (copied into CHARACTER_BIBLE §4.3, §4.5 and §5.5 on 2026-10-29):
@@ -204,3 +206,4 @@ The leaked records: five documents from Case LETHE that Dr Okafor copied in late
 - **Mara's own case** (AEL-0388) was paid for by a fall at Martim Moniz.
 - **The *Flor de Maio*:** wrecked 2 March 1970, 23:40; crew of eight lost; a 32-year-old survivor.
 - **Minor characters:** Insp. C. Brandão, Dr R. Pires, archivist T. Varela.
+- **The Director’s memorandum** (LETHE-DIR-0003, 12 February 2033, the day after publication): Solvang accepts the Correlation and recommends seizing Okafor’s papers (done 14 February), telling every payer, studying whether the cost obeys a rule, and offering the subject contact, never custody.

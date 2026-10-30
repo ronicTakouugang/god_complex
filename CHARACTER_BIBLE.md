@@ -266,6 +266,7 @@ Solvang **knows L4 before Lua does.** She proved it on herself. That is why she 
 - **Her motive:** *"A miracle without a protocol is a lottery."* She believes improvised mercy causes more harm than structure.
 - **Her advantage:** in 2033 she ran an experiment on Lua without her knowledge. She staged an emergency where Lua would see it and placed **her own photograph** in Lua's line of sight. Solvang forgot her husband. She now carries his name on an index card. She **knows L4 is true**, and she has paid to know it.
 - **Her line:** *"You decide who forgets every single day, Lua. I'm only asking you to decide fairly."*
+- **On the record (FACT, archive LETHE-DIR-0003):** her memorandum of 12 February 2033, the day after the Correlation is published. She accepts the finding, calls Lua’s mercy *a lottery* whose losers never agreed to play, and recommends seizing Okafor’s papers, telling every payer, establishing whether the cost obeys a rule, and offering Lua contact, never custody. At this date she **does not yet know L4**; recommendation 4 is the start of her experiment.
 - **She challenges Lua's worldview, not her body.** She never fights her. She offers her a better system and makes refusing it look selfish.
 
 ### 6.4 From her past: **Ivone Semedo**

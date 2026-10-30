@@ -145,7 +145,7 @@ All of these are **real HTML text** styled as documents, not images. They also n
 | D-4 | Four or five Acute Episodic Loss case notes, including Mara's own | II | Mara | WRITE |
 | D-5 | Mara's direct-address passages (about six short ones) | II–VII | Mara | WRITE |
 | D-6 | The Okafor Correlation abstract plus Case 0632 | III | Mara | WRITE |
-| D-7 | The Office's response memo (classified) | III | The Office | WRITE |
+| D-7 | The Office's response memo (classified) | III | The Office | WRITTEN: archive record LETHE-DIR-0003, the Director’s memorandum (2026-10-30) |
 | D-8 | Djina's morna verse in **Kriolu plus a translation**. **Original lyrics, checked by a Kriolu speaker.** | IV | Djina's mother | WRITE + REVIEW |
 | D-9 | Solvang's experiment report | V | Solvang | WRITE |
 | D-10 | The Protocol for Consensual Allocation form | V | The Office | WRITE |
@@ -317,7 +317,7 @@ The character illustrations set the quality ceiling of the whole experience. Thi
 
 | ID | Asset | Ships now | Crops | Status |
 |---|---|---|---|---|
-| K-4 | **Dr Ingrid Solvang, introduced.** Her office in the Continuity Office at night: an orderly desk, case folders with stamp-red labels, a pencil, index cards **with their written side face down** in her breast pocket. She stands at a tall window looking down at the warm city and the river. Her face is visible in a cool reflection in the glass. **Lighting is the inverse of Lua's:** cold even institutional light inside, the warm world outside and out of reach. | Chapter V opener (EXPERIENCE_MAP §V). Not used in the current release. | L + P | HAVE: `solvang-office.jpg` (P, border cropped) |
+| K-4 | **Dr Ingrid Solvang, introduced.** Her office in the Continuity Office at night: an orderly desk, case folders with stamp-red labels, a pencil, index cards **with their written side face down** in her breast pocket. She stands at a tall window looking down at the warm city and the river. Her face is visible in a cool reflection in the glass. **Lighting is the inverse of Lua's:** cold even institutional light inside, the warm world outside and out of reach. | **In use:** the figure in the Director’s memorandum (archive). Later, the chapter V opener. | L + P | HAVE: `solvang-office.jpg` (P, border cropped) |
 | K-4b | **V-1, Solvang's index card** with her husband's name, in **pencil**. Already planned (§2, V-1). Revealed only in chapter V, after Revelation 2. | — | P | MAKE |
 
 **K-4 prompt:** "Graphic-novel panel, a 58-year-old Norwegian woman with a silver bob, charcoal suit and white shirt, standing very still at a tall office window at night, seen from the side; her calm face visible as a faint reflection in the glass; behind her an orderly desk with case folders carrying red labels, a sharpened pencil, a desk lamp switched off; plain white index cards in her breast pocket, writing face down; cold, even, bluish institutional light inside, and through the window the warm amber lights of Lisbon and the dark river far below. Composition: she is high in the frame, looking down." *[style lock]* **Negative:** blue ink, legible writing on the cards, a villain's smile, weapons, dramatic under-lighting.

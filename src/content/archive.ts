@@ -1,10 +1,11 @@
 /**
- * The classified investigation archive: five fictional records from Case LETHE.
+ * The classified investigation archive: six fictional records from Case LETHE.
  * Content only. Presentation lives in src/components/archive/.
  *
  * Canon: CHARACTER_BIBLE.md. Every fact here must agree with it; reveal order follows §8.1.
  * The archive reaches the Okafor Correlation (public, Feb 2033) and seeds one Open mystery
- * (§5.5, "Why Celeste?": the 1970 Flor de Maio). It reveals none of Revelations 1–3.
+ * (§5.5, "Why Celeste?": the 1970 Flor de Maio). The Director’s memorandum gives the antagonist her
+ * argument (§6.3) without her experiment or the Protocol. It reveals none of Revelations 1–3.
  *
  * Inline markup in any text field:
  *   *words*            italic
@@ -20,7 +21,7 @@ export type Block =
   | { t: 'log'; caption: string; rows: { time: string; text: string }[] }
   | { t: 'qa'; rows: { who: string; text: string }[] }
   | { t: 'table'; caption: string; head: string[]; rows: string[][] }
-  | { t: 'figure'; img: 'tagus-drained' | 'ev-cctv' | 'ev-swimbag' | 'ev-notebook' | 'ev-harbour-log'; alt: string; caption: string }
+  | { t: 'figure'; img: 'tagus-drained' | 'ev-cctv' | 'ev-swimbag' | 'ev-notebook' | 'ev-harbour-log' | 'solvang-office'; alt: string; caption: string }
   | { t: 'sign'; name: string; role: string };
 
 /** An annotation in the margin. `after` is the index of the block it belongs to. */
@@ -262,6 +263,54 @@ export const records: ArchiveRecord[] = [
   },
 
   {
+    id: 'directors-memo',
+    ref: 'LETHE-DIR-0003',
+    kind: 'Director’s memorandum',
+    title: 'The Director’s memorandum',
+    summary: 'The day after the Correlation, the Director answers it. She doesn’t call it false. She calls it a lottery.',
+    origin: 'Office of the Director, Continuity Office, Lisbon',
+    classification: 'Secret',
+    stamp: 'Secret · LETHE',
+    event: { iso: '2033-02-12', label: '12 February 2033' },
+    filed: { iso: '2033-02-12', label: '12 February 2033' },
+    entered: '12 February 2033',
+    requires: ['okafor-notes'],
+    blocks: [
+      { t: 'fields', rows: [
+        ['To', 'Heads of section, Continuity Office'],
+        ['From', 'Dr I. Solvang, Director'],
+        ['Subject', 'The Okafor Correlation, and what follows from it'],
+        ['Distribution', '[[bar:9]]'],
+      ] },
+      { t: 'h', text: 'The finding' },
+      { t: 'p', text: 'Dr Okafor’s paper, published yesterday, is correct in every particular we have been able to check. We will not dispute it, in public or here. Every undoing by Subject LETHE costs a stranger part of their own past, at the same minute. Over twenty months that is 1,140 people, and we had identified none of them.' },
+      { t: 'h', text: 'Position of this Office' },
+      { t: 'p', text: 'The press will now ask whether she is a saint or a thief. It is the wrong question. We have no reason to think she is cruel. Every account describes someone who kneels, says nothing and leaves. She is something more ordinary than a saint, and more dangerous: one person allocating harm, alone, in seconds, with no record, no consent and no appeal.' },
+      { t: 'p', text: 'She saves whoever is dying in front of her, and someone she will never meet pays. Nobody asked them. Nobody tells them. *A miracle without a protocol is a lottery,* and the people who lose it never agreed to play.' },
+      { t: 'p', text: 'I have spent my working life deciding who is given the last bed in an intensive care unit. Those decisions are terrible, and we make them in daylight, by rules, with names written down. That is what makes them bearable, and it is what makes them fair. Mercy that answers to no one is not kinder. It is only faster.' },
+      { t: 'h', text: 'Recommendations' },
+      { t: 'fields', rows: [
+        ['1', 'No public statement beyond acknowledging the paper.'],
+        ['2', 'Secure Dr Okafor’s working papers. She is to be treated as a colleague, not a suspect.'],
+        ['3', 'Every payer we can identify is to be found and told. They paid without being asked. The least we owe them is to know.'],
+        ['4', '[[bar:16|Establish whether the cost obeys any rule. If it can be predicted, it can be governed.]]'],
+        ['5', 'Contact with the subject is to be offered, never imposed. We will not hold her. We will ask her to work with us.'],
+      ] },
+      { t: 'figure', img: 'solvang-office', alt: 'A woman in her late fifties with a silver bob and a charcoal suit stands very still at a tall office window at night, looking down. Her face shows faintly in the glass. Behind her are a tidy desk, binders with red labels and a lamp switched off; outside, far below, the lit city, the river and a red suspension bridge.', caption: 'Dr Ingrid Solvang, Director of the Continuity Office, Lisbon, February 2033 (reconstruction).' },
+      { t: 'sign', name: 'I. Solvang', role: 'Director, Continuity Office' },
+    ],
+    notes: [
+      { after: 5, by: 'Dr M. Okafor', text: 'She kneels because someone is dying in front of her. This would have her stand up first and check a list.' },
+      { after: 8, by: 'Continuity Office', text: 'Recommendation 2: working papers seized 14 February 2033. See [[ref:okafor-notes|LETHE-PER-0019]].' },
+      { after: 8, by: 'Dr M. Okafor', text: 'Governed by whom?' },
+    ],
+    connections: [
+      { to: 'okafor-notes', note: '“The word they’re avoiding is cost.” The Director uses it the next day.' },
+      { to: 'flor-de-maio', note: 'Eight months later she closes a review under her own name.' },
+    ],
+  },
+
+  {
     id: 'flor-de-maio',
     ref: 'LETHE-HIS-1970',
     kind: 'Historical review',
@@ -274,7 +323,7 @@ export const records: ArchiveRecord[] = [
     filed: { iso: '2033-10-06', label: '6 October 2033' },
     entered: '6 October 2033',
     translated: 'Log extract and medical note translated from Portuguese by the Office.',
-    requires: ['okafor-notes'],
+    requires: ['directors-memo'],
     blocks: [
       { t: 'h', text: 'Harbour log, Mindelo, São Vicente' },
       { t: 'log', caption: 'Watch officer’s entries, night of 2–3 March 1970.', rows: [

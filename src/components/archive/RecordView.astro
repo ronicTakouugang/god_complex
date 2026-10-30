@@ -11,12 +11,13 @@ import evCctv from '../../assets/img/ev-cctv.png';
 import evSwimbag from '../../assets/img/ev-swimbag.png';
 import evNotebook from '../../assets/img/ev-notebook.png';
 import evHarbourLog from '../../assets/img/ev-harbour-log.png';
+import solvangOffice from '../../assets/img/solvang-office.jpg';
 
 interface Props {
   record: ArchiveRecord;
 }
 const { record: r } = Astro.props;
-const images = { 'tagus-drained': tagusDrained, 'ev-cctv': evCctv, 'ev-swimbag': evSwimbag, 'ev-notebook': evNotebook, 'ev-harbour-log': evHarbourLog } as const;
+const images = { 'tagus-drained': tagusDrained, 'ev-cctv': evCctv, 'ev-swimbag': evSwimbag, 'ev-notebook': evNotebook, 'ev-harbour-log': evHarbourLog, 'solvang-office': solvangOffice } as const;
 const notesAfter = (i: number) => r.notes.filter((n) => n.after === i);
 const blocks: Block[] = r.blocks;
 const requireTitles = r.requires.map((id) => byId(id)?.title ?? id).join(' and ');
