@@ -113,7 +113,7 @@ This is everything the site remembers. It lives only in the browser, and the sit
 
 - **What they learn:** **Revelation 2.** The cost falls on **whatever she holds closest** when she says yes. **Solvang** proved it on herself and lost her husband. The **Protocol for Consensual Allocation** ("the Tithe") steers costs onto paid volunteers with a photograph. And the people Lua loves are now in the path. **Duarte's betrayal:** he gave the Office her voiceprint.
 - **Feeling:** vertigo, then betrayal.
-- **Visual:** FILE, at its most institutional. Stamp red is heaviest here. **Black bars everywhere**, which the Office is hiding. Solvang's experiment report. **The Protocol form**, a real form with the fields filled in: *Volunteer photograph — attached.* Solvang's **index card** with her husband's name. Duarte's voiceprint as an `--ink` waveform, the one trace of Lua that can be tracked.
+- **Visual:** FILE, at its most institutional. Stamp red is heaviest here. **Black bars everywhere**, which the Office is hiding. The chapter opens on **Solvang at her office window** (ASSET_PLAN K-4), before her index card is shown. Solvang's experiment report. **The Protocol form**, a real form with the fields filled in: *Volunteer photograph — attached.* Solvang's **index card** with her husband's name. Duarte's voiceprint as an `--ink` waveform, the one trace of Lua that can be tracked.
 - **Interaction:**
   - Black bars can be **lifted**: the visitor taps or focuses a bar to reveal the text underneath, because the Office's secrets exist and can be uncovered. This is deliberately the opposite of white-out, which can't be lifted.
   - The Protocol form's final line is unsigned: *"Subject LETHE consents to hold the volunteer's likeness in mind."*

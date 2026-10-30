@@ -230,3 +230,9 @@
 .lifted:focus { outline: none; }
 @media (prefers-reduced-motion: reduce) { .lift .blackbar { transition: none; } }
 .lift[hidden] { display: none; }
+/* Release fix: the event table fits a 320px phone. */
+@media (max-width: 600px) { .doc-table th, .doc-table td { padding: 8px 6px; } }
+
+/* The stamp sits beside the title on wide screens whatever font has loaded, so the Literata swap never
+   rewraps the header and pushes the document down (measured CLS 0.12–0.16 on long titles). */
+@media (min-width: 601px) { .doc-head { flex-wrap: nowrap; } .doc-head h1 { flex: 1 1 auto; min-width: 0; } .doc-head .stamp { flex: none; } }

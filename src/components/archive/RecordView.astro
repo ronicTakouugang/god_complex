@@ -5,7 +5,7 @@
  */
 import { Picture } from 'astro:assets';
 import RichText from './RichText.astro';
-import type { ArchiveRecord, Block } from '../../content/archive';
+import { byId, type ArchiveRecord, type Block } from '../../content/archive';
 import tagusDrained from '../../assets/img/tagus-drained.png';
 import evCctv from '../../assets/img/ev-cctv.png';
 import evSwimbag from '../../assets/img/ev-swimbag.png';
@@ -19,6 +19,7 @@ const { record: r } = Astro.props;
 const images = { 'tagus-drained': tagusDrained, 'ev-cctv': evCctv, 'ev-swimbag': evSwimbag, 'ev-notebook': evNotebook, 'ev-harbour-log': evHarbourLog } as const;
 const notesAfter = (i: number) => r.notes.filter((n) => n.after === i);
 const blocks: Block[] = r.blocks;
+const requireTitles = r.requires.map((id) => byId(id)?.title ?? id).join(' and ');
 ---
 <div class="record-grid">
   <article class="doc" aria-labelledby="doc-title" data-record={r.id} data-requires={r.requires.join(',')}>
@@ -38,7 +39,18 @@ const blocks: Block[] = r.blocks;
     </dl>
     {r.translated && <p class="doc-translated">{r.translated}</p>}
 
-    <p class="early" data-early hidden>You have opened this record out of order. Dr Okafor read it after <span data-early-list></span>.</p>
+    {r.requires.length > 0 && (
+      <>
+        <p class="early" data-early hidden>You have opened this record out of order. Dr Okafor read it after {requireTitles}.</p>
+        {/* Decided before the first paint, so the notice never pushes the document down after load. */}
+        <script is:inline define:vars={{ requires: r.requires }}>
+          try {
+            var read = JSON.parse(localStorage.getItem('gc.archive') || '[]');
+            if (!requires.every(function (id) { return read.indexOf(id) !== -1; })) document.currentScript.previousElementSibling.hidden = false;
+          } catch (e) {}
+        </script>
+      </>
+    )}
 
     <div class="doc-body">
       {blocks.map((b, i) => (

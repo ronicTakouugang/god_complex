@@ -59,15 +59,7 @@ function initRecord(page: HTMLElement, read: Set<string>) {
   const doc = page.querySelector<HTMLElement>('[data-record]');
   if (!doc) return;
   const id = doc.dataset.record ?? '';
-  // Opened before its turn: say so plainly, but never block reading.
-  if (!met(doc.dataset.requires ?? '', read)) {
-    const early = page.querySelector<HTMLElement>('[data-early]');
-    const list = page.querySelector('[data-early-list]');
-    if (early && list) {
-      list.textContent = page.dataset.requiresTitles ?? '';
-      early.hidden = false;
-    }
-  }
+  // The "opened out of order" notice is decided inline before the first paint (RecordView.astro).
   markRead(id);
   const now = readSet();
   applyGates(now);

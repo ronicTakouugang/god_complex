@@ -22,7 +22,7 @@ const req = (x: ArchiveRecord) => x.requires.join(',');
 ---
 <ArchiveLayout title={`${r.title} · ${r.ref} · The God Complex`} description={r.summary}
   links={[{ href: '/archive/', label: 'Archive' }, { href: closeHref, label: 'Close record' }]}>
-  <div class="record-page" data-close={closeHref} data-requires-titles={r.requires.map((id) => byId(id)?.title).join(' and ')}>
+  <div class="record-page" data-close={closeHref}>
     <RecordView record={r}>
       <Fragment slot="aside">
       <section class="connections" aria-labelledby="conn-h">

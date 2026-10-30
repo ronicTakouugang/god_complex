@@ -1,6 +1,6 @@
 # THE GOD COMPLEX — Asset Plan
 
-> Every asset the experience needs, by chapter, with its source and status. The rules for how each looks are in [DESIGN.md](DESIGN.md) and [VISUAL_DIRECTION.md](VISUAL_DIRECTION.md). Where each one appears is in [EXPERIENCE_MAP.md](EXPERIENCE_MAP.md).
+> Every asset the experience needs, by chapter, with its source and status. **The prioritised key-art checklist is §10.** The rules for how each looks are in [DESIGN.md](DESIGN.md) and [VISUAL_DIRECTION.md](VISUAL_DIRECTION.md). Where each one appears is in [EXPERIENCE_MAP.md](EXPERIENCE_MAP.md).
 >
 > **Status key:**
 > - **HAVE**: locked, in `concept/reference/`.
@@ -18,10 +18,10 @@ The first release (`src/pages/index.astro`) uses these locked images, copied int
 | On the page | File in `src/assets/img/` | From `concept/reference/` | Replace with |
 |---|---|---|---|
 | Prologue stage: harm, drained, after | `tagus-harm.png`, `tagus-drained.png`, `tagus-after.png` | `prologue-capsized`, `lua-power-tagus`, `prologue-after` | Upscaled masters, plus **landscape (L) versions** (P-1, P-3), because on desktop the portrait images are cropped to the stage. `tagus-after` doesn't line up pixel for pixel; it's used as the colour-return layer. |
-| "Nobody can describe her" figure | `lua-front.png` | `lua-turnaround-front` | A **finished panel** of Lua, not the design sheet. The sheet's warm paper is faded into the page paper with an edge mask. |
-| Cyclist stage: harm and drained | `cyclist-harm.png`, `cyclist-drained.jpg` | `lua-pose-kneel`, `lua-power-undoing-peak` | Upscaled masters, plus a pixel-aligned **after** state (I-3: cyclist sitting up). Without it the cyclist scene stays drained after the hold. |
-| Mara (stage slide and letter portrait) | `mara.png` | `cast-mara` | A **scene of Mara at work** (II-2). The design sheet shows two figures side by side. |
-| Eu sou a Lua (stage slide, phone figure) | `hand.png` | `lua-pose-hand` | Upscaled. The hand inscription will be hand-lettered (S-9). |
+| "Nobody can describe her" figure | `lua-tramstop.jpg` | `lua-standing-tramstop` | **Done (K-2, 2026-10-30):** a finished night panel replaces the design sheet; the paper edge fade was removed. Needs the 2× upscale. |
+| Cyclist stage: harm, drained, after | `cyclist-harm.png`, `cyclist-drained.jpg`, `cyclist-after.jpg` | `lua-pose-kneel`, `cyclist-drained-aligned`, `cyclist-after` | **Done (K-3b, K-3d, 2026-10-30):** all three line up pixel for pixel, and the colour now returns to the street afterwards. Remaining: the boots in `cyclist-after` should be clogs. |
+| Mara (stage slide and letter portrait) | `mara-desk.jpg` | `mara-desk` | **Done (K-5a, 2026-10-30):** Mara at her desk at night replaces the cast sheet. |
+| Eu sou a Lua (stage slide, phone figure) | `hand.png` | `lua-pose-hand-left` | **Done (K-5b, 2026-10-30):** mirrored so the inscription is on her **left** hand, with the writing re-set to read correctly. Hand-lettering (S-9) still to come. |
 | "The rest is sealed" | `effects.png` | `lua-emblem-stilllife` | Upscaled. |
 | Footer badge | `badge.png` | `badge-blank` | Upscaled. It's visibly soft at desktop width. |
 
@@ -71,7 +71,7 @@ The site shows **Mara, Duarte, Solvang, Ivone and Djina**, mostly in documents a
 |---|---|---|---|---|---|
 | I-1 | Cyclist on Rua da Conceição, Lua in the kneel | world | L + P | `lua-pose-kneel.png` | HAVE (P) / DERIVE (L) |
 | I-2 | The same moment, drained, with Lua in colour | drained | L + P | `lua-power-undoing-peak.jpg` | HAVE (P) / DERIVE (L) |
-| I-3 | The same street afterwards: cyclist sitting up, bike whole, no scar left | world | L + P | Edit of I-1 | MAKE |
+| I-3 | The same street afterwards: cyclist sitting up, bike whole, no scar left | world | L + P | Edit of I-1 | HAVE (P): `cyclist-after.jpg` |
 | I-4 | **CCTV still:** a colour-keeping motion smear of a figure, the badge sharp, with timestamp overlay (set in code) | — | L | Generate | MAKE |
 | I-5 | **Press photo:** the shrine at Cais do Sodré, candles, flowers, printed photos of the smear | world | L + P | Generate | MAKE |
 | I-6 | **Witness photo:** a crowd at a rescue, one smeared figure among sharp faces | — | L | Generate | MAKE |
@@ -238,3 +238,118 @@ Each record has room for one evidence image, using the `figure` block in `src/co
 - **AR-2:** "Overhead documentary photograph of a child's blue swimming bag on a wooden school bench, a folded towel beside it, soft morning light, muted natural colours, no people, no text."
 - **AR-4:** "Overhead photograph of an open spiral notebook, dense handwriting in black ink on one page, a small yellowed note taped onto the facing page, a reading-glasses case at the edge, desk lamp light, no legible words, no blue ink."
 - **AR-5:** "Archival photograph of an old harbour log book open on a desk: ruled ledger pages, faded brown ink handwriting, a lamp-oil stain, a round ink stamp; beside it a small black-and-white 1970s photograph of a two-masted schooner at anchor in a mountainous bay. No legible words."
+
+---
+
+## 10. Key art pass: the prioritised checklist (added 2026-10-30)
+
+The character illustrations set the quality ceiling of the whole experience. This pass replaces every design sheet still shown on the site with finished art and adds the missing key images. It is ordered by the six priorities below. **Ships now** marks an image that replaces or fixes something visible in the current release; do those first within each group.
+
+**Two canon adjustments to the brief:**
+- **"Primary portrait" means a portrait without the face.** CLAUDE.md and VISUAL_DIRECTION §2.5 forbid her face and a portrait hero. Her portrait is built from what replaces the face: **the hands, the blank badge, the collar loop, the neck and jaw, the kneel.** It never opens the site (§7.5); it serves as the social card and as the panel for chapter I.
+- **The antagonist is introduced as the Director, not yet as the woman who paid.** Solvang's face may be shown. Her **husband's index card is a Revelation 2 spoiler** (bible §6.3, §8.1) and must not be legible in her introduction image.
+
+**No stock photography of people, ever.** Every figure is original generated art made from the locked references. Licensed or public-domain sources are allowed only for things with no identity: paper scans, textures, map linework (II-1).
+
+### 10.1 The character lock (paste into every prompt that shows Lua)
+
+> Lua: a 35-year-old Black Cape Verdean woman, 1.68 m, lean, realistic proportions (about 7.25 heads tall), narrow sloping shoulders, long arms, **large capable hands**, deep brown skin with warm undertones, close-cropped natural hair in short coils about 3 cm long. A worn **knee-length grey-blue knit cardigan** (shawl collar, no buttons, two deep patch pockets, ribbed cuffs pushed to the elbows, pilled, hem stretched unevenly, darned patches in ochre, deep blue and brown yarn), a charcoal crew-neck tee, straight navy work trousers worn pale at the knees, black non-slip care clogs with the right toe scuffed. **1990s matte-black over-ear studio headphones resting around her neck**, one cup cracked and taped with silver tape, coiled cable running to her right pocket. A **muted teal lanyard** with a clear badge holder holding only a **blank white card**. Blue ballpoint writing on the back of her **left** hand.
+
+**Style lock:** inked graphic-novel line work with a confident brush, restrained flat colour, paper grain. A warm, saturated Lisbon (ochre, azulejo blue, terracotta, Atlantic teal) against her quiet grey-blue. Warm key light on her skin.
+
+**Lighting lock, for night exteriors:** a warm sodium-amber key from one side (the street), a cool teal fill from the river, rain falling. **For interiors:** a single warm practical lamp, deep shadow, no fill.
+
+**Negative (always):** visible face, frontal face, white or blur over the face, cape, cloak, hood, mask, armour, spandex, chest emblem, glow, aura, particles, lightning, halo, superhero pose, fists raised, flying, neon, lens flare, writing on the right hand.
+
+**Attach as references, every time:** `lua-turnaround-front.png` and `lua-turnaround-back.jpg`, plus the locked pose closest to the new image (`lua-pose-kneel.png`, `lua-pose-refusal.jpg` or `lua-pose-hand.png`).
+
+### 10.2 Consistency check (run on every candidate, in addition to §7.4)
+
+| Check | Pass when |
+|---|---|
+| Face | Out of frame, turned away, or in shadow. Never erased. |
+| Silhouette | At 64px in solid black: column, collar loop, small round head and the drop are all readable. |
+| Hair | Short coils about 3 cm. No length, no braids (braids belong to Celeste, Stage 0 only). |
+| Hands | Large. The inscription is on the **left** hand. |
+| Kneel | **One knee down**, the other foot planted. Never both knees. |
+| Headphones | Around the neck; one cup silver-taped; coiled cable to the right pocket. |
+| Badge | Teal lanyard, clear holder, **blank** white card. |
+| Cardigan | Knee length, never belted, darns in ochre, blue and brown (not dark grey). |
+| Proportions | About 7.25 heads. Never heroic 8–9. |
+| Skin | Warm and saturated, including inside a drained scene. |
+| Colour roles | No Stamp Red on her. No blue ink on anyone else. |
+
+### 10.3 The checklist
+
+#### 1. The primary portrait
+
+| ID | Asset | Ships now | Crops | Status |
+|---|---|---|---|---|
+| K-1 | **The faceless portrait.** Waist-up, three-quarter from behind her left shoulder, at night on the quay. Her head is turned toward the river, so the frame shows her jaw line, ear, neck and the coils of her hair, but not her face. Her **left hand** is raised to her chest, holding the empty badge holder toward the light: the inscription and the blank card are both sharp. The headphone loop sits on her collar. | Becomes the **og:image** (1200×630), which is currently missing | L 16:9 (and 1200×630) + P 4:5 | HAVE: `lua-portrait-quay.jpg` (2528×1696) |
+| K-1b | **The identity close-up.** Her two hands only: the left hand with the inscription resting on the right, the blank badge between them, the cardigan cuffs pushed back. It stands in for a face in close-ups. | — | P 4:5 + square | MAKE |
+
+**K-1 prompt:** *[character lock]* "Waist-up graphic-novel portrait seen from behind her left shoulder, three-quarter back view, her head turned away toward a dark river so only her jaw line, ear, neck and short coiled hair are visible; her left hand raised to her chest holding an empty clear badge holder with a blank white card toward the light, blue ballpoint writing 'Eu sou a Lua' on the back of that left hand, the headphones resting around her neck, rain, a warm sodium streetlight from the left, cool teal river light from the right, Lisbon quay lamps out of focus behind her." *[style lock] [negative]*
+**Attach:** `lua-turnaround-back.jpg`, `lua-turnaround-left.png`, `lua-pose-hand.png`. **Save candidates to** `concept/explorations/k1-*.png`.
+
+#### 2. Full body: silhouette and costume
+
+| ID | Asset | Ships now | Crops | Status |
+|---|---|---|---|---|
+| K-2 | **The establishing figure.** A finished in-world full-body panel of Lua standing in her ordinary posture (§3): slightly hunched, hands in her cardigan pockets, the headphones around her neck, at a rain-wet tram stop under an azulejo wall. Three-quarter back view. The figure fills about 70% of the frame height, and all five silhouette features read clearly. | **Replaces `lua-front.png`** (the turnaround sheet) in the "Nobody can describe her" section | P 3:4 + L | HAVE: `lua-standing-tramstop.jpg` |
+| K-2s | **Solid-black silhouette** traced from K-2 and from `lua-pose-kneel.png`. A reference for the silhouette test, not shown on the site. | — | — | DERIVE |
+
+**K-2 prompt:** *[character lock]* "Full-body graphic-novel panel, three-quarter view from behind, the woman standing at a rain-wet Lisbon tram stop at night, slightly hunched, both hands in the deep pockets of her knee-length cardigan, head bowed and turned away, headphones resting around her neck, the teal lanyard and blank badge visible where the cardigan hangs open, a wall of blue-and-white azulejo tiles behind her, warm amber streetlight, a yellow tram blurred in the distance, people passing who don't look at her." *[style lock] [negative]*
+**Attach:** all four turnaround views. **Acceptance:** passes the silhouette test against `cast-*.png` at 64px.
+
+#### 3. The power in action
+
+| ID | Asset | Ships now | Crops | Status |
+|---|---|---|---|---|
+| K-3a | ~~The Tagus set, landscape~~ | **Dropped (2026-10-30).** The desktop prologue is a split stage whose image panel is portrait (about 684×800 at 1440px), so the portrait art fills it with a slight crop. No wide version is needed. | — | DROPPED |
+| K-3b | **I-3, the cyclist afterwards**: the same street, cyclist sitting up, bike whole, colour returned. An edit of `cyclist-harm.png`. | **Yes.** The cyclist scene stays drained after the hold. | P (+ L) | HAVE: `cyclist-after.jpg` (shoes to fix) |
+| K-3c | **The Tagus portrait set, kneel corrected**: P-1 and P-2 fixed to one knee as a matched pair of edits. | **Yes** (phone prologue) | P | DEFERRED to the final artist pass: the figure is small, and an edit must keep P-1 and P-2 pixel-aligned |
+| K-3d | **I-2 redone as an edit of `cyclist-harm.png`**: same frame, world drained to paper grey, Lua in full colour. The current `cyclist-drained.jpg` is a different composition, so the drain ring shows two streets at once. | **Yes** (the cyclist hold) | P | HAVE: `cyclist-drained-aligned.jpg` |
+
+**K-3a prompt** (edit of `lua-power-tagus.png`, outpainted to 16:9): "Extend the scene to the left and right: more of the drained river and the warm lit city on the far bank, the same storm sky. Change only her pose: **one knee down**, the other foot planted, her hand flat on the stones. Keep everything else identical." Then make P-1 and P-3 **as edits of that result**, never as fresh generations (§0, rule 3).
+**K-3b prompt** (edit of `cyclist-harm.png`): "Same frame, same light. The cyclist is now sitting up on the cobblestones, unhurt, looking at his hands; the bicycle is whole and upright; no blood. Lua has already stood and turned away, walking out of the frame on the right, face not visible." *[negative]*
+
+#### 4. The antagonist
+
+| ID | Asset | Ships now | Crops | Status |
+|---|---|---|---|---|
+| K-4 | **Dr Ingrid Solvang, introduced.** Her office in the Continuity Office at night: an orderly desk, case folders with stamp-red labels, a pencil, index cards **with their written side face down** in her breast pocket. She stands at a tall window looking down at the warm city and the river. Her face is visible in a cool reflection in the glass. **Lighting is the inverse of Lua's:** cold even institutional light inside, the warm world outside and out of reach. | Chapter V opener (EXPERIENCE_MAP §V). Not used in the current release. | L + P | HAVE: `solvang-office.jpg` (P, border cropped) |
+| K-4b | **V-1, Solvang's index card** with her husband's name, in **pencil**. Already planned (§2, V-1). Revealed only in chapter V, after Revelation 2. | — | P | MAKE |
+
+**K-4 prompt:** "Graphic-novel panel, a 58-year-old Norwegian woman with a silver bob, charcoal suit and white shirt, standing very still at a tall office window at night, seen from the side; her calm face visible as a faint reflection in the glass; behind her an orderly desk with case folders carrying red labels, a sharpened pencil, a desk lamp switched off; plain white index cards in her breast pocket, writing face down; cold, even, bluish institutional light inside, and through the window the warm amber lights of Lisbon and the dark river far below. Composition: she is high in the frame, looking down." *[style lock]* **Negative:** blue ink, legible writing on the cards, a villain's smile, weapons, dramatic under-lighting.
+**Attach:** `cast-solvang.png`. **Acceptance:** her face matches the sheet; no text is legible; no blue ink anywhere on her.
+
+#### 5. Atmosphere and supporting narrative imagery
+
+| ID | Asset | Ships now | Status |
+|---|---|---|---|
+| K-5a | **II-2, Mara at her desk at night**, seen from the side: files, the register, a cold cup, a phone with a child's photo face down. | **Replaces `mara.png`** (the cast sheet) on the stage slide and the letter. Attach `cast-mara.png`. | HAVE: `mara-desk.jpg` |
+| K-5b | **The Hand, corrected**: `lua-pose-hand.png` with the inscription moved to the **left** hand (edit, or mirror the hand only). | **Yes** (stage slide, phone figure) | HAVE: `lua-pose-hand-left.png` (mirrored in code; AI tools would not move the writing) |
+| K-5c | **I-5, the shrine at Cais do Sodré**: candles, flowers, printed photos of the colour-keeping smear, rain. No Lua. | Chapter I | MAKE |
+| K-5d | **Lisbon at night, establishing** (L + P): Cais do Sodré in the rain, the river, the bridge, the warm city. The base plate for VII-1 and VII-2. | Chapter VII | MAKE |
+| K-5e | VI-1 (the Santa Luzia corridor), IV-1 (the valley), IV-2 (the red door), IV-4 and IV-5 (the fountain) | Gated chapters: **never published before their reveal** (bible §8.1) | MAKE |
+
+#### 6. Symbols, documents and recurring elements
+
+| ID | Asset | Ships now | Status |
+|---|---|---|---|
+| K-6a | **Badge and still life, regenerated large**: `badge.png` and `effects.png` at 2× | **Yes** (footer, "The rest is sealed"). Visibly soft at desktop width. | DERIVE |
+| K-6b | **S-9, hand-lettered *Eu sou a Lua*** in Ballpoint Blue, from a real ballpoint sample | Hand-lettered inscriptions everywhere | MAKE |
+| K-6c | **T-1 paper tile** and **T-3 correction-fluid texture** | Grounds the FILE register and the white-out | MAKE (scan) |
+| K-6d | Stamps, black bars, white-out masks, the mark | Already built as code (S-1 to S-8) | CODE ✓ |
+
+Documents stay **live text**, never images (§3).
+
+### 10.4 Production order
+
+1. **K-3b** and **K-3d**: done, and in the cyclist hold.
+2. **K-2, then K-1**: the hero's image of record. Lock K-2 before K-1, so the portrait derives from a finished figure.
+3. **K-5b, K-5a** (done), then **K-6a**: the soft badge and still-life images visible today.
+4. **K-4**, then chapters V to VII as they are built.
+5. **The 2× upscale** (§0, rule 1) on every locked image, last, after the edits.
+
+**Workflow, unchanged:** generate into `concept/explorations/`, run §10.2, lock the winner into `concept/reference/` with a note in its README, then copy it into `src/assets/img/` and record its prompt in a `.json` sidecar.

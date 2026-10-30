@@ -319,12 +319,8 @@ main { padding-top: var(--bar); }
 /* ---------- Reveal: nobody can describe her (full width, breaks the split) ---------- */
 .reveal { background: var(--bone); display: grid; grid-template-columns: 1fr; }
 .reveal-figure { height: 78svh; overflow: hidden; background: var(--bone); }
-.reveal-figure img {
-  width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent), linear-gradient(to bottom, #000 88%, transparent); /* taste-skill-ignore: edge fade merges the illustration paper into the page paper */
-  -webkit-mask-composite: source-in; mask-composite: intersect;
-  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent), linear-gradient(to bottom, #000 88%, transparent); /* taste-skill-ignore: same edge fade */
-}
+/* A finished night panel (ASSET_PLAN K-2), so no edge fade: the crop keeps her, from head to clogs, right of centre. */
+.reveal-figure img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 45%; }
 .reveal-text { padding: clamp(64px, 8vw, 128px) var(--pad); }
 .witnesses { list-style: none; padding: 0; margin-top: 56px; display: grid; gap: 36px; }
 .witnesses blockquote { font-size: var(--fs-state); line-height: 1.32; max-width: 30ch; }
@@ -371,7 +367,7 @@ main { padding-top: var(--bar); }
 .letter { max-width: 34rem; margin-inline: auto; }
 .letter-head { display: flex; align-items: center; gap: 16px; margin-top: 48px; }
 .portrait { width: 56px; height: 56px; overflow: hidden; flex: none; }
-.portrait img { width: 128px; max-width: none; height: auto; transform: translate(-64px, -24px); }
+.portrait img { width: 300px; max-width: none; height: auto; transform: translate(-130px, -88px); }
 .letter-head p { font-family: var(--f-inst); font-size: var(--fs-small); color: var(--ink-soft); line-height: 1.4; }
 .letter-body { margin-top: 28px; }
 .letter-body p { line-height: 1.6; }
@@ -480,12 +476,8 @@ main { padding-top: var(--bar); }
 [data-sealed] .v { background: var(--ink); color: transparent; user-select: none; }
 .slip .total [data-sealed] .v, [data-sealed] .total .v { background: var(--bone); }
 
-/* Mara on the stage: her portrait, not the two-view design sheet. */
-.slide[data-slide-id='mara'] > picture { overflow: hidden; }
-.slide[data-slide-id='mara'] > picture > img { object-position: 92% 30%; }
-@media (min-width: 1024px) {
-  .slide[data-slide-id='mara'] > picture { transform: scale(1.9); transform-origin: 96% 30%; }
-}
+/* Mara on the stage: at her desk at night (ASSET_PLAN K-5a), framed on her and the ledger. */
+.slide[data-slide-id='mara'] > picture > img { object-position: 40% 40%; }
 .withheld .what { display: block; margin-top: 6px; }
 
 /* ---------- Navigation between pages: a short cross-document transition (DESIGN.md §4.3: cuts, not slides).
@@ -495,3 +487,26 @@ main { padding-top: var(--bar); }
 .bar { view-transition-name: bar; }
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 180ms; animation-timing-function: ease; }
 ::view-transition-group(*) { animation-duration: 260ms; animation-timing-function: var(--ease-out); }
+
+/* ---------- Release fixes (audit 2026-10-30) ---------- */
+/* Focus rings on the night ground must be bone, not ink. */
+.skip:focus-visible, .sealed :focus-visible { outline-color: var(--bone); }
+/* Narrow phones: the bar keeps one line; the tap setting stays in the footer's settings. */
+.bar-label { white-space: nowrap; }
+@media (max-width: 480px) {
+  .bar .toggle { display: none; }
+}
+/* The front page carries the line the opening quotes. */
+.paper .pullquote { font-family: var(--f-story); font-style: italic; font-size: var(--fs-body); margin-top: 16px; max-width: 34ch; }
+/* Narrow phones (320px): the register's date and time wrap, fixed-width bars give way, and the slip's terms wrap,
+   so nothing on the page is wider than the screen. */
+@media (max-width: 400px) {
+  .sheet td.when { white-space: normal; padding-left: 12px; }
+  .sheet .when-d, .sheet .when-t { display: block; white-space: nowrap; }
+  .sheet .when-sep { display: none; }
+  .sheet .withheld .blackbar { max-width: 9em; }
+  .sheet .withheld td.when .blackbar { max-width: 4.5em; }
+  .contents .sealed-row .blackbar { max-width: 8em; }
+  .slip dt, .slip dd { flex: 0 1 auto; }
+  .slip .lead { min-width: 8px; }
+}

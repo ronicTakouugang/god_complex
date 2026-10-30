@@ -13,10 +13,11 @@ import Bar from '../components/Bar.astro';
 import tagusHarm from '../assets/img/tagus-harm.png';
 import tagusDrained from '../assets/img/tagus-drained.png';
 import tagusAfter from '../assets/img/tagus-after.png';
-import luaFront from '../assets/img/lua-front.png';
+import luaFront from '../assets/img/lua-tramstop.jpg';
 import cyclistHarm from '../assets/img/cyclist-harm.png';
 import cyclistDrained from '../assets/img/cyclist-drained.jpg';
-import mara from '../assets/img/mara.png';
+import cyclistAfter from '../assets/img/cyclist-after.jpg';
+import mara from '../assets/img/mara-desk.jpg';
 import hand from '../assets/img/hand.png';
 import effects from '../assets/img/effects.png';
 import badge from '../assets/img/badge.png';
@@ -132,7 +133,7 @@ const description =
               <p class="lede">The press call her AMNESTY. The Continuity Office calls her Subject LETHE. This is its file on what she does, and on what it costs.</p>
               <button class="btn card-hold" type="button" data-hold="tagus" data-label-idle="Hold to undo" data-label-holding="Keep holding" data-label-done="Undone at 21:14"
                 aria-describedby="hold-hint"><span class="btn-text">Hold to undo</span></button>
-              <p id="hold-hint" class="sr-only">Press and hold the button or the picture, or hold the Space key, to undo the capsizing. Turn on “Tap instead of hold” in the top bar to undo with one press.</p>
+              <p id="hold-hint" class="sr-only">Press and hold the button or the picture, or hold the Space key, to undo the capsizing. Turn on “Tap instead of hold” in the settings to undo with one press.</p>
               <p class="cost" id="cost-tagus" hidden>
                 <span class="typed" aria-hidden="true">{[...costPre].map((c) => <span class="ch">{c}</span>)}<span class="fname">{[...costName].map((c) => <span class="ch">{c}</span>)}</span>{[...costPost].map((c) => <span class="ch">{c}</span>)}</span>
                 <span class="sr-only">{costPre}[forgotten]{costPost}</span>
@@ -158,6 +159,7 @@ const description =
               <p class="masthead">Diário do Tejo</p>
               <p class="headline" lang="en">AMNESTY</p>
               <p class="deck">212 people pulled from the Tagus, unhurt. Not one witness can say who did it.</p>
+              <p class="pullquote">“She can undo any harm,” says a woman who was pulled from the river. Page 3.</p>
               <p class="dateline tab">Saturday, 19 June 2032 · Lisbon</p>
             </figure>
             <div class="after-text measure">
@@ -177,12 +179,12 @@ const description =
       <!-- AMNESTY: the reveal. Breaks the split. -->
       <section class="reveal" id="amnesty" aria-labelledby="amnesty-h">
         <div class="reveal-figure">
-          <Picture src={luaFront} alt="A woman in a long, darned grey-blue cardigan, with old headphones round her neck and an empty badge on a teal lanyard. The frame stops at her jaw." widths={[600, 900, 1300]} sizes="(min-width: 1024px) 42vw, 100vw" formats={fmt} fallbackFormat="jpg" loading="lazy" />
+          <Picture src={luaFront} alt="A rainy tram stop at night under a wall of blue tiles. A woman in a long, darned grey-blue cardigan stands with her hands in her pockets, old headphones round her neck and an empty badge on a teal lanyard, her head turned away. People walk past without looking at her." widths={[600, 900, 1300]} sizes="(min-width: 1024px) 42vw, 100vw" formats={fmt} fallbackFormat="jpg" loading="lazy" />
         </div>
         <div class="reveal-text">
           <div>
             <h2 id="amnesty-h">Nobody can describe her</h2>
-            <p class="measure">Five people watched her undo the Tagus from a few metres away. This is what they told the Continuity Office that night.</p>
+            <p class="measure">Five people saw her undo the Tagus, from the quay and from the ferry’s deck. This is what they told investigators that night.</p>
           </div>
           <ul class="witnesses" data-enter>
             {witnesses.map((w) => (
@@ -200,13 +202,13 @@ const description =
       <div class="split split--file">
         <div class="stage" data-stage data-active="cyclist">
           <div class="slide" data-slide-id="cyclist">
-            <HoldScene id="cyclist" harm={cyclistHarm} drained={cyclistDrained} origin="60% 56%"
+            <HoldScene id="cyclist" harm={cyclistHarm} drained={cyclistDrained} after={cyclistAfter} origin="60% 56%"
               alt="A rainy Lisbon street at night. A cyclist lies on the cobbles beside his bike, and a woman in a grey-blue cardigan kneels with her hand flat on his chest, her face turned away.">
               <p class="caption"><strong>Lisbon, 2031</strong>A cyclist, a wet street, a car that didn’t stop.</p>
             </HoldScene>
           </div>
           <div class="slide" data-slide-id="mara">
-            <Picture src={mara} alt="Dr Mara Okafor: a woman in an olive wool coat, reading glasses pushed up into her locs, holding a thick paper file to her chest." widths={[600, 1024]} sizes={half} formats={fmt} fallbackFormat="jpg" loading="lazy" />
+            <Picture src={mara} alt="Dr Mara Okafor at her desk at night under a lamp, reading glasses pushed up into her locs, writing in a ledger marked Registry. A cold mug of coffee, case files, and a phone with a child’s photo beside her." widths={[600, 1024]} sizes={half} formats={fmt} fallbackFormat="jpg" loading="lazy" />
             <p class="caption"><strong>Dr Mara Okafor</strong>Neurologist. Compiler of the register of Acute Episodic Loss.</p>
           </div>
           <div class="slide" data-slide-id="hand">
@@ -261,7 +263,7 @@ const description =
             <div class="letter">
               <h2 id="letter-h">Why you have this file</h2>
               <div class="letter-head">
-                <div class="portrait"><Picture src={mara} alt="" widths={[256]} sizes="128px" formats={fmt} fallbackFormat="jpg" loading="lazy" /></div>
+                <div class="portrait"><Picture src={mara} alt="" widths={[600]} sizes="300px" formats={fmt} fallbackFormat="jpg" loading="lazy" /></div>
                 <p>From Dr Mara Okafor<br />Lisbon, 2033</p>
               </div>
               <div class="letter-body">
@@ -304,7 +306,7 @@ const description =
                             <span class="case tab">AEL-{r.no}</span> {r.place}
                             <span class="what">{r.what}</span>
                           </td>
-                          <td class="when">{r.when}</td>
+                          <td class="when"><span class="when-d">{r.when.split(" · ")[0]}</span><span class="when-sep"> · </span><span class="when-t">{r.when.split(" · ")[1]}</span></td>
                         </tr>
                       ),
                     )}

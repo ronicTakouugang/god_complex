@@ -1,0 +1,15 @@
+---
+/** Not found: a missing page reads as a missing record, with clear ways back. */
+import ArchiveLayout from '../layouts/ArchiveLayout.astro';
+---
+<ArchiveLayout title="No such record · The God Complex" description="This page does not exist. Return to the case file or the archive."
+  links={[{ href: '/', label: 'The file' }, { href: '/archive/', label: 'Archive' }]}>
+  <div class="index-sheet">
+    <div class="index-intro">
+      <h1>No such record</h1>
+      <p class="index-lede">There is nothing filed under this address. It may have been withheld, or it was never written down.</p>
+      <p class="fiction">This page doesn’t exist on the site. Everything that does is one step away.</p>
+    </div>
+    <p class="index-foot"><a href="/">Back to the file</a> · <a href="/archive/">Open the archive</a></p>
+  </div>
+</ArchiveLayout>

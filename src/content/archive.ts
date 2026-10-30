@@ -95,7 +95,7 @@ export const records: ArchiveRecord[] = [
       { t: 'h', text: 'Findings' },
       { t: 'p', text: 'The ferry’s hull shows no damage and no water inside it. The tender that struck her is still crushed at the bow; its crew are unhurt. Only the ferry was returned.' },
       { t: 'p', text: 'All 212 people aboard describe being in the water. Several describe drowning. None of them is injured.' },
-      { t: 'p', text: 'Five witnesses at the quay were interviewed the same night. Their descriptions of the kneeling figure do not agree on height, age or sex. Each witness is certain of their own account.' },
+      { t: 'p', text: 'Five witnesses, on the quay and on the ferry’s deck, were interviewed the same night. Their descriptions of the kneeling figure do not agree on height, age or sex. Each witness is certain of their own account.' },
       { t: 'p', text: 'Footage from camera 3: [[bar:12|collected from this unit at 23:05 the same night by officials who did not give their names. No copy was kept.]]' },
       { t: 'p', text: 'The interval between the collision and the reversal is six minutes and fifty seconds.' },
       { t: 'h', text: 'Cost' },
